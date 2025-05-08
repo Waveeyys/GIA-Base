@@ -26,31 +26,31 @@
       align-items: center;
     }
     .scrollbar-container {
-      width: 15px;
+      width: 30px;
       background: #22222270;
-      border-radius: 10px;
+      border-radius: 20px;
       position: relative;
-      margin-right: 13px;
-      top: 65px;
+      margin-right: 26px;
+      top: 130px;
     }
     .scrollbar-thumb {
       width: 100%;
-      height: 40px;
+      height: 80px;
       position: absolute;
       top: 0;
-      border-radius: 20px;
+      border-radius: 40px;
       background: linear-gradient(180deg, #ffc3a6 0%, #ffc3a6 100%);
       transition: top 0.2s ease-in-out;
       box-shadow:
-        inset 0 0 17px 7px #ffc3a6,
-        inset 0 0 60px 20px rgba(255, 195, 166, 0.4),
-        0 0 12px 2px #ffc3a6,
-        0 0 15px 1px rgba(255, 195, 166, 0.6);
+        inset 0 0 34px 14px #ffc3a6,
+        inset 0 0 120px 40px rgba(255, 195, 166, 0.4),
+        0 0 24px 4px #ffc3a6,
+        0 0 30px 2px rgba(255, 195, 166, 0.6);
     }
     .menu-container {
-        width: 410px;
+        width: 1640px;
         background: #000000e5;
-        border-radius: 15px;
+        border-radius: 30px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -58,24 +58,24 @@
         overflow: hidden;
         position: relative;
         z-index: 10;
-        border: 2px solid #370467;
+        border: 4px solid #370467;
 
         /* glow effects */
         box-shadow:
-        inset 0 -18px 15px 2px rgba(255, 195, 166, 0.7), /* soft peach inner glow */
-        0 0 18px 6px #ffc3a6,          /* peach outer halo */
-        0 0 10px rgba(255, 195, 166, 0.4);             /* peach shadow */
+        inset 0 -36px 30px 4px rgba(255, 195, 166, 0.7), /* soft peach inner glow */
+        0 0 36px 12px #ffc3a6,          /* peach outer halo */
+        0 0 20px rgba(255, 195, 166, 0.4);             /* peach shadow */
     }
     .menu-binds {
         position: absolute;
-        bottom: 545px; /* Start hidden */
+        bottom: 2180px; /* Start hidden, doubled */
         left: 50%;
         transform: translateX(-50%);
-        width: 90%;
-        max-width: 300px;
-        height: 120px;
+        width: 180%;
+        max-width: 1200px;
+        height: 480px;
         background: #222222;
-        border-radius: 12px;
+        border-radius: 24px;
         padding: 0px;
         display: flex;
         flex-direction: column;
@@ -87,55 +87,63 @@
     .menu-binds .text {
         color: rgb(255, 255, 255);
         text-shadow: 
-          0 0 2px #ffc3a6,
-          0 0 8px #ffc3a6,
-          0 0 12px rgba(255, 195, 166, 0.8),
-          0 0 8px rgba(255, 255, 255, 0.7); /* peachy white outer glow */;
+          0 0 4px #ffc3a6,
+          0 0 16px #ffc3a6,
+          0 0 24px rgba(255, 195, 166, 0.8),
+          0 0 16px rgba(255, 255, 255, 0.7); /* peachy white outer glow */;
         font-family: 'Verdana', sans-serif;
-        font-size: 17px;
-        margin-bottom: 10px;
+        font-size: 68px;
+        margin-bottom: 20px;
         text-align: center;
     }
     @keyframes neon-glow1 {
-      from { box-shadow:         inset 0 0 6px 3px  #ffc3a6,  /* peach inner glow */
-        0 0 1px 1px #ffc3a6; }
-      to   { box-shadow:         inset 0 0 6px 16px  #ffc3a6,  /* peach inner glow */
-        0 0 8px 2px #ffc3a6; }
+      from { box-shadow:         inset 0 0 12px 6px  #ffc3a6,  /* peach inner glow */
+        0 0 2px 2px #ffc3a6; }
+      to   { box-shadow:         inset 0 0 12px 32px  #ffc3a6,  /* peach inner glow */
+        0 0 16px 4px #ffc3a6; }
     }
     .menu-binds .inner-rect {
-        width: 84%; /* Inner rectangle width */
-        height: 60%; /* Inner rectangle height */
+        width: 168%; /* Inner rectangle width, doubled */
+        height: 240%; /* Inner rectangle height, doubled */
         background: rgba(255, 195, 166, 0.35);
         filter: url(#electric-glow);
         animation:
         neon-glow1   1.4s ease-in-out -1s infinite alternate;
-        border-radius: 6px;
+        border-radius: 12px;
         display: flex;
         justify-content: center;
         align-items: center;
     }
     .menu-binds input {
-        width: 84%;
-        height: 40px;
+        width: 168%;
+        height: 80px;
         background: rgba(53, 3, 58, 0.675);
         border: none;
-        border-radius: 4px;
+        border-radius: 8px;
         color: #f8dcff;
-        font-size: 18px;
+        font-size: 36px;
         text-align: center;
         outline: none;
     }
     .menu-binds input:focus {
         background: rgba(53, 3, 58, 0.675);
         box-shadow:
-        inset 0 0 6px 3px  #94008d,  /* dark purple inner glow */
-        0 0 3px 3px #ff00f289;
+        inset 0 0 12px 6px  #94008d,  /* dark purple inner glow */
+        0 0 6px 6px #ff00f289;
     }
     .menu-header {
       background: url("https://i.ibb.co/6JphhX1G/Menu-Banner3.png") no-repeat center center;
       background-size: cover;
       text-align: center;
-      padding: 55px 0px;
+      padding: 110px 0px;
+      font-size: 88px;
+      font-weight: 575;
+      color: #fff; /* bright violet base */
+      text-shadow: 
+        0 0 4px rgba(128, 20, 229, 0.968),
+        0 0 8px #5e239d,
+        0 0 8px #5e239d,
+        0 0 10px rgba(180, 180, 180, 0.944); /* subtle white outer glow */;
     }
     .menu-tabs {
       display: flex;
@@ -144,16 +152,16 @@
     }
     .menu-tab {
       flex: 1;
-      padding: 10px;
+      padding: 20px;
       font-family: 'Friz Quadrata', sans-serif;
-      font-size: 21px;
+      font-size: 42px;
       font-weight: 575;
       color: #fff; /* bright violet base */
       text-shadow: 
-        0 0 2px rgba(128, 20, 229, 0.968),
-        0 0 4px #5e239d,
-        0 0 4px #5e239d,
-        0 0 5px rgba(180, 180, 180, 0.944); /* subtle white outer glow */;
+        0 0 4px rgba(128, 20, 229, 0.968),
+        0 0 8px #5e239d,
+        0 0 8px #5e239d,
+        0 0 10px rgba(180, 180, 180, 0.944); /* subtle white outer glow */;
       text-align: center;
       cursor: pointer;
       transition: background-color 0.3s, color 0.3s;
@@ -162,17 +170,18 @@
     .menu-tab.selected {
       background-color: #0d021d;            /* solid black */
       color: #fff; /* keep text white */
-      border: 2px solid #ffc3a6;    /* peach border */
+      border: 4px solid #ffc3a6;    /* peach border */
 
       /* inner + outer glow */
       box-shadow:
-        0 0 8px 2px #ffc3a6,
-        0 0 16px 8px #ffc3a6,
-        0 0 12px 2px #ffc3a6;
+        0 0 16px 4px #ffc3a6,
+        0 0 32px 16px #ffc3a6,
+        0 0 24px 4px #ffc3a6;
     }
     .menu-items-container {
       width: 100%;
-      max-height: 400px;
+      max-height: 800px;
+      padding: 0 48px 48px 48px;
       overflow-y: auto;
       flex-grow: 0;          /* prevent auto-expansion */
       flex-shrink: 0;        /* don't shrink */
