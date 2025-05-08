@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GIA</title>
+  <title>insight</title>
   <style>
     body {
       margin: 0;
@@ -39,13 +39,13 @@
       position: absolute;
       top: 0;
       border-radius: 20px;
-      background: linear-gradient(180deg, #4504a7 0%, #4504a7 100%);
+      background: linear-gradient(180deg, #ffc3a6 0%, #ffc3a6 100%);
       transition: top 0.2s ease-in-out;
       box-shadow:
-        inset 0 0 17px 7px #4504a7,
-        inset 0 0 60px 20px rgba(158, 0, 255, 0.4),
-        0 0 12px 2px #4504a7,
-        0 0 15px 1px rgba(158, 0, 255, 0.6);
+        inset 0 0 17px 7px #ffc3a6,
+        inset 0 0 60px 20px rgba(255, 195, 166, 0.4),
+        0 0 12px 2px #ffc3a6,
+        0 0 15px 1px rgba(255, 195, 166, 0.6);
     }
     .menu-container {
         width: 410px;
@@ -62,9 +62,9 @@
 
         /* glow effects */
         box-shadow:
-        inset 0 -18px 15px 2px rgba(78, 0, 151, 0.7), /* soft purple inner glow */
-        0 0 10px rgba(78, 0, 151, 0.7),          /* outer halo */
-        0 0 10px rgba(78, 0, 151, 0.4);             /* original black shadow */
+        inset 0 -18px 15px 2px rgba(255, 195, 166, 0.7), /* soft peach inner glow */
+        0 0 18px 6px #ffc3a6,          /* peach outer halo */
+        0 0 10px rgba(255, 195, 166, 0.4);             /* peach shadow */
     }
     .menu-binds {
         position: absolute;
@@ -85,27 +85,27 @@
         z-index: 0; /* Below other UI */
     }
     .menu-binds .text {
-        color: rgb(255, 255, 255); /* bright violet base */
+        color: rgb(255, 255, 255);
         text-shadow: 
-          0 0 1px rgb(85, 0, 255),
-          0 0 3px rgb(101, 23, 255),
-          0 0 3px rgb(154, 104, 255),
-          0 0 4px rgba(180, 180, 180, 0.944); /* subtle white outer glow */;
-          font-family: 'Verdana', sans-serif;
+          0 0 2px #ffc3a6,
+          0 0 8px #ffc3a6,
+          0 0 12px rgba(255, 195, 166, 0.8),
+          0 0 8px rgba(255, 255, 255, 0.7); /* peachy white outer glow */;
+        font-family: 'Verdana', sans-serif;
         font-size: 17px;
         margin-bottom: 10px;
         text-align: center;
     }
     @keyframes neon-glow1 {
-      from { box-shadow:         inset 0 0 6px 3px  #580053,  /* dark purple inner glow */
-        0 0 1px 1px #9e00ff; }
-      to   { box-shadow:         inset 0 0 6px 16px  #580053,  /* dark purple inner glow */
-        0 0 2px 2px #9e00ff; }
+      from { box-shadow:         inset 0 0 6px 3px  #ffc3a6,  /* peach inner glow */
+        0 0 1px 1px #ffc3a6; }
+      to   { box-shadow:         inset 0 0 6px 16px  #ffc3a6,  /* peach inner glow */
+        0 0 8px 2px #ffc3a6; }
     }
     .menu-binds .inner-rect {
         width: 84%; /* Inner rectangle width */
         height: 60%; /* Inner rectangle height */
-        background: rgba(154, 104, 255, 0.556);
+        background: rgba(255, 195, 166, 0.35);
         filter: url(#electric-glow);
         animation:
         neon-glow1   1.4s ease-in-out -1s infinite alternate;
@@ -161,13 +161,14 @@
 
     .menu-tab.selected {
       background-color: #0d021d;            /* solid black */
-      color: #d2a7ff;                       /* keep text white */
-      border: 2px solid rgba(154, 104, 255, 0.85);    /* purple border */
+      color: #fff; /* keep text white */
+      border: 2px solid #ffc3a6;    /* peach border */
 
       /* inner + outer glow */
       box-shadow:
-      inset 0 0 4px 3px  #5e239d,  /* dark purple inner glow */
-      0 0 3px #7b2cbf;            /* soft outer halo */
+        0 0 8px 2px #ffc3a6,
+        0 0 16px 8px #ffc3a6,
+        0 0 12px 2px #ffc3a6;
     }
     .menu-items-container {
       width: 100%;
@@ -185,9 +186,9 @@
       padding: 12px 20px;
       color: #c8a4eb; /* bright violet base */
       text-shadow: 
-        0 0 2px #4e0097,
-        0 0 4px rgba(78, 0, 151, 0.575),
-        0 0 4px rgb(193, 69, 255),
+        0 0 2px #ffc3a6,
+        0 0 4px rgba(255, 195, 166, 0.575),
+        0 0 4px rgba(255, 195, 166, 0.575),
         0 0 6px #ff00ee; /* subtle white outer glow */;
       font-family: 'Verdana', sans-serif;
       font-size: 14px;
@@ -202,13 +203,13 @@
     .menu-item.selected {
       background-color: #0e0212; /* solid black */
       color: #fff; /* keep text white */
-      border: 2px solid #4e0097; /* purple border */
+      border: 2px solid #ffc3a6; /* peach border */
 
       /* inner + outer glow */
       box-shadow:
-        inset 0 0 4px 2px rgba(78, 0, 151, 0.7),  /* dark purple inner glow */
-        0 0 6px rgba(78, 0, 151, 0.4); /* soft outer halo */
-        transition: background-color 0.1s, transform 0.1s linear; /* Linear transition for smooth snap between positions */
+        0 0 8px 2px #ffc3a6,
+        0 0 16px 8px #ffc3a6,
+        0 0 12px 2px #ffc3a6;
     }
     /* make sure we include borders in width calculations */
     .menu-item.checkbox .toggle-track,
@@ -431,15 +432,19 @@
       <div class="menu-items-container" id="menu-items-container">
         <!-- Main -->
         <div class="menu-items" id="main-items">
-          <div class="menu-item" id="player-options-toggle">Player</div>
-          <div class="menu-item" id="vehicle-options-toggle">Vehicle</div>
-          <div class="menu-item" id="esp-options-toggle">Esp</div>
-          <div class="menu-item" id="teleport-options-toggle">Teleport</div>
-          <div class="menu-item" id="weapons-options-toggle">Weapons</div>
+          <div class="menu-item" id="player-options-toggle">Self</div>
+          <div class="menu-item" id="vehicle-options-toggle">Vehicle Options</div>
           <div class="menu-item" id="model-options-toggle">Model Changer</div>
           <div class="menu-item" id="outfits-options-toggle">Outfits</div>
-          <div class="menu-item" id="world-options-toggle">World</div>
-          <div class="menu-item" id="server-options-toggle">Server</div>
+          <div class="menu-item" id="Animations-options-toggle">Animations</div>
+          <div class="menu-item" id="PTFX-options-toggle">PTFX</div>
+          <div class="menu-item" id="teleport-options-toggle">Teleport</div>
+          <div class="menu-item" id="AimAssist-options-toggle">Aim Assist</div>
+          <div class="menu-item" id="weapons-options-toggle">Weapons</div>
+          <div class="menu-item" id="weather-options-toggle">Weather & Time</div>
+          <div class="menu-item" id="Scripts-options-toggle">Scripts</div>
+          <div class="menu-item" id="Misc-options-toggle">Misc</div>
+          <div class="menu-item" id="Settings-options-toggle">Settings</div>
         </div>
   
         <!-- Scripts -->
@@ -456,7 +461,7 @@
         </div>
 
         <div class="menu-items" id="scripts-options-items" style="display: none;">
-          <!-- Main panel -->
+          <!-- Scripts Options panel -->
           <div class="menu-items" id="scripts-main-items">
             <div class="menu-item">Add Item to Inventory</div>
             <div class="menu-item checkbox">Force Hands up With F6</div>
@@ -649,7 +654,7 @@
       </div>
   
       <div class="menu-footer">
-        Version: Beta <span id="time-since-release">Loading...</span>
+        Version: Pre-Release <span id="time-since-release">waveqa</span>
         <span class="right-text" id="menu-counter">1/9</span>
       </div>
   </div>  
