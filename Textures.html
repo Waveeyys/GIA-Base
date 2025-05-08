@@ -39,13 +39,13 @@
       position: absolute;
       top: 0;
       border-radius: 20px;
-      background: linear-gradient(180deg, #8af0ff 0%, #8af0ff 100%);
+      background: linear-gradient(180deg, #4504a7 0%, #4504a7 100%);
       transition: top 0.2s ease-in-out;
       box-shadow:
-        inset 0 0 17px 7px #8af0ff,
-        inset 0 0 60px 20px rgba(138,240,255,0.3),
-        0 0 12px 2px #8af0ff,
-        0 0 15px 1px rgba(138,240,255,0.3);
+        inset 0 0 17px 7px #4504a7,
+        inset 0 0 60px 20px rgba(158, 0, 255, 0.4),
+        0 0 12px 2px #4504a7,
+        0 0 15px 1px rgba(158, 0, 255, 0.6);
     }
     .menu-container {
         width: 410px;
@@ -62,12 +62,12 @@
 
         /* glow effects */
         box-shadow:
-        inset 0 -18px 15px 2px rgba(138, 240, 255, 0.5), /* soft blue inner glow */
-        0 0 16px 4px #8af0ff,          /* blue outer halo */
-        0 0 12px 2px rgba(138, 240, 255, 0.4);             /* blue shadow */
+        inset 0 -18px 15px 2px rgba(78, 0, 151, 0.7), /* soft purple inner glow */
+        0 0 10px rgba(78, 0, 151, 0.7),          /* outer halo */
+        0 0 10px rgba(78, 0, 151, 0.4);             /* original black shadow */
     }
     .menu-binds {
-      position: absolute;
+        position: absolute;
         bottom: 545px; /* Start hidden */
         left: 50%;
         transform: translateX(-50%);
@@ -85,27 +85,27 @@
         z-index: 0; /* Below other UI */
     }
     .menu-binds .text {
-        color: rgb(255, 255, 255); /* bright blue base */
+        color: rgb(255, 255, 255); /* bright violet base */
         text-shadow: 
-          0 0 2px #8af0ff,
-          0 0 4px #8af0ff,
-          0 0 8px rgba(138,240,255,0.8),
-          0 0 6px rgba(180, 180, 180, 0.7); /* subtle white outer glow */;
-        font-family: 'Verdana', sans-serif;
+          0 0 1px rgb(85, 0, 255),
+          0 0 3px rgb(101, 23, 255),
+          0 0 3px rgb(154, 104, 255),
+          0 0 4px rgba(180, 180, 180, 0.944); /* subtle white outer glow */;
+          font-family: 'Verdana', sans-serif;
         font-size: 17px;
         margin-bottom: 10px;
         text-align: center;
     }
     @keyframes neon-glow1 {
-      from { box-shadow:         inset 0 0 6px 3px  #8af0ff,  /* dark blue inner glow */
-        0 0 1px 1px #8af0ff; }
-      to   { box-shadow:         inset 0 0 6px 16px  #8af0ff,  /* dark blue inner glow */
-        0 0 2px 2px #8af0ff; }
+      from { box-shadow:         inset 0 0 6px 3px  #580053,  /* dark purple inner glow */
+        0 0 1px 1px #9e00ff; }
+      to   { box-shadow:         inset 0 0 6px 16px  #580053,  /* dark purple inner glow */
+        0 0 2px 2px #9e00ff; }
     }
     .menu-binds .inner-rect {
         width: 84%; /* Inner rectangle width */
         height: 60%; /* Inner rectangle height */
-        background: rgba(138, 240, 255, 0.25);
+        background: rgba(154, 104, 255, 0.556);
         filter: url(#electric-glow);
         animation:
         neon-glow1   1.4s ease-in-out -1s infinite alternate;
@@ -162,7 +162,7 @@
     .menu-tab.selected {
       background-color: #0d021d;            /* solid black */
       color: #d2a7ff;                       /* keep text white */
-      border: 2px solid #8af0ff;    /* blue neon border */
+      border: 2px solid rgba(154, 104, 255, 0.85);    /* purple border */
 
       /* inner + outer glow */
       box-shadow:
@@ -185,7 +185,7 @@
       padding: 12px 20px;
       color: #c8a4eb; /* bright violet base */
       text-shadow: 
-        0 0 2px #8af0ff,
+        0 0 2px #4e0097,
         0 0 4px rgba(78, 0, 151, 0.575),
         0 0 4px rgb(193, 69, 255),
         0 0 6px #ff00ee; /* subtle white outer glow */;
@@ -202,7 +202,7 @@
     .menu-item.selected {
       background-color: #0e0212; /* solid black */
       color: #fff; /* keep text white */
-      border: 2px solid #8af0ff; /* blue neon border */
+      border: 2px solid #4e0097; /* purple border */
 
       /* inner + outer glow */
       box-shadow:
@@ -360,100 +360,87 @@
   
       <!-- original top-level tabs -->
       <div class="menu-tabs" id="menu-tabs">
-        <div class="menu-tab selected" id="main-tab">Local</div>
-        <div class="menu-tab" id="online-tab">Online</div>
-        <div class="menu-tab" id="spawn-tab">Spawn</div>
+        <div class="menu-tab selected" id="main-tab">Main</div>
+        <div class="menu-tab" id="scripts-tab">Scripts</div>
+        <div class="menu-tab" id="settings-tab">Settings</div>
       </div>
   
       <!-- new Player-Options tabs (hidden until you enter PO) -->
-      <!-- ===================== TABS SECTION ===================== -->
-      <!-- Player Tabs -->
       <div class="menu-tabs" id="player-tabs" style="display: none;">
         <div class="menu-tab selected" id="player-main-tab">Player</div>
         <div class="menu-tab" id="player-movement-tab">Movement</div>
       </div>
-      <!-- Vehicle Tabs -->
-      <div class="menu-tabs" id="vehicle-tabs" style="display: none;">
-        <div class="menu-tab selected" id="vehicle-main-tab">Vehicle</div>
+      <!-- misc settings tabs -->
+      <div class="menu-tabs" id="misc-tabs" style="display: none;">
+        <div class="menu-tab selected" id="misc-main-tab">Misc</div>
+        <div class="menu-tab" id="misc-settings-tab">Extra Options</div>
       </div>
-      <!-- Model Tabs -->
-      <div class="menu-tabs" id="model-tabs" style="display: none;">
-        <div class="menu-tab selected" id="model-main-tab">Model</div>
-      </div>
-      <!-- Outfits Tabs -->
-      <div class="menu-tabs" id="outfits-tabs" style="display: none;">
-        <div class="menu-tab selected" id="outfits-main-tab">Outfits</div>
-        <div class="menu-tab" id="outfits-upper-tab">Upper</div>
-        <div class="menu-tab" id="outfits-lower-tab">Lower</div>
-      </div>
-      <!-- Animations, PTFX, Teleport, Weapons, World Tabs (if any) -->
-      <!-- Teleport Tabs -->
-      <div class="menu-tabs" id="teleport-tabs" style="display: none;">
-        <div class="menu-tab selected" id="teleport-main-tab">Teleport</div>
-        <div class="menu-tab" id="teleport-player-tab">Player</div>
-      </div>
-      <!-- Weapons Tabs -->
-      <div class="menu-tabs" id="weapons-tabs" style="display: none;">
-        <div class="menu-tab selected" id="weapons-main-tab">Weapon</div>
-        <div class="menu-tab" id="weapons-aimbot-tab">Aimbot</div>
-        <div class="menu-tab" id="weapons-spawner-tab">Spawner</div>
-      </div>
-      <!-- World Tabs -->
-      <div class="menu-tabs" id="world-tabs" style="display: none;">
-        <div class="menu-tab selected" id="world-main-tab">World</div>
-        <div class="menu-tab" id="world-atmosphere-tab">Atmosphere</div>
-      </div>
-      <!-- Scripts Tabs -->
+      <!-- scripts tabs -->
       <div class="menu-tabs" id="scripts-tabs" style="display: none;">
         <div class="menu-tab selected" id="scripts-main-tab">Scripts</div>
         <div class="menu-tab" id="scripts-Built-tab">Built-In</div>
         <div class="menu-tab" id="scripts-misc-tab">Misc</div>
       </div>
-      <!-- Misc Tabs -->
-      <div class="menu-tabs" id="misc-tabs" style="display: none;">
-        <div class="menu-tab selected" id="misc-main-tab">Misc</div>
-        <div class="menu-tab" id="misc-settings-tab">Extra Options</div>
+      <!-- scripts tabs -->
+      <div class="menu-tabs" id="Force-tabs" style="display: none;">
+        <div class="menu-tab selected" id="Force-main-tab">Force Emote</div>
       </div>
-      <!-- ESP Tabs -->
+      <!-- vehicle tabs -->
+      <div class="menu-tabs" id="vehicle-tabs" style="display: none;">
+        <div class="menu-tab selected" id="vehicle-main-tab">Vehicle</div>
+        <div class="menu-tab" id="vehicle-spawner-tab">Spawner</div>
+      </div>
+      <!-- esp tabs -->
       <div class="menu-tabs" id="esp-tabs" style="display: none;">
-        <div class="menu-tab selected" id="esp-main-tab">ESP</div>
+        <div class="menu-tab selected" id="esp-main-tab">Esp</div>
         <div class="menu-tab" id="esp-toggle-tab">Toggles</div>
       </div>
-      <!-- Server Tabs -->
+      <!-- teleport tabs -->
+      <div class="menu-tabs" id="teleport-tabs" style="display: none;">
+        <div class="menu-tab selected" id="teleport-main-tab">Teleport</div>
+        <div class="menu-tab" id="teleport-player-tab">Player</div>
+      </div>
+      <!-- weapons tabs -->
+      <div class="menu-tabs" id="weapons-tabs" style="display: none;">
+        <div class="menu-tab selected" id="weapons-main-tab">Weapon</div>
+        <div class="menu-tab" id="weapons-aimbot-tab">Aimbot</div>
+        <div class="menu-tab" id="weapons-spawner-tab">Spawner</div>
+      </div>
+      <!-- model tabs -->
+      <div class="menu-tabs" id="model-tabs" style="display: none;">
+        <div class="menu-tab selected" id="model-main-tab">Model</div>
+      </div>
+      <!-- outfits tabs -->
+      <div class="menu-tabs" id="outfits-tabs" style="display: none;">
+        <div class="menu-tab selected" id="outfits-main-tab">Outfits</div>
+        <div class="menu-tab" id="outfits-upper-tab">Upper</div>
+        <div class="menu-tab" id="outfits-lower-tab">Lower</div>
+      </div>
+      <!-- world tabs -->
+      <div class="menu-tabs" id="world-tabs" style="display: none;">
+        <div class="menu-tab selected" id="world-main-tab">World</div>
+        <div class="menu-tab" id="world-atmosphere-tab">Atmosphere</div>
+      </div>
+      <!-- server tabs -->
       <div class="menu-tabs" id="server-tabs" style="display: none;">
         <div class="menu-tab selected" id="server-main-tab">Server</div>
         <div class="menu-tab" id="server-destoryer-tab">Destroyer</div>
       </div>
-      <!-- Force Tabs -->
-      <div class="menu-tabs" id="Force-tabs" style="display: none;">
-        <div class="menu-tab selected" id="Force-main-tab">Force Emote</div>
-      </div>
-
-      <!-- ===================== MENU ITEMS SECTION ===================== -->
+  
+      <!-- Menu items -->
       <div class="menu-items-container" id="menu-items-container">
-
         <!-- Main -->
-<div class="menu-items" id="main-items">
-  <div class="menu-item" id="player-options-toggle">Self</div>
-  <div class="menu-item" id="vehicle-options-toggle">Vehicle</div>
-  <div class="menu-item" id="model-options-toggle">Model Changer</div>
-  <div class="menu-item" id="outfits-options-toggle">Outfits</div>
-  <div class="menu-items" id="animations-options-items" style="display:none;">
-  <div class="menu-back">Back</div>
-  <div class="menu-item">Play Animation</div>
-  <div class="menu-item">Stop Animation</div>
-  <div class="menu-item">Favorites</div>
-  <!-- Add more animation options as needed -->
-</div>
-  <div class="menu-item submenu" id="aim-assist-options-toggle">Aim Assist</div>
-  <div class="menu-item" id="ptfx-options-toggle">PTFX</div>
-  <div class="menu-item" id="teleport-options-toggle">Teleport</div>
-  <div class="menu-item" id="weapons-options-toggle">Weapons</div>
-  <div class="menu-item" id="world-options-toggle">Weather & Time</div>
-  <div class="menu-item" id="scripts-options-toggle">Scripts</div>
-  <div class="menu-item" id="misc-options-toggle">Misc</div>
-  <div class="menu-item" id="settings-options-toggle">Settings</div>
-</div>
+        <div class="menu-items" id="main-items">
+          <div class="menu-item" id="player-options-toggle">Player</div>
+          <div class="menu-item" id="vehicle-options-toggle">Vehicle</div>
+          <div class="menu-item" id="esp-options-toggle">Esp</div>
+          <div class="menu-item" id="teleport-options-toggle">Teleport</div>
+          <div class="menu-item" id="weapons-options-toggle">Weapons</div>
+          <div class="menu-item" id="model-options-toggle">Model Changer</div>
+          <div class="menu-item" id="outfits-options-toggle">Outfits</div>
+          <div class="menu-item" id="world-options-toggle">World</div>
+          <div class="menu-item" id="server-options-toggle">Server</div>
+        </div>
   
         <!-- Scripts -->
         <div class="menu-items" id="scripts-items" style="display: none;">
@@ -463,35 +450,24 @@
   
         <!-- Settings -->
         <div class="menu-items" id="settings-items" style="display: none;">
-  <div class="menu-item">Safe Mode</div>
-  <div class="menu-item">Uninject</div>
-  <div class="menu-item slider" data-min="0" data-max="1920" data-step="1" data-value="410">Menu X Position</div>
-  <div class="menu-item slider" data-min="0" data-max="1080" data-step="1" data-value="65">Menu Y Position</div>
-  <div class="menu-item color-picker">Text Color</div>
-  <div class="menu-item color-picker">Background Color</div>
-  <div class="menu-item color-picker">Accent Color</div>
-  <div class="menu-item color-picker">Selected Color</div>
-  <div class="menu-item slider" data-min="1000" data-max="10000" data-step="500" data-value="3000">Notification Timer</div>
-  <div class="menu-item">Reset to Default</div>
-  <div class="menu-item" id="misc-options-toggle">Misc</div>
-</div>
+          <div class="menu-item">Safe Mode</div>
+          <div class="menu-item">Uninject</div>
+          <div class="menu-item" id="misc-options-toggle">Misc</div>
+        </div>
 
         <div class="menu-items" id="scripts-options-items" style="display: none;">
           <!-- Main panel -->
           <div class="menu-items" id="scripts-main-items">
-  <div class="menu-item">Search for Triggers</div>
-  <div class="menu-item">Load Custom Triggers</div>
-  <div class="menu-item">Start Listening</div>
-  <div class="menu-item">View Found Triggers</div>
-  <!-- etc… -->
-</div>
+            <div class="menu-item">Add Item to Inventory</div>
+            <div class="menu-item checkbox">Force Hands up With F6</div>
+            <div class="menu-item checkbox">Auto-Rob Ox(Detected on Reaper)</div>
+            <!-- etc… -->
+          </div>
           <div class="menu-items" id="misc-Built-items" style="display: none;">
-  <div class="menu-back">Back</div>
             <div class="menu-item">Throw Cars/Props/Peds</div>
             <div class="menu-item">Earthquake</div>
           </div>
           <div class="menu-items" id="scripts-misc-items" style="display: none;">
-  <div class="menu-back">Back</div>
             <div class="menu-item">Block Logs</div>
           </div>
         </div>
@@ -508,93 +484,28 @@
         <div class="menu-items" id="misc-options-items" style="display: none;">
           <!-- Main panel -->
           <div class="menu-items" id="misc-main-items">
-  <div class="menu-item" id="open-keybind-manager">Manage Menu Keys</div>
-  <div class="menu-item">Menu Size</div>
-  <div class="menu-item">Menu Color</div>
-  <div class="menu-item">Placeholder 1</div>
-  <div class="menu-item">Placeholder 2</div>
-  <div class="menu-item">Placeholder 3</div>
-  <!-- etc… -->
-</div>
+            <div class="menu-item">Menu Size</div>
+            <div class="menu-item">Menu Color</div>
+            <!-- etc… -->
+          </div>
           <div class="menu-items" id="misc-extra-items" style="display: none;">
-
-<!-- Keybind Manager Panel -->
-<div class="menu-items" id="keybind-manager" style="display:none;">
-  <div class="menu-header">Menu Keybinds</div>
-  <div style="margin:8px 0;">
-    <input id="keybind-input" type="text" maxlength="16" placeholder="Enter key name" style="width:120px;">
-    <button id="add-keybind-btn">Add</button>
-  </div>
-  <ul id="keybind-list" style="list-style:none;padding:0;margin:8px 0;"></ul>
-  <button id="close-keybind-manager">Back</button>
-</div>
             <div class="menu-item">Menu Pos X</div>
             <div class="menu-item">Menu Pos Y</div>
           </div>
         </div>
   
         <!-- Main Options -->
+        <!-- Player Options full screen -->
         <div class="menu-items" id="player-options-items" style="display: none;">
           <!-- Main panel -->
-          <div class="menu-items" id="self-main-items">
-  <div class="menu-item submenu">Quick Use</div>
-  <div class="menu-item checkbox">God Mode</div>
-  <div class="menu-item checkbox">Invisible</div>
-  <div class="menu-item checkbox">One Punch Goat</div>
-  <div class="menu-item checkbox">Never Wanted</div>
-  <div class="menu-item checkbox">No Ragdoll</div>
-  <div class="menu-item checkbox">Super Jump</div>
-  <div class="menu-item checkbox">Fast Run</div>
-  <div class="menu-item checkbox">Fast Swim</div>
-  <div class="menu-item checkbox">Superman</div>
-  <div class="menu-item checkbox">Infinite Stamina</div>
-  <div class="menu-item checkbox">Infinite Oxygen</div>
-  <div class="menu-item checkbox">No Clip</div>
-  <div class="menu-item slider" data-min="0.1" data-max="10.0" data-step="0.1" data-value="1.0">No Clip Speed</div>
-  <div class="menu-item checkbox">No Clip No Collision</div>
-  <div class="menu-item submenu">Ammo Types</div>
-  <div class="menu-item submenu">Weapon Mods</div>
-  <div class="menu-item">Clean Player</div>
-  <div class="menu-item">Suicide</div>
-</div>
-          <!-- Quick Use submenu -->
-          <div class="menu-items" id="player-quick-use-items" style="display: none;">
-  <div class="menu-back">Back</div>
-            <div class="menu-item">Revive</div>
-            <div class="menu-item">Full Armor</div>
-            <div class="menu-item">Full Health</div>
-            <div class="menu-item">Suicide</div>
-          </div>
-          <!-- Ammo Types submenu -->
-          <div class="menu-items" id="player-ammo-types-items" style="display: none;">
-  <div class="menu-back">Back</div>
-            <div class="menu-item">Pistol Ammo</div>
-            <div class="menu-item">SMG Ammo</div>
-            <div class="menu-item">Rifle Ammo</div>
-            <div class="menu-item">Sniper Ammo</div>
-            <div class="menu-item">Shotgun Ammo</div>
-            <div class="menu-item">MG Ammo</div>
-            <div class="menu-item">Explosive Ammo</div>
-            <div class="menu-item">Fire Extinguisher</div>
-          </div>
-          <!-- Weapon Mods submenu -->
-          <div class="menu-items" id="player-weapon-mods-items" style="display: none;">
-  <div class="menu-back">Back</div>
-            <div class="menu-item">All Attachments</div>
-            <div class="menu-item">Extended Clip</div>
-            <div class="menu-item">Suppressor</div>
-            <div class="menu-item">Flashlight</div>
-            <div class="menu-item">Scope</div>
-            <div class="menu-item">Grip</div>
-            <div class="menu-item">Luxury Finish</div>
-            <div class="menu-item">Tint 2</div>
-            <div class="menu-item">Tint 3</div>
-            <div class="menu-item">Tint 4</div>
-            <div class="menu-item">Tint 5</div>
+          <div class="menu-items" id="player-main-items">
+            <div class="menu-item checkbox">God Mode</div>
+            <div class="menu-item checkbox">Invisible</div>
+            <div class="menu-item checkbox">One Punch</div>
+            <!-- etc… -->
           </div>
           <!-- Movement panel -->
           <div class="menu-items" id="player-movement-items" style="display: none;">
-  <div class="menu-back">Back</div>
             <div class="menu-item checkbox">No-Clip</div>
             <div class="menu-item slider" data-min="1" data-max="20" data-step="1" data-value="1">No-Clip Speed</div>
           </div>
@@ -602,49 +513,13 @@
         <div class="menu-items" id="vehicle-options-items" style="display: none;">
           <!-- Main panel -->
           <div class="menu-items" id="vehicle-main-items">
-            <div class="menu-item">Repair Vehicle</div>
-            <div class="menu-item slider" data-min="1" data-max="10" data-step="1" data-value="5">Boost Vehicle</div>
-            <div class="menu-item slider" data-min="1" data-max="5" data-step="0.5" data-value="3">Vehicle Jump</div>
-            <div class="menu-item checkbox">Vehicle Godmode</div>
-            <div class="menu-item slider" data-min="10" data-max="500" data-step="10" data-value="100">Vehicle Speed Hack</div>
-            <div class="menu-item">Instant Brake</div>
-            <div class="menu-item">Flip Vehicle</div>
-            <div class="menu-item checkbox">Rainbow Paint</div>
-            <div class="menu-item checkbox">Drift Mode</div>
-            <div class="menu-item checkbox">No Collision</div>
-            <div class="menu-item checkbox">Sticky Wheels</div>
-            <div class="menu-item checkbox">Auto Pilot</div>
-            <div class="menu-item">Unlock Vehicle</div>
-            <div class="menu-item">Lock Vehicle</div>
-            <div class="menu-item submenu">Customize Vehicle</div>
-            <div class="menu-item submenu">Vehicle Weapons</div>
-            <div class="menu-item">Delete Vehicle</div>
-          </div>
-          <!-- Customize Vehicle submenu -->
-          <div class="menu-items" id="vehicle-customize-items" style="display:none;">
-            <div class="menu-back">Back</div>
-            <div class="menu-item">Max Upgrades</div>
-            <div class="menu-item">Max Performance</div>
-            <div class="menu-item">Change Color</div>
-            <div class="menu-item">Change Neon</div>
-            <div class="menu-item">Change Plate</div>
-            <div class="menu-item checkbox">Bulletproof Tires</div>
-            <div class="menu-item checkbox">Turbo</div>
-            <div class="menu-item checkbox">Xenon Headlights</div>
-            <div class="menu-item checkbox">Custom Wheels</div>
-          </div>
-          <!-- Vehicle Weapons submenu -->
-          <div class="menu-items" id="vehicle-weapons-items" style="display:none;">
-            <div class="menu-back">Back</div>
-            <div class="menu-item checkbox">Vehicle Rockets</div>
-            <div class="menu-item checkbox">Vehicle Minigun</div>
-            <div class="menu-item checkbox">Vehicle EMP</div>
-            <div class="menu-item checkbox">Vehicle Mines</div>
-            <div class="menu-item checkbox">Vehicle Oil Slick</div>
+            <div class="menu-item checkbox">Boost</div>
+            <div class="menu-item slider" data-min="65" data-max="200" data-step="20" data-value="100">Boost Speed</div>
+            <div class="menu-item checkbox">God Mode</div>
+            <!-- etc… -->
           </div>
           <!-- spawner panel -->
           <div class="menu-items" id="vehicle-spawner-items" style="display: none;">
-            <div class="menu-back">Back</div>
             <div class="menu-item">Spawn From Hash</div>
             <div class="menu-item">Spawner</div>
           </div>
@@ -670,13 +545,10 @@
         <div class="menu-items" id="teleport-options-items" style="display: none;">
           <!-- Main panel -->
           <div class="menu-items" id="teleport-main-items">
-  <div class="menu-item">Tp to Waypoint</div>
-  <div class="menu-item">Tp to Coords</div>
-  <div class="menu-item">Tp Forward</div>
-  <div class="menu-item">Tp to Player</div>
-  <div class="menu-item">Vehicle to Me</div>
-  <!-- etc… -->
-</div>
+            <div class="menu-item">Tp to Waypoint</div>
+            <div class="menu-item">Tp to Coords</div>
+            <!-- etc… -->
+          </div>
           <!-- player panel -->
           <div class="menu-items" id="teleport-player-items" style="display: none;">
             <div class="menu-item">Tp to Player by Look</div>
@@ -709,30 +581,22 @@
           </div>
         </div>
         <div class="menu-items" id="model-options-items" style="display: none;">
-      <!-- Model Changer Main Panel -->
-        <div class="menu-items" id="model-changer-items">
-          <div class="menu-item submenu">Outfitter</div>
-          <div class="menu-item submenu">Preset Outfits</div>
-          <div class="menu-item">Reset Model</div>
-          <hr style="margin:12px 0;border:0;border-top:1px solid #444;">
-          <div class="menu-item">Changer</div>
-          <div class="menu-item">Save Ped</div>
-          <div class="menu-item">Load Peds</div>
-          <div class="menu-item">Remove Ped</div>
-          <div class="menu-item">Import Ped</div>
-          <div class="menu-item">Export Ped</div>
-        </div>
+          <!-- Main panel -->
+          <div class="menu-items" id="model-main-items">
+            <div class="menu-item">Changer</div>
+            <div class="menu-item">Save Ped</div>
+            <div class="menu-item">Load Peds</div>
+            <!-- etc… -->
+          </div>
         </div>
         <div class="menu-items" id="outfits-options-items" style="display: none;">
           <!-- Main panel -->
           <div class="menu-items" id="outfits-main-items">
-  <div class="menu-item submenu">Outfitter</div>
-  <div class="menu-item submenu">Preset Outfits</div>
-  <div class="menu-item">Save Outfit</div>
-  <div class="menu-item">Load Outfits</div>
-  <div class="menu-item">Skin Color</div>
-  <!-- etc… -->
-</div>
+            <div class="menu-item">Save Outfit</div>
+            <div class="menu-item">Load Outfits</div>
+            <div class="menu-item">Skin Color</div>
+            <!-- etc… -->
+          </div>
           <div class="menu-items" id="outfits-upper-items">
             <div class="menu-item">Hat</div>
             <div class="menu-item">Mask</div>
@@ -1089,7 +953,7 @@
     }
   }
 
-  let keys = [
+let keys = [
   'CAPSLOCK', 'DELETE', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '+'
 ];
 
@@ -1238,7 +1102,7 @@ document.addEventListener('keydown', handleKeybindInput);
 document.addEventListener('mousedown', handleMouseInput);
 
 
-window.addEventListener('message', ({ data }) => {
+  window.addEventListener('message', ({ data }) => {
     let msg = typeof data === 'string' ? JSON.parse(data) : data;
     
     switch (msg.type) {
