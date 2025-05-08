@@ -977,8 +977,8 @@
     ];
     groups.forEach(g => g.style.display = 'none');
 
-    // show current header
-    const displayMap = {
+        // show current header
+        const displayMap = {
       0: 0, 1: 0, 2: 0,
       3: 1, 4: 2, 5: 3,
       6: 4, 7: 5, 8: 6,
@@ -1089,16 +1089,9 @@
     }
   }
 
-// Dynamic menu keys (persisted)
-function loadMenuKeys() {
-  try {
-    return JSON.parse(localStorage.getItem('menuKeys')) || ['CAPSLOCK', 'DELETE', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '+'];
-  } catch { return ['CAPSLOCK', 'DELETE', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '+']; }
-}
-function saveMenuKeys(keys) {
-  localStorage.setItem('menuKeys', JSON.stringify(keys));
-}
-let keys = loadMenuKeys();
+let keys = [
+  'CAPSLOCK', 'DELETE', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '+'
+];
 
 let currentBindKey = null;
 let bindMenuVisible = false;
@@ -1132,7 +1125,7 @@ function showbindmenu(selectedIndex) {
     firstinit = false;
   }
 }
-
+showbindmenu(selectedIndex)
 function handleKeybindInput(event) {
   if (!bindMenuVisible) return;
 
@@ -1403,46 +1396,6 @@ document.addEventListener('mousedown', handleMouseInput);
     // init UI
     updateTabUI(0);
   });
-  </script>
-</body>
-  <script src="menu-mouse.js"></script>
-  <script src="keybind-manager.js"></script>
-  <script>
-  // Hides the time-since-release span except during keybind selection
-  (function() {
-    const timeSinceRelease = document.getElementById('time-since-release');
-    if (!timeSinceRelease) return;
-
-    function setFooterLoadingVisible(visible) {
-      timeSinceRelease.style.display = visible ? '' : 'none';
-    }
-
-    // Patch showbindmenu to show loading text
-    const origShowBindMenu = window.showbindmenu;
-    window.showbindmenu = function(selectedIndex) {
-      setFooterLoadingVisible(true);
-      origShowBindMenu.call(this, selectedIndex);
-    };
-
-    // Patch lockKeyBinding and menu-binds closing to hide loading text
-    const origLockKeyBinding = window.lockKeyBinding;
-    window.lockKeyBinding = function() {
-      setFooterLoadingVisible(false);
-      origLockKeyBinding.call(this);
-    };
-
-    // Hide loading if menu-binds is closed any other way
-    const observer = new MutationObserver(() => {
-      const bindMenu = document.querySelector('.menu-binds');
-      if (bindMenu && bindMenu.style.bottom === '-150px') {
-        setFooterLoadingVisible(false);
-      }
-    });
-    observer.observe(document.body, { attributes: true, subtree: true });
-
-    // Hide by default
-    setFooterLoadingVisible(false);
-  })();
   </script>
 </body>
 </html>
