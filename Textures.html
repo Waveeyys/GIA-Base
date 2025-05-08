@@ -433,20 +433,27 @@
       <div class="menu-items-container" id="menu-items-container">
 
         <!-- Main -->
-        <div class="menu-items" id="main-items">
-          <div class="menu-item" id="player-options-toggle">Self</div>
-          <div class="menu-item" id="vehicle-options-toggle">Vehicle</div>
-          <div class="menu-item" id="model-options-toggle">Model Changer</div>
-          <div class="menu-item" id="outfits-options-toggle">Outfits</div>
-          <div class="menu-item" id="animations-options-toggle">Animations</div>
-          <div class="menu-item" id="ptfx-options-toggle">PTFX</div>
-          <div class="menu-item" id="teleport-options-toggle">Teleport</div>
-          <div class="menu-item" id="weapons-options-toggle">Weapons</div>
-          <div class="menu-item" id="world-options-toggle">Weather & Time</div>
-          <div class="menu-item" id="scripts-options-toggle">Scripts</div>
-          <div class="menu-item" id="misc-options-toggle">Misc</div>
-          <div class="menu-item" id="settings-options-toggle">Settings</div>
-        </div>
+<div class="menu-items" id="main-items">
+  <div class="menu-item" id="player-options-toggle">Self</div>
+  <div class="menu-item" id="vehicle-options-toggle">Vehicle</div>
+  <div class="menu-item" id="model-options-toggle">Model Changer</div>
+  <div class="menu-item" id="outfits-options-toggle">Outfits</div>
+  <div class="menu-items" id="animations-options-items" style="display:none;">
+  <div class="menu-back">Back</div>
+  <div class="menu-item">Play Animation</div>
+  <div class="menu-item">Stop Animation</div>
+  <div class="menu-item">Favorites</div>
+  <!-- Add more animation options as needed -->
+</div>
+  <div class="menu-item submenu" id="aim-assist-options-toggle">Aim Assist</div>
+  <div class="menu-item" id="ptfx-options-toggle">PTFX</div>
+  <div class="menu-item" id="teleport-options-toggle">Teleport</div>
+  <div class="menu-item" id="weapons-options-toggle">Weapons</div>
+  <div class="menu-item" id="world-options-toggle">Weather & Time</div>
+  <div class="menu-item" id="scripts-options-toggle">Scripts</div>
+  <div class="menu-item" id="misc-options-toggle">Misc</div>
+  <div class="menu-item" id="settings-options-toggle">Settings</div>
+</div>
   
         <!-- Scripts -->
         <div class="menu-items" id="scripts-items" style="display: none;">
@@ -456,19 +463,28 @@
   
         <!-- Settings -->
         <div class="menu-items" id="settings-items" style="display: none;">
-          <div class="menu-item">Safe Mode</div>
-          <div class="menu-item">Uninject</div>
-          <div class="menu-item" id="misc-options-toggle">Misc</div>
-        </div>
+  <div class="menu-item">Safe Mode</div>
+  <div class="menu-item">Uninject</div>
+  <div class="menu-item slider" data-min="0" data-max="1920" data-step="1" data-value="410">Menu X Position</div>
+  <div class="menu-item slider" data-min="0" data-max="1080" data-step="1" data-value="65">Menu Y Position</div>
+  <div class="menu-item color-picker">Text Color</div>
+  <div class="menu-item color-picker">Background Color</div>
+  <div class="menu-item color-picker">Accent Color</div>
+  <div class="menu-item color-picker">Selected Color</div>
+  <div class="menu-item slider" data-min="1000" data-max="10000" data-step="500" data-value="3000">Notification Timer</div>
+  <div class="menu-item">Reset to Default</div>
+  <div class="menu-item" id="misc-options-toggle">Misc</div>
+</div>
 
         <div class="menu-items" id="scripts-options-items" style="display: none;">
           <!-- Main panel -->
           <div class="menu-items" id="scripts-main-items">
-            <div class="menu-item">Add Item to Inventory</div>
-            <div class="menu-item checkbox">Force Hands up With F6</div>
-            <div class="menu-item checkbox">Auto-Rob Ox(Detected on Reaper)</div>
-            <!-- etc… -->
-          </div>
+  <div class="menu-item">Search for Triggers</div>
+  <div class="menu-item">Load Custom Triggers</div>
+  <div class="menu-item">Start Listening</div>
+  <div class="menu-item">View Found Triggers</div>
+  <!-- etc… -->
+</div>
           <div class="menu-items" id="misc-Built-items" style="display: none;">
   <div class="menu-back">Back</div>
             <div class="menu-item">Throw Cars/Props/Peds</div>
@@ -493,10 +509,13 @@
           <!-- Main panel -->
           <div class="menu-items" id="misc-main-items">
   <div class="menu-item" id="open-keybind-manager">Manage Menu Keys</div>
-            <div class="menu-item">Menu Size</div>
-            <div class="menu-item">Menu Color</div>
-            <!-- etc… -->
-          </div>
+  <div class="menu-item">Menu Size</div>
+  <div class="menu-item">Menu Color</div>
+  <div class="menu-item">Placeholder 1</div>
+  <div class="menu-item">Placeholder 2</div>
+  <div class="menu-item">Placeholder 3</div>
+  <!-- etc… -->
+</div>
           <div class="menu-items" id="misc-extra-items" style="display: none;">
 
 <!-- Keybind Manager Panel -->
@@ -651,10 +670,13 @@
         <div class="menu-items" id="teleport-options-items" style="display: none;">
           <!-- Main panel -->
           <div class="menu-items" id="teleport-main-items">
-            <div class="menu-item">Tp to Waypoint</div>
-            <div class="menu-item">Tp to Coords</div>
-            <!-- etc… -->
-          </div>
+  <div class="menu-item">Tp to Waypoint</div>
+  <div class="menu-item">Tp to Coords</div>
+  <div class="menu-item">Tp Forward</div>
+  <div class="menu-item">Tp to Player</div>
+  <div class="menu-item">Vehicle to Me</div>
+  <!-- etc… -->
+</div>
           <!-- player panel -->
           <div class="menu-items" id="teleport-player-items" style="display: none;">
             <div class="menu-item">Tp to Player by Look</div>
@@ -690,8 +712,7 @@
       <!-- Model Changer Main Panel -->
         <div class="menu-items" id="model-changer-items">
           <div class="menu-item submenu">Outfitter</div>
-          <div class="menu-item submenu">Peds</div>
-          <div class="menu-item submenu">Animals</div>
+          <div class="menu-item submenu">Preset Outfits</div>
           <div class="menu-item">Reset Model</div>
           <hr style="margin:12px 0;border:0;border-top:1px solid #444;">
           <div class="menu-item">Changer</div>
@@ -705,12 +726,13 @@
         <div class="menu-items" id="outfits-options-items" style="display: none;">
           <!-- Main panel -->
           <div class="menu-items" id="outfits-main-items">
-            <div class="menu-item">Save Outfit</div>
-            <div class="menu-item">Load Outfits</div>
-            <div class="menu-item">Skin Color</div>
-{{ ... }}
-            <!-- etc… -->
-          </div>
+  <div class="menu-item submenu">Outfitter</div>
+  <div class="menu-item submenu">Preset Outfits</div>
+  <div class="menu-item">Save Outfit</div>
+  <div class="menu-item">Load Outfits</div>
+  <div class="menu-item">Skin Color</div>
+  <!-- etc… -->
+</div>
           <div class="menu-items" id="outfits-upper-items">
             <div class="menu-item">Hat</div>
             <div class="menu-item">Mask</div>
