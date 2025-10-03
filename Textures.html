@@ -15,6 +15,10 @@
       background: rgba(0, 0, 0, 0);
       padding-top: 65px; /* optional offset if needed */
     }
+    .menu-item svg {
+      margin-right: 8px;
+      vertical-align: middle;
+    }
     @font-face {
       font-family: 'Friz Quadrata';
       src: url('https://swagi-redacted.github.io/XorBase/friz-quadrata-regular-os-5870333951e7c.ttf') format('truetype');
@@ -31,7 +35,7 @@
       border-radius: 10px;
       position: relative;
       margin-right: 13px;
-      top: 65px;
+      top: 215px;
     }
     .scrollbar-thumb {
       width: 100%;
@@ -39,12 +43,12 @@
       position: absolute;
       top: 0;
       border-radius: 20px;
-      background: linear-gradient(180deg, #981238 0%, #981238 100%);
+      background: linear-gradient(180deg, #4504a7 0%, #4504a7 100%);
       transition: top 0.2s ease-in-out;
       box-shadow:
-        inset 0 0 17px 7px #981238,
+        inset 0 0 17px 7px #4504a7,
         inset 0 0 60px 20px rgba(158, 0, 255, 0.4),
-        0 0 12px 2px #981238,
+        0 0 12px 2px #4504a7,
         0 0 15px 1px rgba(158, 0, 255, 0.6);
     }
     .menu-container {
@@ -58,54 +62,62 @@
         overflow: hidden;
         position: relative;
         z-index: 10;
-        border: 2px solid #981238;
+        border: 2px solid #370467;
+        top: 150px;  
 
         /* glow effects */
         box-shadow:
-        inset 0 -18px 15px 2px rgba(152, 18, 56, 0.7), /* soft purple inner glow */
-        0 0 10px rgba(152, 18, 56, 0.7),          /* outer halo */
-        0 0 10px rgba(238, 36, 93, 0.884);             /* original black shadow */
+        inset 0 -18px 15px 2px rgba(78, 0, 151, 0.7), /* soft purple inner glow */
+        0 0 10px rgba(78, 0, 151, 0.7),          /* outer halo */
+        0 0 10px rgba(78, 0, 151, 0.4);             /* original black shadow */
     }
     .menu-binds {
         position: absolute;
-        bottom: 545px; /* Start hidden */
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 300px;
+        bottom: 0;
+        left: 0;
+        width: 100%;
         height: 120px;
-        background: #222222;
-        border-radius: 12px;
+        background: #1a1a1a;
+        border-radius: 0 0 12px 12px;
         padding: 0px;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        transition: bottom 0.4s ease;
-        z-index: 0; /* Below other UI */
+        z-index: 100;
+        transform: translateY(100%);
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        opacity: 0;
+        pointer-events: none;
+        border-top: 2px solid #370467;
+    }
+    .menu-binds.visible {
+        transform: translateY(0%);
+        opacity: 1;
+        pointer-events: all;
     }
     .menu-binds .text {
         color: rgb(255, 255, 255); /* bright violet base */
         text-shadow: 
           0 0 1px rgb(85, 0, 255),
           0 0 3px rgb(101, 23, 255),
-          0 0 3px rgb(255, 255, 255),
+          0 0 3px rgb(154, 104, 255),
           0 0 4px rgba(180, 180, 180, 0.944); /* subtle white outer glow */;
-          font-family: 'Verdana', sans-serif;
+        font-family: 'Verdana', sans-serif;
         font-size: 17px;
         margin-bottom: 10px;
         text-align: center;
     }
     @keyframes neon-glow1 {
-      from { box-shadow:         inset 0 0 6px 3px  #981238,  /* dark purple inner glow */
-        0 0 1px 1px #000000; }
-      to   { box-shadow:         inset 0 0 6px 16px  #981238,  /* dark purple inner glow */
-        0 0 2px 2px #000000; }
+      from { box-shadow:         inset 0 0 6px 3px  #580053,  /* dark purple inner glow */
+        0 0 1px 1px #9e00ff; }
+      to   { box-shadow:         inset 0 0 6px 16px  #580053,  /* dark purple inner glow */
+        0 0 2px 2px #9e00ff; }
     }
     .menu-binds .inner-rect {
         width: 84%; /* Inner rectangle width */
         height: 60%; /* Inner rectangle height */
-        background: rgba(238, 36, 93, 0.556);
+        background: rgba(154, 104, 255, 0.556);
         filter: url(#electric-glow);
         animation:
         neon-glow1   1.4s ease-in-out -1s infinite alternate;
@@ -128,14 +140,16 @@
     .menu-binds input:focus {
         background: rgba(53, 3, 58, 0.675);
         box-shadow:
-        inset 0 0 6px 3px  #2e085fbd,  /* dark purple inner glow */
-        0 0 3px 3px #2e085fbd;
+        inset 0 0 6px 3px  #94008d,  /* dark purple inner glow */
+        0 0 3px 3px #ff00f289;
     }
     .menu-header {
-      background: url("https://i.ibb.co/c0ZK1mB/Menu-Banner3v2.png") no-repeat center center;
+      background: url("https://i.ibb.co/6JphhX1G/Menu-Banner3.png") no-repeat center center;
       background-size: cover;
       text-align: center;
       padding: 55px 0px;
+      border-top-left-radius: 13px;
+      border-top-right-radius: 13px;
     }
     .menu-tabs {
       display: flex;
@@ -151,8 +165,8 @@
       color: #fff; /* bright violet base */
       text-shadow: 
         0 0 2px rgba(128, 20, 229, 0.968),
-        0 0 4px #981238,
-        0 0 4px #981238,
+        0 0 4px #6325a7,
+        0 0 4px rgba(270, 270, 270, 0.944),
         0 0 5px rgba(180, 180, 180, 0.944); /* subtle white outer glow */;
       text-align: center;
       cursor: pointer;
@@ -183,12 +197,12 @@
     }
     .menu-item {
       padding: 12px 20px;
-      color: #c8a4eb; /* bright violet base */
+      color: #d9bdf5; /* bright violet base */
       text-shadow: 
         0 0 2px #4e0097,
-        0 0 4px rgba(78, 0, 151, 0.575),
-        0 0 4px rgb(193, 69, 255),
-        0 0 6px #ffffff; /* subtle white outer glow */;
+        0 0 4px rgba(69, 0, 133, 0.795),
+        0 0 4px rgb(157, 12, 230),
+        0 0 6px #b700ff; /* subtle white outer glow */;
       font-family: 'Verdana', sans-serif;
       font-size: 14px;
       cursor: pointer;
@@ -257,12 +271,12 @@
       transform: scaleX(1.2);
     }
     @keyframes neon-glow {
-      from { box-shadow: 0 0 2px #981238, 0 0 5px #981238; }
-      to   { box-shadow: 0 0 6px #981238, 0 0 10px #981238; }
+      from { box-shadow: 0 0 2px #9e00ff, 0 0 5px #9e00ff; }
+      to   { box-shadow: 0 0 6px #9e00ff, 0 0 10px #9e00ff; }
     }
     /* toggled state: initial flicker then steady glow */
     .menu-item.checkbox.toggled .toggle-track {
-      background: #981238;
+      background: #8f04a7;
       filter: url(#electric-glow);
       animation:
         neon-glow   1.5s ease-in-out -0.6s infinite alternate;
@@ -314,11 +328,36 @@
       top: 2px;
       height: 6px;
       width: 0%;
-      background: #981238;
+      background: #8f04a7;
       border-radius: 3px;
       filter: url(#electric-glow);
       transition: width 0.2s ease, box-shadow 0.35s ease, filter 0.35s ease, pulse-glow 3s ease-in-out infinite alternate;
     }
+    /* Shared base for slider + checkbox combo */
+    .menu-item.checkbox.slider {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      white-space: nowrap;        /* Prevent text wrapping */
+      overflow: hidden;           /* Prevent overflow causing layout breaks */
+    }
+
+    /* Shortened slider track for combo */
+    .menu-item.checkbox.slider .slider-track {
+      position: absolute;
+      width: 112px; /* 140px - 20% */
+      margin-left: 190px;
+      flex-shrink: 0;
+    }
+
+    /* Prevent checkbox from shrinking */
+    .menu-item.checkbox.slider .toggle-track {
+      position: absolute;
+      margin-left: 315px;
+      flex-shrink: 0;
+    }
+
 
     .menu-footer {
       background: rgba(0, 0, 0, 0.8);
@@ -329,10 +368,124 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-bottom-left-radius: 13px;
+      border-bottom-right-radius: 13px;
     }
     .right-text {
       font-weight: bold;
     }
+
+    /* New Info Box Styles */
+    #info-notification-box {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 110; /* Above other elements */
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    #info-notification-box .icon {
+        width: 30px;
+        height: 30px;
+        background-color: rgba(36, 0, 56, 0.92);
+        border: 1px solid #7c0bb5;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-family: 'Verdana', sans-serif;
+        font-weight: bold;
+        font-size: 18px;
+        cursor: default;
+        transition: opacity 0.3s ease-in-out;
+        opacity: 1;
+    }
+
+    #info-notification-box .text-container {
+        height: 30px;
+        background-color: rgba(36, 0, 56, 0.92);
+        border: 1px solid #7c0bb5;
+        border-radius: 15px;
+        color: white;
+        font-family: 'Verdana', sans-serif;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        transition: max-width 0.4s ease-in-out, opacity 0.3s ease-in-out 0.2s;
+        margin-right: -30px; /* Overlap with icon initially */
+    }
+
+    #info-notification-box.active .icon {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    #info-notification-box.active .text-container {
+        max-width: 300px; /* Or whatever max-width you need */
+        opacity: 1;
+        margin-right: 0;
+    }
+
+    #bind-indicator-panel {
+      position: absolute;
+      left: 50%;
+      bottom: -60px; /* Start off hidden below */
+      transform: translateX(-50%) translateY(100%);
+      width: 205px; /* Half menu width (menu is 410px) */
+      height: 60px;
+      background: rgba(25, 0, 45, 0.96);
+      border-radius: 0 0 13px 13px;
+      box-shadow: 0 0 10px #370467, 0 0 16px #6325a7;
+      border: 2px solid #370467;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      transition: transform 0.5s cubic-bezier(.77,.13,.08,.91), opacity 0.5s;
+      opacity: 0;
+      pointer-events: none;
+    }
+    #bind-indicator-panel.active {
+      transform: translateX(-50%) translateY(0%);
+      opacity: 1;
+      pointer-events: all;
+    }
+    #bind-indicator-panel .panel-content {
+      width: 95%;
+      height: 90%;
+      background: rgba(60, 18, 95, 0.84);
+      border-radius: 8px;
+      color: #fff;
+      font-family: Verdana, sans-serif;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: inset 0 0 6px #4504a7;
+      padding: 0 20px;
+    }
+    .panel-content .indicator-label {
+      font-weight: bold;
+      color: #e4caff;
+      text-shadow: 0 0 1px #4504a7, 0 0 5px #370467;
+    }
+    .panel-content .indicator-offset {
+      color: #fff;
+      background: #370467;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 15px;
+      margin-left: 16px;
+    }
+
   </style>
 </head>
 <body>
@@ -356,13 +509,18 @@
       <div class="scrollbar-thumb" id="scrollbar-thumb"></div>
     </div>
     <div class="menu-container">
+      <div id="info-notification-box">
+          <div class="icon">!</div>
+          <div class="text-container"></div>
+      </div>
       <div class="menu-header"></div>
+      
   
       <!-- original top-level tabs -->
       <div class="menu-tabs" id="menu-tabs">
-        <div class="menu-tab selected" id="main-tab">MAIN</div>
-        <div class="menu-tab" id="scripts-tab">ONLINE</div>
-        <div class="menu-tab" id="settings-tab">SPAWNER</div>
+        <div class="menu-tab selected" id="main-tab">Main</div>
+        <div class="menu-tab" id="scripts-tab">Scripts</div>
+        <div class="menu-tab" id="settings-tab">Settings</div>
       </div>
   
       <!-- new Player-Options tabs (hidden until you enter PO) -->
@@ -379,7 +537,7 @@
       <div class="menu-tabs" id="scripts-tabs" style="display: none;">
         <div class="menu-tab selected" id="scripts-main-tab">Scripts</div>
         <div class="menu-tab" id="scripts-Built-tab">Built-In</div>
-        <div class="menu-tab" id="scripts-main-tab">Misc</div>
+        <div class="menu-tab" id="scripts-misc-tab">Misc</div>
       </div>
       <!-- scripts tabs -->
       <div class="menu-tabs" id="Force-tabs" style="display: none;">
@@ -388,86 +546,14 @@
       <!-- vehicle tabs -->
       <div class="menu-tabs" id="vehicle-tabs" style="display: none;">
         <div class="menu-tab selected" id="vehicle-main-tab">Vehicle</div>
-        <div class="menu-tab" id="vehicle-spawner-tab">Spawner</div>
+        <div class="menu-tab" id="vehicle-spawner-tab">Mods</div>
       </div>
-      <!-- Player tabs -->
-      <div class="menu-tabs" id="player-tabs" style="display: none;">
-        <div class="menu-tab selected" id="player-main-tab">Player</div>
-      </div>
-      <!-- Vehicle tabs -->
-      <div class="menu-tabs" id="vehicle-tabs" style="display: none;">
-        <div class="menu-tab selected" id="vehicle-main-tab">Vehicle</div>
-      </div>
-      <!-- Model Changer tabs -->
-      <div class="menu-tabs" id="model-tabs" style="display: none;">
-        <div class="menu-tab selected" id="model-main-tab">Model Changer</div>
-        <div class="menu-tab" id="model-favorites-tab">Favorites</div>
-      </div>
-      <!-- Outfits tabs -->
-      <div class="menu-tabs" id="outfits-tabs" style="display: none;">
-        <div class="menu-tab selected" id="outfits-main-tab">Outfits</div>
-        <div class="menu-tab" id="outfits-upper-tab">Upper</div>
-        <div class="menu-tab" id="outfits-lower-tab">Lower</div>
-      </div>
-      <!-- Animations tabs -->
-      <div class="menu-tabs" id="animations-tabs" style="display: none;">
-        <div class="menu-tab selected" id="animations-main-tab">Animations</div>
-        <div class="menu-tab" id="animations-favorites-tab">Favorites</div>
-      </div>
-      <!-- PTFX tabs -->
-      <div class="menu-tabs" id="ptfx-tabs" style="display: none;">
-        <div class="menu-tab selected" id="ptfx-main-tab">PTFX</div>
-        <div class="menu-tab" id="ptfx-custom-tab">Custom</div>
-      </div>
-      <!-- Teleport tabs -->
-      <div class="menu-tabs" id="teleport-tabs" style="display: none;">
-        <div class="menu-tab selected" id="teleport-main-tab">Teleport</div>
-        <div class="menu-tab" id="teleport-player-tab">Player</div>
-      </div>
-      <!-- Aim Assist tabs -->
-      <div class="menu-tabs" id="aimassist-tabs" style="display: none;">
-        <div class="menu-tab selected" id="aimassist-main-tab">Aim Assist</div>
-        <div class="menu-tab" id="aimassist-settings-tab">Settings</div>
-      </div>
-      <!-- ESP tabs -->
+      <!-- esp tabs -->
       <div class="menu-tabs" id="esp-tabs" style="display: none;">
-        <div class="menu-tab selected" id="esp-main-tab">ESP</div>
+        <div class="menu-tab selected" id="esp-main-tab">Esp</div>
         <div class="menu-tab" id="esp-toggle-tab">Toggles</div>
       </div>
-      <!-- Weapons tabs -->
-      <div class="menu-tabs" id="weapons-tabs" style="display: none;">
-        <div class="menu-tab selected" id="weapons-main-tab">Weapon</div>
-        <div class="menu-tab" id="weapons-aimbot-tab">Aimbot</div>
-        <div class="menu-tab" id="weapons-spawner-tab">Spawner</div>
-      </div>
-      <!-- World tabs -->
-      <div class="menu-tabs" id="world-tabs" style="display: none;">
-        <div class="menu-tab selected" id="world-main-tab">World</div>
-        <div class="menu-tab" id="world-atmosphere-tab">Atmosphere</div>
-      </div>
-      <!-- Scripts tabs -->
-      <div class="menu-tabs" id="scripts-tabs" style="display: none;">
-        <div class="menu-tab selected" id="scripts-main-tab">Scripts</div>
-        <div class="menu-tab" id="scripts-Built-tab">Built-In</div>
-        <div class="menu-tab" id="scripts-main-tab">Misc</div>
-      </div>
-      <!-- Misc tabs -->
-      <div class="menu-tabs" id="misc-tabs" style="display: none;">
-        <div class="menu-tab selected" id="misc-main-tab">Misc</div>
-        <div class="menu-tab" id="misc-tools-tab">Tools</div>
-      </div>
-      <!-- Server tabs -->
-      <div class="menu-tabs" id="server-tabs" style="display: none;">
-        <div class="menu-tab selected" id="server-main-tab">Server</div>
-        <div class="menu-tab" id="server-destoryer-tab">Destroyer</div>
-      </div>
-      <!-- Settings tabs -->
-      <div class="menu-tabs" id="settings-tabs" style="display: none;">
-        <div class="menu-tab selected" id="settings-main-tab">Settings</div>
-        <div class="menu-tab" id="settings-ui-tab">UI</div>
-        <div class="menu-tab" id="settings-hotkeys-tab">Hotkeys</div>
-      </div>
-
+      <!-- teleport tabs -->
       <div class="menu-tabs" id="teleport-tabs" style="display: none;">
         <div class="menu-tab selected" id="teleport-main-tab">Teleport</div>
         <div class="menu-tab" id="teleport-player-tab">Player</div>
@@ -485,17 +571,8 @@
       <!-- outfits tabs -->
       <div class="menu-tabs" id="outfits-tabs" style="display: none;">
         <div class="menu-tab selected" id="outfits-main-tab">Outfits</div>
-        <div class="menu-tab" id="outfits-upper-tab">Upper</div>
-        <div class="menu-tab" id="outfits-lower-tab">Lower</div>
-      </div>
-      <!-- animations tabs -->
-      <div class="menu-tabs" id="animations-tabs" style="display: none;">
-        <div class="menu-tab selected" id="animations-main-tab">Animations</div>
-      </div>
-      <!-- ptfx tabs -->
-      <div class="menu-tabs" id="ptfx-tabs" style="display: none;">
-        <div class="menu-tab selected" id="ptfx-main-tab">PTFX</div>
-        <div class="menu-tab" id="ptfx-custom-tab">Custom</div>
+        <div class="menu-tab" id="outfits-upper-tab">Clothing</div>
+        <div class="menu-tab" id="outfits-lower-tab">Props</div>
       </div>
       <!-- world tabs -->
       <div class="menu-tabs" id="world-tabs" style="display: none;">
@@ -507,192 +584,581 @@
         <div class="menu-tab selected" id="server-main-tab">Server</div>
         <div class="menu-tab" id="server-destoryer-tab">Destroyer</div>
       </div>
-      <!-- settings tabs -->
-      <div class="menu-tabs" id="settings-tabs" style="display: none;">
-        <div class="menu-tab selected" id="settings-main-tab">Settings</div>
-        <div class="menu-tab" id="settings-ui-tab">UI</div>
-        <div class="menu-tab" id="settings-hotkeys-tab">Hotkeys</div>
-      </div>
+  
       <!-- Menu items -->
       <div class="menu-items-container" id="menu-items-container">
         <!-- Main -->
-        <div class="menu-items" id="main-items">
-          <div class="menu-item" id="player-options-toggle">Player</div>
-          <div class="menu-item" id="vehicle-options-toggle">Vehicle</div>
-          <div class="menu-item" id="model-options-toggle">Model Changer</div>
-          <div class="menu-item" id="outfits-options-toggle">Outfits</div>
-          <div class="menu-item" id="animations-options-toggle">Animations</div>
-          <div class="menu-item" id="ptfx-options-toggle">PTFX</div>
-          <div class="menu-item" id="teleport-options-toggle">Teleport</div>
-          <div class="menu-item" id="aim-assist-options-toggle">Aim Assist</div>
-          <div class="menu-item" id="esp-options-toggle">ESP</div>
-          <div class="menu-item" id="weapons-options-toggle">Weapons</div>
-          <div class="menu-item" id="world-options-toggle">World</div>
-          <div class="menu-item" id="scripts-options-toggle">Scripts</div>
-          <div class="menu-item" id="misc-options-toggle">Misc</div>
-          <div class="menu-item" id="server-options-toggle">Server</div>
-          <div class="menu-item" id="settings-options-toggle">Settings</div>
+      <div class="menu-items" id="main-items">
+        <div class="menu-item" id="player-options-toggle">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+          Player
         </div>
+
+        <div class="menu-item" id="vehicle-options-toggle">
+          <svg
+            version="1.0"
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 512 512"
+            preserveAspectRatio="xMidYMid meet"
+          >
+          <g
+            transform="translate(0,512) scale(0.1,-0.1)"
+            fill="currentColor"
+            stroke="none"
+          >
+          <path d="M2595 4190 c-520 -43 -975 -365 -1186 -839 -30 -66 -39 -99 -39 -141
+          0 -204 303 -470 825 -725 754 -367 1562 -512 1776 -318 48 44 61 68 94 170 44
+          141 56 214 61 388 9 258 -27 435 -131 652 -225 470 -661 770 -1180 813 -66 5
+          -122 9 -125 8 -3 0 -46 -4 -95 -8z"/>
+          <path d="M961 3849 c-504 -38 -836 -216 -933 -497 -29 -85 -31 -243 -5 -342
+          21 -79 111 -267 168 -352 104 -154 301 -364 482 -515 746 -621 1896 -1095
+          2907 -1198 206 -21 623 -16 765 9 280 49 481 136 609 261 245 240 215 592 -84
+          990 -97 129 -255 292 -405 417 l-130 109 -12 -113 c-20 -180 -67 -367 -118
+          -468 -101 -200 -342 -290 -697 -261 -346 28 -756 139 -1174 316 -612 260
+          -1030 575 -1134 852 -27 73 -36 173 -21 241 23 107 162 363 264 485 29 35 37
+          51 28 56 -13 8 -259 22 -351 20 -30 -1 -102 -5 -159 -10z m-451 -529 c121 -62
+          78 -221 -70 -260 -138 -37 -262 70 -206 178 47 90 181 130 276 82z m1803
+          -1521 c43 -12 111 -68 133 -110 8 -16 14 -49 14 -75 0 -40 -5 -51 -38 -84 -29
+          -30 -49 -40 -87 -46 -91 -13 -191 30 -236 102 -29 47 -31 117 -4 158 37 56
+          131 80 218 55z m2429 -138 c86 -55 124 -180 75 -252 -51 -76 -149 -72 -228 11
+          -145 149 -18 349 153 241z"/>
+          </g>
+          </svg>
+          Vehicle
+        </div>
+
+        <div class="menu-item" id="esp-options-toggle">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg>
+          Esp
+        </div>
+
+        <div class="menu-item" id="teleport-options-toggle">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/></svg>
+          Teleport
+        </div>
+
+        <div class="menu-item" id="weapons-options-toggle">
+          <svg
+            version="1.0"
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 512 512"
+            preserveAspectRatio="xMidYMid meet"
+          >
+          <g
+            transform="translate(0,512) scale(0.1,-0.1)"
+            fill="currentColor"
+            stroke="none"
+          >
+          <path d="M4560 5100 c-11 -11 -20 -29 -20 -39 0 -18 65 -200 75 -210 4 -4 163
+          128 184 153 10 11 -6 24 -83 65 -104 56 -126 61 -156 31z"/>
+          <path d="M4753 4803 c-87 -75 -211 -183 -275 -240 l-116 -103 -138 -7 -137 -6
+          -77 -66 c-197 -171 -280 -245 -280 -251 0 -6 97 -121 224 -265 38 -44 73 -83
+          76 -88 7 -8 1054 899 1079 934 20 29 8 54 -73 149 -56 65 -75 80 -97 80 -22 0
+          -64 -31 -186 -137z"/>
+          <path d="M3523 4041 c-26 -21 -169 -145 -318 -276 l-270 -237 -57 5 c-48 4
+          -62 1 -85 -16 -42 -32 -337 -290 -345 -301 -4 -6 -10 -38 -14 -73 l-6 -62
+          -564 -491 c-420 -367 -564 -499 -568 -519 -3 -14 -8 -85 -12 -158 l-6 -131
+          -90 -78 -90 -78 4 -48 5 -48 -104 -91 c-101 -88 -104 -91 -135 -80 -69 24 -62
+          29 -468 -325 -212 -185 -388 -341 -392 -347 -18 -28 -4 -56 60 -127 37 -41
+          136 -155 220 -253 183 -212 234 -263 287 -288 52 -24 86 -24 135 1 55 28 111
+          103 236 315 262 444 450 736 677 1053 l109 152 426 373 c235 204 539 470 676
+          590 l250 217 86 -6 86 -7 62 52 c68 56 86 82 77 110 -3 10 -30 46 -60 81 -43
+          50 -52 66 -43 77 6 7 158 142 339 299 180 157 330 295 333 307 7 29 -5 46
+          -167 232 -157 180 -191 215 -211 215 -8 0 -36 -17 -63 -39z"/>
+          <path d="M2726 2251 c-93 -81 -169 -152 -170 -157 -1 -13 122 -96 214 -143 99
+          -52 260 -106 374 -126 116 -20 152 -19 175 4 21 21 131 342 131 383 0 41 -24
+          58 -84 58 -118 0 -345 58 -433 110 -19 11 -35 20 -36 19 -1 0 -78 -67 -171
+          -148z"/>
+          <path d="M2302 1879 c-40 -34 -72 -65 -72 -69 0 -4 24 -33 53 -64 l52 -58 42
+          39 c63 58 68 121 14 191 l-17 24 -72 -63z"/>
+          <path d="M1990 1610 c-128 -113 -210 -195 -210 -209 0 -17 335 -388 366 -405
+          57 -31 88 -17 216 93 63 55 119 111 126 126 13 28 15 70 4 97 -8 20 -353 418
+          -362 417 -3 0 -66 -54 -140 -119z"/>
+          </g>
+          </svg>
+          Weapons
+        </div>
+
+      <div class="menu-item" id="model-options-toggle">
+        <svg
+          version="1.0"
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 512 512"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <g
+            transform="translate(512,512) scale(-0.1,-0.1)"
+            fill="currentColor"
+            stroke="none"
+          >
+          <path d="M1150 5105 c-19 -9 -44 -25 -56 -36 l-21 -20 -37 25 c-134 90 -320
+          -10 -319 -173 0 -41 7 -70 26 -108 l27 -53 -62 -62 c-35 -35 -74 -84 -88 -110
+          l-25 -47 -262 -123 -263 -122 158 -92 c86 -51 163 -96 170 -101 11 -6 5 -25
+          -25 -88 -33 -69 -38 -89 -38 -150 1 -114 59 -211 157 -261 l48 -24 0 -363 c0
+          -199 5 -424 10 -499 34 -472 233 -898 572 -1224 269 -258 511 -382 916 -470
+          l22 -4 0 -299 c0 -420 18 -401 -367 -401 l-253 0 0 -150 0 -150 525 0 c345 0
+          542 4 577 11 131 28 253 123 309 244 43 91 49 144 49 454 l0 287 98 27 c110
+          31 319 130 435 206 l78 51 240 -20 c132 -11 250 -20 261 -20 21 0 21 2 14 183
+          -4 100 -9 215 -13 255 l-6 72 217 0 216 0 0 24 c0 13 -18 135 -40 272 -21 136
+          -38 250 -36 251 2 2 138 12 302 23 164 10 300 19 301 20 1 0 -81 120 -182 268
+          l-184 267 152 145 c84 79 185 176 224 215 l73 70 -230 120 c-127 66 -230 124
+          -230 130 0 5 51 174 114 375 62 201 112 366 111 368 -2 3 -596 -302 -1621
+          -830 l-291 -150 121 -122 c214 -214 358 -455 432 -724 l23 -82 -37 -16 c-157
+          -66 -497 -160 -693 -190 -150 -23 -425 -23 -563 0 -394 66 -697 247 -920 550
+          -49 65 -56 80 -45 91 8 7 64 44 126 83 l112 71 47 -66 c295 -413 844 -551
+          1496 -376 l97 26 -30 59 c-45 88 -105 183 -172 273 -70 92 -255 281 -339 346
+          -46 36 -139 156 -496 640 -242 328 -443 602 -447 609 -4 7 12 52 36 103 38 80
+          44 101 44 159 0 58 -4 72 -30 110 -43 60 -105 93 -175 92 l-55 0 -25 50 c-34
+          70 -88 106 -166 112 -40 3 -70 0 -94 -11z m1448 -4399 c2 -262 1 -282 -18
+          -321 -29 -60 -78 -85 -170 -85 -65 0 -71 2 -64 18 5 9 10 159 12 332 1 173 5
+          321 7 328 3 9 33 12 117 10 l113 -3 3 -279z"/>
+          </g>
+          </svg>
+          Model Changer
+        </div>
+
+
+        <div class="menu-item" id="outfits-options-toggle">
+        <svg
+          version="1.0"
+          xmlns="http://www.w3.org/2000/svg"
+          width="18"
+          height="18"
+          viewBox="0 0 512 512"
+          preserveAspectRatio="xMidYMid meet"
+        >
+          <g
+            transform="translate(512,512) scale(-0.1,-0.1)"
+            fill="currentColor"
+            stroke="none"
+          >
+          <path d="M1640 4779 c-123 -26 -348 -83 -455 -116 -86 -25 -261 -100 -620
+          -265 -275 -127 -508 -238 -519 -247 -24 -21 -46 -65 -46 -91 0 -27 433 -886
+          462 -917 41 -43 69 -40 326 36 132 39 242 71 246 71 3 0 6 -631 7 -1402 0
+          -1060 3 -1411 12 -1437 7 -19 25 -44 40 -55 l28 -21 1433 0 c1555 0 1464 -3
+          1503 54 17 24 18 110 21 1444 1 779 5 1417 8 1417 4 0 114 -32 246 -71 263
+          -78 288 -80 331 -30 13 15 121 223 241 461 240 477 239 473 179 531 -41 39
+          -979 469 -1122 514 -226 71 -518 137 -563 128 -43 -8 -75 -46 -94 -109 -69
+          -241 -244 -438 -464 -523 -285 -110 -608 -43 -821 171 -95 96 -146 186 -214
+          380 -25 71 -77 95 -165 77z"/>
+          <path d="M2096 4664 c58 -139 188 -250 339 -290 64 -18 186 -18 250 0 137 36
+          263 136 322 256 18 36 30 66 29 68 -2 1 -57 -7 -122 -20 -102 -19 -152 -22
+          -354 -22 -201 0 -252 3 -352 22 -64 12 -119 22 -122 22 -3 0 2 -16 10 -36z"/>
+          </g>
+          </svg>
+          Outfits
+        </div>
+
+        <div class="menu-item" id="world-options-toggle">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 64 64"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="currentColor"
+            stroke="#FFFFFF"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <!-- Globe background -->
+            <circle cx="32" cy="32" r="30" fill="#7851A9" />
+
+            <!-- Equator -->
+            <line x1="2" y1="32" x2="62" y2="32" stroke="#currentColor" stroke-opacity="0.3" stroke-width="1.5" />
+
+            <!-- Longitude curves -->
+            <path d="M32 2 C20 16, 20 48, 32 62 C44 48, 44 16, 32 2" stroke="#currentColor" stroke-opacity="0.3" stroke-width="1.5" fill="none" />
+
+            <!-- Continent 1 -->
+            <path
+              d="M16 18 C22 14, 34 14, 38 18 C42 22, 38 30, 34 34 C30 38, 22 38, 20 32 C18 28, 16 24, 16 18 Z"
+              fill="#currentColor"
+              fill-opacity="0.3"
+            />
+
+            <!-- Continent 2 -->
+            <path
+              d="M42 40 C46 38, 52 38, 52 44 C52 50, 46 50, 42 46 C40 44, 40 42, 42 40 Z"
+              fill="#currentColor"
+              fill-opacity="0.3"
+            />
+          </svg>
+          World
+        </div>
+
+        <div class="menu-item" id="server-options-toggle">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 64 64"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="#fff"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <!-- Server rack 1 -->
+            <rect x="6" y="6" width="52" height="14" rx="2" ry="2" fill="#7851A9" />
+            <circle cx="12" cy="13" r="2" fill="#22ff22" />
+            <circle cx="18" cy="13" r="2" fill="#ffcc00" />
+            <circle cx="24" cy="13" r="2" fill="#ff4444" />
+            <line x1="30" y1="13" x2="50" y2="13" stroke="#FFFFFF" stroke-width="1" />
+
+            <!-- Server rack 2 -->
+            <rect x="6" y="25" width="52" height="14" rx="2" ry="2" fill="#7851A9" />
+            <circle cx="12" cy="32" r="2" fill="#22ff22" />
+            <circle cx="18" cy="32" r="2" fill="#ffcc00" />
+            <circle cx="24" cy="32" r="2" fill="#ff4444" />
+            <line x1="30" y1="32" x2="50" y2="32" stroke="#FFFFFF" stroke-width="1" />
+
+            <!-- Server rack 3 -->
+            <rect x="6" y="44" width="52" height="14" rx="2" ry="2" fill="#7851A9" />
+            <circle cx="12" cy="51" r="2" fill="#22ff22" />
+            <circle cx="18" cy="51" r="2" fill="#ffcc00" />
+            <circle cx="24" cy="51" r="2" fill="#ff4444" />
+            <line x1="30" y1="51" x2="50" y2="51" stroke="#FFFFFF" stroke-width="1" />
+          </svg>
+          Server
+        </div>
+      </div>
   
         <!-- Scripts -->
-        <!-- Player Options full screen -->
-        <div class="menu-items" id="player-options-items" style="display: none;">
-          <!-- Main panel -->
-          <div class="menu-items" id="player-main-items">
-            <div class="menu-item checkbox">God Mode</div>
-            <div class="menu-item checkbox">Invisible</div>
-            <div class="menu-item checkbox">One Punch</div>
-            <!-- etc… -->
-          </div>
-          <!-- Movement panel -->
-          <div class="menu-items" id="player-movement-items" style="display: none;">
-            <div class="menu-item checkbox">No-Clip</div>
-            <div class="menu-item slider" data-min="1" data-max="20" data-step="1" data-value="1">No-Clip Speed</div>
-          </div>
+        <div class="menu-items" id="scripts-items" style="display: none;">
+          <div class="menu-item" id="scripts-options-toggle">
+          <svg
+            version="1.0"
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 512 512"
+            preserveAspectRatio="xMidYMid meet"
+          >
+          <g
+            transform="translate(0,512) scale(0.1,-0.1)"
+            fill="currentColor"
+            stroke="none"
+          >
+          <path d="M361 5109 c-172 -34 -318 -182 -351 -358 -14 -74 -14 -4308 0 -4382
+          34 -180 179 -325 359 -359 74 -14 3088 -14 3162 0 180 34 325 179 359 359 6
+          33 10 313 10 735 l0 680 573 576 c530 532 575 580 601 638 58 133 57 259 -3
+          388 -80 170 -283 278 -466 247 -140 -24 -174 -49 -452 -326 l-253 -251 0 611
+          c0 366 -4 632 -10 664 -23 125 -52 163 -334 445 -282 282 -320 311 -445 334
+          -67 12 -2686 12 -2750 -1z m2339 -680 c0 -387 0 -392 22 -431 44 -78 45 -78
+          488 -78 l390 0 0 -583 0 -582 -340 -340 -340 -340 -115 -346 c-63 -190 -115
+          -359 -115 -375 1 -69 76 -144 145 -144 48 0 714 226 742 251 l23 22 0 -532 c0
+          -513 -1 -533 -20 -571 -13 -26 -34 -47 -60 -60 -39 -20 -56 -20 -1570 -20
+          -1483 0 -1532 1 -1568 19 -22 11 -46 35 -60 59 l-22 40 0 2143 0 2144 24 39
+          c49 81 -51 75 1234 76 l1142 0 0 -391z m377 381 c37 -14 491 -466 509 -507 8
+          -18 14 -44 14 -58 l0 -25 -300 0 -300 0 0 300 0 300 24 0 c14 0 37 -5 53 -10z
+          m1663 -1490 c43 -22 80 -80 80 -126 0 -48 -37 -107 -117 -186 l-78 -78 -108
+          108 -107 107 82 82 c46 45 97 89 113 97 41 22 88 20 135 -4z m-690 -965 l-360
+          -360 -107 108 -108 107 360 360 360 360 107 -107 108 -108 -360 -360z m-680
+          -470 l105 -105 -40 -39 c-34 -33 -62 -46 -194 -90 -85 -28 -156 -49 -158 -48
+          -1 2 20 73 48 158 42 126 58 161 87 192 20 20 39 37 42 37 3 0 52 -47 110
+          -105z"/>
+          <path d="M681 3601 c-42 -22 -81 -85 -81 -130 0 -48 38 -110 82 -132 36 -18
+          77 -19 1118 -19 1063 0 1081 0 1120 20 45 23 80 80 80 130 0 50 -35 107 -80
+          130 -39 20 -56 20 -1122 20 -1023 -1 -1085 -2 -1117 -19z"/>
+          <path d="M681 3001 c-42 -22 -81 -85 -81 -130 0 -48 38 -110 82 -132 36 -18
+          71 -19 818 -19 763 0 782 0 820 20 45 23 80 80 80 130 0 50 -35 107 -80 130
+          -38 20 -57 20 -822 20 -735 -1 -785 -2 -817 -19z"/>
+          <path d="M681 2401 c-42 -22 -81 -85 -81 -130 0 -48 38 -110 82 -132 36 -18
+          71 -19 818 -19 763 0 782 0 820 20 45 23 80 80 80 130 0 50 -35 107 -80 130
+          -38 20 -57 20 -822 20 -735 -1 -785 -2 -817 -19z"/>
+          <path d="M681 1801 c-42 -22 -81 -85 -81 -130 0 -48 38 -110 82 -132 36 -18
+          71 -19 818 -19 763 0 782 0 820 20 45 23 80 80 80 130 0 50 -35 107 -80 130
+          -38 20 -57 20 -822 20 -735 -1 -785 -2 -817 -19z"/>
+          <path d="M1881 881 c-42 -22 -81 -85 -81 -130 0 -48 38 -110 82 -132 35 -18
+          66 -19 518 -19 462 0 482 1 520 20 45 23 80 80 80 130 0 50 -35 107 -80 130
+          -38 19 -57 20 -522 20 -446 -1 -486 -2 -517 -19z"/>
+          </g>
+          </svg>
+          Scripts</div>
+          <div class="menu-item" id="Force-options-toggle">
+          <svg
+            version="1.0"
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 512 512"
+            preserveAspectRatio="xMidYMid meet"
+          >
+          <g
+            transform="translate(-100,512) scale(0.1,-0.1)" fill="currentColor" stroke="none"
+            fill="currentColor"
+            stroke="none"
+          >
+          <path d="M1958 4630 c-20 -11 -46 -33 -57 -49 -30 -42 -86 -215 -118 -366 -25
+          -121 -27 -147 -28 -375 0 -195 4 -265 18 -345 37 -202 123 -413 307 -755 124
+          -231 135 -268 135 -455 0 -138 -2 -156 -28 -230 -16 -44 -61 -136 -101 -205
+          -111 -190 -119 -206 -180 -342 -101 -229 -187 -512 -231 -759 -13 -76 -14
+          -104 -6 -137 31 -115 160 -173 269 -121 58 29 84 72 122 204 121 420 301 774
+          490 965 70 70 161 140 183 140 12 0 2 -190 -19 -380 -21 -185 -57 -376 -106
+          -560 -50 -190 -53 -209 -38 -255 40 -121 192 -173 300 -101 52 34 65 61 155
+          327 231 679 319 1142 295 1546 -18 284 -88 504 -206 649 -25 31 -38 57 -41 87
+          -5 41 -2 46 93 167 261 331 434 644 496 895 18 74 19 91 8 130 -25 88 -126
+          148 -211 125 -71 -19 -104 -61 -154 -195 -119 -318 -310 -624 -450 -720 -83
+          -56 -160 -79 -265 -79 -103 0 -177 21 -257 73 -76 49 -127 109 -171 200 -33
+          69 -36 83 -40 186 -5 139 8 250 55 436 41 167 40 199 -10 256 -56 64 -137 80
+          -209 43z"/>
+          <path d="M2555 4448 c-220 -28 -387 -256 -346 -474 29 -158 140 -285 289 -330
+          64 -20 182 -19 245 2 115 38 201 115 254 230 25 53 28 70 28 164 0 94 -3 111
+          -28 164 -83 178 -247 269 -442 244z"/>
+          <path d="M1416 4118 c-9 -12 -16 -37 -16 -55 0 -32 -2 -33 -38 -33 -43 0 -62
+          -14 -62 -47 0 -26 27 -43 69 -43 28 0 31 -3 31 -31 0 -42 17 -69 43 -69 33 0
+          47 19 47 62 0 36 1 38 33 38 36 0 77 24 77 45 0 25 -31 45 -71 45 -39 0 -39 0
+          -39 39 0 64 -44 93 -74 49z"/>
+          <path d="M3812 3728 c-7 -7 -12 -31 -12 -55 l0 -43 -43 0 c-48 0 -67 -13 -67
+          -47 0 -27 27 -43 74 -43 36 0 36 0 36 -45 0 -46 19 -68 50 -57 23 8 30 23 30
+          65 0 36 1 37 39 37 40 0 71 20 71 45 0 25 -31 45 -71 45 l-39 0 0 45 c0 34 -5
+          47 -19 55 -25 13 -34 13 -49 -2z"/>
+          <path d="M1185 3311 c-46 -27 -69 -69 -69 -124 0 -80 62 -142 144 -142 110 0
+          178 114 126 213 -35 67 -135 94 -201 53z"/>
+          <path d="M3782 3138 c-19 -19 -14 -44 14 -78 l27 -31 -27 -28 c-31 -32 -34
+          -66 -6 -81 23 -12 45 -4 74 29 l18 20 38 -30 c31 -25 42 -29 58 -20 16 9 32
+          31 32 46 0 3 -13 20 -30 38 l-30 34 21 19 c32 29 41 51 29 74 -15 28 -49 25
+          -81 -6 l-28 -27 -31 27 c-34 28 -59 33 -78 14z"/>
+          <path d="M1863 2584 c-75 -37 -99 -152 -46 -215 73 -86 195 -74 243 26 61 127
+          -69 252 -197 189z"/>
+          <path d="M3532 2488 c-20 -20 -14 -50 15 -80 l27 -28 -27 -28 c-29 -30 -35
+          -60 -15 -80 19 -19 40 -14 73 18 l31 30 29 -30 c33 -34 70 -39 85 -11 14 27
+          14 26 -21 66 l-32 36 32 32 c35 37 38 49 15 71 -22 23 -39 20 -77 -14 l-34
+          -29 -28 29 c-31 32 -54 37 -73 18z"/>
+          <path d="M1362 1918 c-6 -6 -12 -31 -12 -54 l0 -43 -46 -3 c-88 -6 -88 -70 0
+          -76 l46 -3 0 -43 c0 -50 18 -71 54 -62 22 5 25 13 28 54 l3 47 40 3 c50 4 67
+          18 63 51 -3 23 -8 27 -53 31 l-50 5 -5 50 c-4 44 -8 50 -30 53 -14 2 -31 -3
+          -38 -10z"/>
+          <path d="M3595 1783 c-83 -22 -130 -127 -90 -202 28 -54 71 -81 130 -81 43 0
+          60 5 85 26 58 49 74 111 46 178 -24 58 -107 96 -171 79z"/>
+          </g>
+          </svg>
+            Force Emote</div>
         </div>
-        <div class="menu-items" id="vehicle-options-items" style="display: none;">
-          <!-- Main panel -->
-          <div class="menu-items" id="vehicle-main-items">
-            <div class="menu-item checkbox">Boost</div>
-            <div class="menu-item slider" data-min="65" data-max="200" data-step="20" data-value="100">Boost Speed</div>
-            <div class="menu-item checkbox">God Mode</div>
-            <!-- etc… -->
-          </div>
-          <!-- spawner panel -->
-          <div class="menu-items" id="vehicle-spawner-items" style="display: none;">
-            <div class="menu-item">Spawn From Hash</div>
-            <div class="menu-item">Spawner</div>
-          </div>
+  
+        <!-- Settings -->
+        <div class="menu-items" id="settings-items" style="display: none;">
+          <div class="menu-item">
+          <svg
+            version="1.0"
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 512 512"
+            preserveAspectRatio="xMidYMid meet"
+          >
+          <g
+            transform="translate(0,512) scale(0.1,-0.1)" fill="currentColor" stroke="none"
+            fill="currentColor"
+            stroke="none"
+          >
+          <path d="M2500 5110 c-14 -4 -88 -47 -165 -95 -368 -228 -916 -453 -1487 -609
+          -245 -66 -283 -92 -309 -205 -10 -46 7 -540 26 -736 51 -527 169 -1023 356
+          -1495 74 -186 256 -546 364 -718 281 -447 643 -838 1069 -1152 189 -139 229
+          -137 448 27 699 526 1194 1224 1490 2103 135 403 225 846 268 1324 16 182 30
+          607 21 646 -21 94 -79 147 -188 174 -598 148 -1258 416 -1650 668 -118 76
+          -171 91 -243 68z m458 -1716 c110 -45 162 -174 113 -279 -10 -22 -69 -89 -130
+          -150 -96 -95 -111 -114 -111 -142 0 -36 21 -53 67 -53 39 -1 103 -32 135 -66
+          58 -62 74 -155 39 -229 -12 -26 -139 -159 -372 -392 -374 -371 -376 -373 -467
+          -373 -105 0 -202 101 -202 210 0 71 30 117 149 235 96 95 111 114 111 142 0
+          36 -21 53 -65 53 -14 0 -42 7 -63 16 -110 45 -162 174 -113 279 29 61 705 732
+          757 750 52 19 106 18 152 -1z"/>
+          </g>
+          </svg>
+            Safe Mode</div>
+          <div class="menu-item">
+          <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+          width="18" height="18" viewBox="0 0 512.000000 512.000000"
+          preserveAspectRatio="xMidYMid meet">
+
+          <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+          fill="currentColor" stroke="none">
+          <path d="M4124 5090 c-12 -5 -51 -36 -87 -70 -134 -125 -141 -219 -24 -337
+          l51 -53 -49 -50 c-27 -27 -54 -50 -61 -50 -6 0 -33 24 -59 53 -175 194 -205
+          217 -281 217 -60 0 -97 -23 -185 -116 -62 -66 -84 -116 -74 -172 8 -47 21 -71
+          68 -121 20 -22 37 -44 37 -49 0 -5 -266 -270 -592 -588 -903 -883 -871 -850
+          -903 -918 -55 -120 -41 -282 35 -382 16 -22 30 -44 30 -50 0 -10 -91 -102
+          -116 -117 -6 -4 -25 0 -41 8 -16 8 -39 12 -51 8 -23 -6 -344 -380 -409 -475
+          -48 -72 -60 -145 -38 -235 l17 -73 -274 -267 c-665 -650 -721 -708 -721 -744
+          0 -21 7 -38 22 -50 13 -10 20 -24 18 -31 -4 -10 -6 -10 -6 0 -1 7 -5 10 -11 7
+          -5 -3 -10 -1 -10 4 0 6 -5 11 -11 11 -5 0 -8 -4 -5 -9 4 -5 0 -12 -6 -14 -10
+          -4 -10 -6 0 -6 21 -1 3 -21 -18 -21 -11 0 -27 -11 -36 -25 -19 -29 -33 -33
+          -30 -7 1 9 17 23 34 31 30 14 46 51 22 51 -5 0 -9 -5 -7 -11 1 -6 -6 -16 -15
+          -22 -13 -9 -21 -7 -36 6 -11 10 -23 17 -28 16 -20 -3 -26 2 -16 14 7 8 7 18 1
+          27 -7 12 -11 12 -17 2 -5 -7 -13 -12 -18 -11 -15 5 -88 -12 -102 -23 -9 -8 -9
+          -14 -1 -25 10 -11 15 -11 35 2 22 14 42 6 30 -14 -8 -12 -100 -4 -104 9 -2 5
+          -8 10 -13 10 -6 0 -8 -4 -5 -9 4 -5 -3 -7 -14 -4 -14 4 -20 1 -18 -8 2 -8 -2
+          -13 -8 -12 -6 1 -11 -4 -11 -12 0 -8 5 -11 11 -7 6 3 16 7 21 8 6 1 17 3 25 5
+          18 5 26 -39 10 -55 -8 -8 -13 -7 -20 4 -5 8 -21 15 -35 15 -29 1 -34 -11 -7
+          -18 16 -4 16 -5 0 -6 -19 -1 -27 -51 -8 -51 6 0 10 5 10 12 0 6 3 8 7 5 3 -4
+          15 0 25 10 10 9 18 11 18 6 0 -6 -16 -25 -35 -42 -32 -28 -51 -72 -23 -55 7 5
+          9 1 6 -13 -4 -16 -2 -19 13 -16 10 3 16 10 12 16 -4 6 3 8 20 3 16 -4 29 -1
+          34 6 12 21 12 39 0 35 -7 -3 -11 -10 -10 -16 2 -6 -2 -11 -8 -11 -6 0 -9 8 -7
+          18 2 11 13 17 31 18 26 1 31 -4 28 -36 0 -8 3 -21 8 -29 8 -12 12 -12 25 -2
+          18 15 36 7 36 -16 0 -9 6 -13 15 -9 19 7 19 -4 -1 -32 -14 -21 -14 -22 6 -22
+          13 0 25 10 33 28 6 15 19 32 27 39 8 7 11 13 6 13 -5 0 1 11 14 25 13 14 20
+          25 16 25 -5 0 -3 6 3 14 13 15 -1 32 -18 22 -5 -3 -12 1 -15 10 -3 8 -10 12
+          -16 9 -5 -3 -10 0 -10 7 0 9 -3 9 -10 -2 -6 -10 -10 -11 -10 -3 0 10 -6 10
+          -25 1 -13 -6 -22 -15 -18 -21 3 -6 1 -7 -5 -3 -7 4 -12 2 -12 -3 0 -6 -4 -11
+          -9 -11 -6 0 -9 9 -8 20 1 10 3 18 5 16 8 -9 54 49 56 70 1 17 4 20 18 13 22
+          -12 28 -11 28 1 0 6 -6 10 -14 10 -8 0 -17 4 -20 9 -3 5 7 8 24 7 16 -1 32 3
+          35 8 3 6 2 0 -2 -14 -7 -28 -31 -50 -48 -43 -7 2 -12 -3 -12 -11 0 -8 4 -13 8
+          -10 4 2 9 -1 11 -8 3 -7 9 -8 19 -3 19 13 39 15 39 5 0 -4 -8 -11 -17 -14 -19
+          -8 -9 -21 25 -31 22 -6 23 -5 12 15 -11 20 -10 21 9 11 17 -9 19 -16 11 -36
+          -5 -14 -6 -25 -2 -25 4 0 0 -5 -8 -10 -11 -7 -12 -12 -3 -21 15 -15 34 -3 26
+          17 -5 14 -3 15 15 5 l21 -11 -20 -35 c-12 -19 -25 -35 -31 -35 -5 0 -6 -6 -2
+          -12 4 -7 4 -10 -1 -6 -4 4 -15 2 -23 -5 -11 -8 -14 -8 -9 0 4 6 4 13 0 16 -5
+          2 -1 2 7 0 12 -3 12 -1 3 8 -18 18 -40 4 -40 -27 0 -16 -6 -30 -12 -32 -6 -2
+          -11 -10 -11 -18 0 -8 -4 -14 -8 -14 -5 0 -14 -11 -20 -25 -6 -14 -16 -25 -22
+          -25 -6 0 -8 6 -4 12 6 10 5 10 -7 1 -13 -11 -15 -9 -14 10 1 16 8 22 25 22 14
+          0 24 7 26 18 2 19 -21 24 -31 6 -4 -6 -13 -8 -21 -5 -7 3 -18 -3 -24 -12 -9
+          -16 -11 -16 -21 1 -5 9 -15 15 -20 11 -5 -3 -8 0 -7 7 5 21 -23 22 -29 0 -4
+          -17 -8 -19 -20 -9 -11 9 -16 9 -24 -3 -5 -8 -9 -9 -9 -4 0 6 -5 3 -10 -6 -13
+          -22 -6 -53 13 -57 10 -2 17 1 17 7 0 6 -6 8 -14 5 -11 -4 -13 0 -9 15 4 16 9
+          19 18 11 7 -6 21 -8 31 -4 13 4 15 3 7 -3 -10 -7 -10 -12 0 -25 10 -15 14 -15
+          25 -2 7 8 8 14 2 14 -5 0 -10 8 -9 18 0 9 3 12 5 6 3 -7 13 -10 23 -7 11 3 27
+          -4 37 -15 11 -11 26 -21 34 -22 28 -4 60 0 57 8 -2 7 6 12 24 12 5 0 8 -3 6
+          -8 -3 -4 10 -8 29 -9 19 -1 34 3 34 9 0 6 -11 8 -25 6 -14 -3 -25 -1 -25 3 0
+          5 -7 9 -15 9 -20 0 -19 19 2 27 15 6 15 7 -3 14 -18 7 -18 8 3 8 12 1 24 -5
+          27 -11 5 -10 7 -10 12 1 5 9 11 3 21 -20 11 -27 16 -31 23 -19 6 9 13 11 18 5
+          4 -5 15 -11 26 -13 14 -3 17 1 12 13 -3 9 -2 13 4 10 6 -3 10 -2 10 4 0 5 -4
+          13 -10 16 -5 3 -10 13 -10 21 0 10 5 12 13 8 9 -6 9 -5 0 8 -7 8 -10 17 -8 20
+          5 4 -33 4 -43 -1 -1 0 4 -11 13 -24 14 -21 13 -23 -8 -24 -16 -2 -18 0 -8 7
+          12 7 11 11 -3 25 -21 21 -9 37 28 37 23 0 30 8 28 29 -1 4 3 20 7 37 5 17 6
+          47 1 66 -4 21 -4 36 1 36 5 0 9 11 9 25 0 14 -4 25 -10 25 -5 0 -10 -5 -10
+          -11 0 -5 -4 -7 -10 -4 -14 9 12 34 29 27 11 -4 13 1 8 26 -6 29 -4 32 18 32
+          20 0 135 107 521 486 l495 487 65 -22 c77 -25 108 -26 171 -5 55 18 87 42 350
+          251 206 164 220 182 191 234 -16 26 -15 27 46 88 34 33 66 61 72 61 6 0 23
+          -13 38 -29 15 -16 56 -42 89 -57 83 -37 193 -39 281 -4 64 25 -2 -38 1156
+          1093 l384 377 40 -46 c68 -78 137 -101 212 -69 54 22 170 140 190 191 21 55
+          14 114 -18 159 -19 26 -153 177 -205 231 -20 20 -17 26 37 79 l49 49 65 -62
+          c35 -34 76 -66 91 -72 74 -28 145 1 237 96 76 79 98 163 61 231 -19 33 -98
+          125 -216 249 -38 40 -77 83 -88 96 -39 44 -184 202 -252 274 -38 40 -76 81
+          -85 92 -99 113 -151 166 -178 182 -33 21 -111 26 -150 10z m126 -187 c64 -73
+          217 -239 290 -318 36 -38 70 -74 75 -80 6 -6 47 -52 92 -101 45 -49 91 -100
+          103 -114 12 -14 50 -54 84 -90 34 -36 66 -71 70 -78 6 -10 -9 -31 -45 -68 -49
+          -50 -83 -67 -91 -45 -1 5 -48 57 -103 116 -55 59 -111 120 -125 135 -14 15
+          -65 71 -115 125 -49 54 -97 106 -105 115 -19 21 -189 206 -252 274 -26 28 -48
+          58 -48 66 0 20 90 110 111 110 9 0 36 -21 59 -47z m-594 -278 c11 -13 47 -53
+          80 -88 32 -34 97 -105 144 -157 47 -52 116 -126 153 -166 38 -40 77 -83 88
+          -96 20 -22 46 -50 184 -198 33 -36 98 -107 145 -159 47 -52 109 -119 137 -150
+          29 -31 53 -63 53 -71 0 -17 -99 -120 -116 -120 -6 0 -33 24 -60 53 -26 28 -75
+          82 -108 118 -34 36 -99 107 -146 158 -95 105 -118 130 -199 216 -31 34 -94
+          103 -141 154 -47 52 -103 113 -125 136 -40 42 -194 210 -227 248 -10 11 -18
+          25 -18 31 0 16 102 116 119 116 9 0 25 -11 37 -25z m638 -250 c51 -55 127
+          -138 170 -184 l77 -85 -55 -54 -54 -55 -58 62 c-32 35 -66 72 -77 84 -22 25
+          -194 212 -219 239 -10 10 -18 21 -18 25 0 4 23 31 52 60 l51 52 20 -22 c10
+          -12 60 -67 111 -122z m-754 -271 c-41 -41 -200 -197 -353 -346 -271 -265 -278
+          -270 -297 -253 -11 10 -20 23 -20 29 0 6 156 165 348 353 l347 342 25 -25 25
+          -24 -75 -76z m252 -116 c47 -51 107 -117 134 -147 27 -30 75 -82 106 -115 32
+          -34 58 -64 58 -67 0 -5 -640 -635 -868 -854 l-84 -80 -56 60 c-85 90 -246 266
+          -281 305 -52 59 -51 66 25 135 38 35 71 59 74 54 3 -4 18 -13 34 -19 58 -22
+          110 44 81 104 l-16 31 348 342 c191 188 351 342 354 342 4 1 45 -41 91 -91z
+          m418 -453 l23 -25 -24 -26 c-58 -62 -921 -899 -930 -903 -13 -4 -52 36 -47 48
+          4 11 941 930 949 931 3 0 16 -11 29 -25z m-1429 -131 l24 -26 -70 -63 -70 -64
+          -25 25 -24 24 64 65 c35 36 67 65 70 65 4 0 17 -12 31 -26z m-222 -267 c24
+          -29 78 -88 120 -133 42 -44 96 -103 120 -130 25 -27 72 -78 105 -114 131 -140
+          251 -273 258 -285 5 -8 -16 -35 -59 -75 l-67 -62 -25 29 c-13 15 -66 73 -117
+          128 -51 55 -101 110 -112 123 -11 12 -67 73 -125 135 -57 62 -133 145 -167
+          185 -35 39 -66 72 -70 72 -4 0 -15 12 -25 26 l-17 26 63 64 c35 35 66 64 69
+          63 3 0 25 -24 49 -52z m-348 -919 c38 -40 68 -75 69 -78 0 -3 -30 -35 -66 -70
+          l-65 -65 -69 75 c-38 41 -70 80 -70 85 0 9 118 123 129 125 2 0 35 -33 72 -72z
+          m-204 -276 c46 -51 83 -96 81 -101 -7 -20 -371 -301 -404 -311 -117 -39 -219
+          101 -153 209 11 18 86 112 167 208 l146 174 39 -43 c21 -24 77 -85 124 -136z
+          m-1622 -1604 c25 -11 28 -15 28 -43 0 -47 -5 -53 -32 -36 -13 8 -13 12 0 27
+          12 16 12 17 -1 10 -8 -4 -7 -1 3 7 11 9 14 18 8 21 -5 4 -12 2 -16 -3 -8 -14
+          -32 -3 -32 14 0 18 8 19 42 3z m-245 -37 c-21 -30 -53 -41 -64 -22 -11 17 5
+          39 25 34 10 -3 19 0 19 6 0 5 7 8 15 5 8 -4 15 -1 15 7 0 7 3 10 6 6 3 -3 -4
+          -20 -16 -36z m140 -25 c0 -3 -4 -8 -10 -11 -5 -3 -10 -1 -10 4 0 6 5 11 10 11
+          6 0 10 -2 10 -4z m-42 -20 c-10 -7 -18 -23 -18 -35 0 -26 -8 -27 -26 -3 -13
+          16 -15 16 -25 0 -12 -22 -29 -23 -29 -4 0 18 8 23 45 30 15 3 33 10 39 16 5 5
+          15 10 21 10 5 0 2 -7 -7 -14z m37 -26 c-3 -5 -14 -10 -23 -9 -14 0 -13 2 3 9
+          27 11 27 11 20 0z m50 -120 c3 -6 -1 -7 -9 -4 -18 7 -21 14 -7 14 6 0 13 -4
+          16 -10z"/>
+          <path d="M320 484 c0 -8 -5 -14 -11 -14 -5 0 -8 -4 -5 -9 7 -11 56 0 55 13 0
+          5 4 12 11 16 6 4 -3 7 -19 8 -21 0 -31 -4 -31 -14z"/>
+          <path d="M314 206 c-4 -11 -2 -21 7 -27 18 -11 24 5 10 28 -9 17 -10 17 -17
+          -1z"/>
+          <path d="M102 188 c-7 -7 -8 -17 -1 -29 7 -15 6 -17 -6 -13 -8 4 -15 1 -15 -5
+          0 -17 37 -13 44 5 4 9 9 14 13 10 3 -3 -2 -15 -12 -26 -18 -19 -17 -20 1 -21
+          10 0 27 -2 36 -4 9 -2 24 8 33 21 8 13 11 24 5 24 -5 0 -10 -4 -10 -10 0 -21
+          -31 -9 -40 15 -5 14 -17 25 -25 25 -9 0 -13 5 -10 10 8 13 2 13 -13 -2z"/>
+          <path d="M24 160 c3 -8 9 -23 12 -33 6 -16 8 -16 25 4 18 21 17 39 -2 39 -5 0
+          -9 -8 -9 -17 -1 -16 -2 -16 -16 2 -9 11 -14 13 -10 5z"/>
+          <path d="M0 131 c0 -10 19 -25 25 -20 1 2 -3 10 -11 17 -8 7 -14 8 -14 3z"/>
+          <path d="M133 15 c0 -8 4 -15 9 -15 4 0 8 4 8 9 0 6 -4 12 -8 15 -5 3 -9 -1
+          -9 -9z"/>
+          <path d="M376 9 c3 -5 14 -7 24 -6 31 5 31 12 -1 13 -16 1 -26 -2 -23 -7z"/>
+          </g>
+          </svg>
+
+            Uninject</div>
+          <div class="menu-item" id="misc-options-toggle">
+            <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+            width="18" height="18" viewBox="0 0 512.000000 512.000000"
+            preserveAspectRatio="xMidYMid meet">
+
+            <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+            fill="currentColor" stroke="none">
+            <path d="M2281 5104 c-80 -21 -149 -62 -212 -124 -95 -93 -139 -206 -139 -350
+            l0 -87 -87 -33 c-49 -18 -121 -48 -162 -67 l-75 -34 -55 55 c-140 136 -305
+            185 -476 141 -102 -27 -160 -69 -326 -234 -165 -166 -207 -224 -234 -326 -44
+            -171 5 -336 141 -475 l54 -56 -44 -99 c-24 -55 -54 -128 -66 -162 l-23 -63
+            -87 0 c-144 0 -256 -44 -351 -139 -116 -117 -139 -197 -139 -491 0 -295 22
+            -371 140 -491 93 -95 206 -139 350 -139 l87 0 33 -87 c18 -49 48 -121 67 -162
+            l34 -75 -55 -55 c-30 -31 -68 -78 -85 -106 -90 -144 -94 -334 -9 -484 42 -75
+            324 -357 399 -399 142 -80 319 -82 463 -4 28 15 80 55 117 89 l66 63 99 -43
+            c55 -24 127 -54 162 -67 l62 -22 0 -87 c0 -145 44 -258 139 -351 120 -118 196
+            -140 491 -140 294 0 374 23 491 139 95 95 139 207 139 352 l0 87 63 22 c34 13
+            106 43 161 67 l99 43 66 -63 c37 -34 89 -74 117 -89 141 -76 316 -76 458 0 67
+            36 360 328 403 402 81 139 83 319 5 464 -15 28 -55 80 -89 117 l-63 66 43 99
+            c24 55 54 127 67 162 l22 62 87 0 c148 0 256 43 351 139 118 120 140 196 140
+            491 0 295 -22 371 -140 491 -95 96 -203 139 -351 139 l-87 0 -22 63 c-13 34
+            -43 106 -67 161 l-43 99 63 66 c34 37 74 89 89 117 78 144 76 321 -4 463 -42
+            74 -334 366 -404 403 -150 81 -338 76 -479 -13 -27 -17 -75 -55 -106 -85 l-55
+            -55 -75 34 c-41 19 -113 49 -161 67 l-88 33 0 87 c0 144 -44 256 -139 351 -63
+            63 -131 101 -218 124 -79 21 -474 20 -552 -1z m516 -305 c29 -14 52 -35 68
+            -63 23 -40 25 -52 25 -184 0 -158 12 -209 59 -240 14 -10 85 -37 156 -61 72
+            -23 193 -74 270 -112 77 -38 150 -69 163 -69 48 0 99 34 196 130 104 102 133
+            120 191 120 60 0 88 -19 229 -158 141 -140 166 -175 166 -236 0 -59 -18 -88
+            -120 -192 -97 -98 -130 -148 -130 -197 0 -13 31 -87 70 -164 38 -78 88 -199
+            111 -269 24 -71 51 -141 61 -155 31 -47 82 -59 240 -59 132 0 144 -2 184 -25
+            75 -44 84 -78 84 -305 0 -227 -9 -261 -84 -305 -40 -23 -52 -25 -184 -25 -158
+            0 -209 -12 -240 -59 -10 -14 -37 -84 -61 -155 -23 -70 -73 -191 -111 -269 -39
+            -77 -70 -151 -70 -164 0 -49 33 -99 130 -197 102 -104 120 -133 120 -191 0
+            -60 -19 -87 -157 -227 -142 -143 -177 -168 -236 -168 -60 0 -88 18 -193 120
+            -98 97 -148 130 -198 130 -13 0 -87 -31 -163 -69 -76 -38 -196 -89 -268 -112
+            -71 -24 -142 -51 -156 -61 -47 -31 -59 -82 -59 -240 0 -132 -2 -144 -25 -184
+            -44 -75 -78 -84 -305 -84 -227 0 -261 9 -305 84 -23 40 -25 52 -25 184 0 158
+            -12 209 -59 240 -14 10 -84 38 -156 61 -71 24 -193 74 -269 112 -77 38 -150
+            69 -163 69 -49 0 -99 -33 -197 -130 -104 -102 -133 -120 -192 -120 -61 0 -96
+            25 -236 166 -139 141 -158 169 -158 229 0 58 18 87 120 191 97 98 130 148 130
+            197 0 13 -31 87 -70 164 -38 78 -88 199 -111 269 -24 71 -51 141 -61 155 -31
+            47 -82 59 -240 59 -132 0 -144 2 -184 25 -75 44 -84 78 -84 305 0 227 9 261
+            84 305 40 23 52 25 184 25 158 0 209 12 240 59 10 14 38 85 61 156 23 72 74
+            193 112 269 38 77 69 150 69 163 0 49 -33 99 -130 197 -102 104 -120 133 -120
+            192 0 61 25 96 166 236 141 139 169 158 229 158 58 0 87 -18 191 -120 98 -97
+            148 -130 197 -130 13 0 87 31 164 70 78 38 199 88 269 111 71 24 141 51 155
+            61 47 31 59 82 59 240 0 132 2 144 25 183 16 28 39 50 67 64 39 19 60 21 237
+            21 177 0 199 -2 238 -21z"/>
+            <path d="M2335 3650 c-416 -90 -742 -398 -853 -808 -24 -88 -26 -114 -26 -282
+            0 -168 2 -194 26 -282 105 -387 409 -691 796 -796 88 -24 114 -26 282 -26 168
+            0 194 2 282 26 387 105 691 409 796 796 24 88 26 114 26 282 0 168 -2 194 -26
+            282 -105 387 -411 694 -793 794 -139 37 -376 43 -510 14z m412 -300 c370 -89
+            623 -409 623 -790 0 -454 -356 -810 -810 -810 -224 0 -415 79 -574 236 -271
+            269 -316 698 -106 1017 115 176 304 308 504 352 95 20 266 18 363 -5z"/>
+            </g>
+            </svg>
+            Misc</div>
         </div>
-        <div class="menu-items" id="model-options-items" style="display: none;">
-          <!-- Main panel -->
-          <div class="menu-items" id="model-main-items">
-            <div class="menu-item">Changer</div>
-            <div class="menu-item">Save Ped</div>
-            <div class="menu-item">Load Peds</div>
-            <!-- etc… -->
-          </div>
-        </div>
-        <div class="menu-items" id="outfits-options-items" style="display: none;">
-          <!-- Main panel -->
-          <div class="menu-items" id="outfits-main-items">
-            <div class="menu-item">Save Outfit</div>
-            <div class="menu-item">Load Outfits</div>
-            <div class="menu-item">Skin Color</div>
-            <!-- etc… -->
-          </div>
-          <div class="menu-items" id="outfits-upper-items">
-            <div class="menu-item">Hat</div>
-            <div class="menu-item">Mask</div>
-            <div class="menu-item">Shirt</div>
-            <div class="menu-item">Undershirt</div>
-            <div class="menu-item">Arms</div>
-            <!-- etc… -->
-          </div>
-          <div class="menu-items" id="outfits-lower-items" style="display: none;">
-            <div class="menu-item">Legs</div>
-            <div class="menu-item">Shoes</div>
-          </div>
-        </div>
-        <!-- Animations -->
-        <div class="menu-items" id="animations-options-items" style="display: none;">
-          <div class="menu-items" id="animations-main-items">
-            <div class="menu-item">Dance</div>
-            <div class="menu-item">Wave</div>
-            <!-- etc… -->
-          </div>
-        </div>
-        <!-- PTFX -->
-        <div class="menu-items" id="ptfx-options-items" style="display: none;">
-          <div class="menu-items" id="ptfx-main-items">
-            <div class="menu-item">Fireworks</div>
-            <div class="menu-item">Smoke</div>
-            <!-- etc… -->
-          </div>
-        </div>
-        <!-- teleport -->
-        <div class="menu-items" id="teleport-options-items" style="display: none;">
-          <!-- Main panel -->
-          <div class="menu-items" id="teleport-main-items">
-            <div class="menu-item">Tp to Waypoint</div>
-            <div class="menu-item">Tp to Coords</div>
-            <!-- etc… -->
-          </div>
-          <!-- player panel -->
-          <div class="menu-items" id="teleport-player-items" style="display: none;">
-            <div class="menu-item">Tp to Player by Look</div>
-            <div class="menu-item">Tp to Player by Id</div>
-            <div class="menu-item">Tp to Player by Name</div>
-          </div>
-        </div>
-        <!-- Aim Assist -->
-        <div class="menu-items" id="aim-assist-options-items" style="display: none;">
-          <div class="menu-items" id="aim-assist-main-items">
-            <div class="menu-item">Snap Aim</div>
-            <div class="menu-item">Silent Aim</div>
-            <!-- etc… -->
-          </div>
-        </div>
-        <!-- esp -->
-          <div class="menu-items" id="esp-options-items" style="display: none;">
-          <!-- Main panel -->
-          <div class="menu-items" id="esp-main-items">
-            <div class="menu-item checkbox">Enable Esp</div>
-            <div class="menu-item">Esp Color</div>
-            <!-- etc… -->
-          </div>
-          <!-- Toggles panel -->
-          <div class="menu-items" id="esp-toggle-items" style="display: none;">
-            <div class="menu-item checkbox">Glow</div>
-            <div class="menu-item checkbox">Bones</div>
-            <div class="menu-item checkbox">Boxes</div>
-            <div class="menu-item checkbox">Tracers</div>
-            <div class="menu-item checkbox">Name</div>
-            <div class="menu-item checkbox">Distance</div>
-            <div class="menu-item checkbox">Infobar</div> <!-- for later -->
-          </div>
-        </div>
-        <!-- weapons -->
-        <div class="menu-items" id="weapons-options-items" style="display: none;">
-          <!-- Main panel -->
-          <div class="menu-items" id="weapons-main-items">
-            <div class="menu-item checkbox">Alter Damage</div>
-            <div class="menu-item slider" data-min="10" data-max="500" data-step="25" data-value="100">Damage</div>
-            <div class="menu-item">Spread</div>
-            <!-- etc… -->
-          </div>
-          <div class="menu-items" id="weapons-aimbot-items" style="display: none;">
-            <div class="menu-item checkbox">Aimbot</div>
-            <div class="menu-item">Aimbot Type</div>
-            <div class="menu-item checkbox">show Aimbot Fov</div>
-            <div class="menu-item">Aimbot Fov</div>
-          </div>
-          <div class="menu-items" id="weapons-spawner-items" style="display: none;">
-            <div class="menu-item">Spawn by Hash</div>
-            <div class="menu-item">Spawner</div>
-            <div class="menu-item">Spoof</div>
-            <div class="menu-item">Add Ammo to Clip</div>
-            <div class="menu-item">Add Ammo to Reserve</div>
-            <div class="menu-item">Set Ammo to Clip</div>
-            <div class="menu-item">Set Ammo to Reserve</div>
-          </div>
-        </div>
-        <!-- world -->
-        <div class="menu-items" id="world-options-items" style="display: none;">
-          <!-- Main panel -->
-          <div class="menu-items" id="world-main-items">
-            <div class="menu-item">Aggressive Npcs</div>
-            <div class="menu-item">Floating Cars</div>
-            <div class="menu-item">Low Gravity</div>
-            <!-- etc… -->
-          </div>
-          <!-- atmosphere panel -->
-          <div class="menu-items" id="world-atmosphere-items" style="display: none;">
-            <div class="menu-item">Time</div>
-            <div class="menu-item">Weather</div>
-          </div>
-        </div>
-        <!-- scripts -->
+
         <div class="menu-items" id="scripts-options-items" style="display: none;">
           <!-- Main panel -->
           <div class="menu-items" id="scripts-main-items">
@@ -709,47 +1175,7 @@
             <div class="menu-item">Block Logs</div>
           </div>
         </div>
-        <!-- misc -->
-          <div class="menu-items" id="misc-options-items" style="display: none;">
-          <!-- Main panel -->
-          <div class="menu-items" id="misc-main-items">
-            <div class="menu-item">Menu Size</div>
-            <div class="menu-item">Menu Color</div>
-            <!-- etc… -->
-          </div>
-          <div class="menu-items" id="misc-extra-items" style="display: none;">
-            <div class="menu-item">Menu Pos X</div>
-            <div class="menu-item">Menu Pos Y</div>
-          </div>
-        </div>
-        <!-- server -->
-        <div class="menu-items" id="server-options-items" style="display: none;">
-          <!-- Main panel -->
-          <div class="menu-items" id="server-main-items">
-            <div class="menu-item">God Mode All</div>
-            <div class="menu-item">Invisible All</div>
-            <!-- etc… -->
-          </div>
-          <!-- destroyer panel -->
-          <div class="menu-items" id="server-destroyer-items" style="display: none;">
-            <div class="menu-item">Cage All</div>
-            <div class="menu-item">Cage Nearest</div>
-            <div class="menu-item">Nuke All</div>
-            <div class="menu-item">Nuke Nearest</div>
-          </div>
-        </div>
-        <!-- settings -->
-        <div class="menu-items" id="settings-items" style="display: none;">
-          <div class="menu-item">Safe Mode</div>
-          <div class="menu-item">Uninject</div>
-          <div class="menu-item" id="misc-options-toggle">Misc</div>
-        </div>
-        <!-- scripts -->
-        <div class="menu-items" id="scripts-items" style="display: none;">
-          <div class="menu-item" id="scripts-options-toggle">Scripts</div>
-          <div class="menu-item" id="Force-options-toggle">Force Emote</div>
-        </div>
-        <!-- force -->
+
         <div class="menu-items" id="Force-options-items" style="display: none;">
           <!-- Main panel -->
           <div class="menu-items" id="Force-main-items">
@@ -759,6 +1185,218 @@
           </div>
         </div>
 
+        <div class="menu-items" id="misc-options-items" style="display: none;">
+          <!-- Main panel -->
+          <div class="menu-items" id="misc-main-items">
+            <div class="menu-item checkbox">Move & Resize Menu</div>
+            <div class="menu-item">Save Config 1</div>
+            <div class="menu-item">Save Config 2</div>
+            <div class="menu-item">Save Config 3</div>
+            <div class="menu-item">Save Config 4</div>
+            <div class="menu-item">Save Config 5</div>
+            <div class="menu-item">Load Config 1</div>
+            <div class="menu-item">Load Config 2</div>
+            <div class="menu-item">Load Config 3</div>
+            <div class="menu-item">Load Config 4</div>
+            <div class="menu-item">Load Config 5</div>
+            <!-- etc… -->
+          </div>
+          <div class="menu-items" id="misc-extra-items" style="display: none;">
+            <div class="menu-item checkbox slider" data-min="0" data-max="5" data-step="0.1" data-value="0">Bind Indicator</div>
+          </div>
+        </div>
+  
+        <!-- Main Options -->
+        <!-- Player Options full screen -->
+        <div class="menu-items" id="player-options-items" style="display: none;">
+          <!-- Main panel -->
+          <div class="menu-items" id="player-main-items">
+            <div class="menu-item checkbox slider" data-min="0" data-max="3" data-step="1" data-value="0" info = "0:Safe 1:Basic 2:headshots 3:Full">Godmode</div>
+            <div class="menu-item">Fill Hp</div>
+            <div class="menu-item">Fill Armour</div>
+            <div class="menu-item checkbox">Invisible</div>
+            <div class="menu-item checkbox">One Punch</div>
+            <!-- etc… -->
+          </div>
+          <!-- Movement panel -->
+          <div class="menu-items" id="player-movement-items" style="display: none;">
+            <div class="menu-item checkbox slider" data-min="1" data-max="20" data-step="1" data-value="1">No-Clip</div>
+            <div class="menu-item checkbox slider" data-min="1" data-max="20" data-step="1" data-value="10">Super Run</div>
+            <div class="menu-item checkbox">Infinite Stamina</div>
+            <div class="menu-item checkbox">Anti-tp</div>
+          </div>
+        </div>
+        <div class="menu-items" id="vehicle-options-items" style="display: none;">
+          <!-- Main panel -->
+          <div class="menu-items" id="vehicle-main-items">
+            <div class="menu-item checkbox slider" data-min="20" data-max="200" data-step="20" data-value="100">Boost</div>
+            <div class="menu-item checkbox slider" data-min="0" data-max="40" data-step="5" data-value="5">Easy Handling</div>
+            <div class="menu-item checkbox">Seatbelt</div>
+            <div class="menu-item checkbox slider" data-min="1" data-max="2" data-step="1" data-value="1" info = "1:safe 2:Full">Godmode</div>
+            <div class="menu-item">Repair</div>
+            <div class="menu-item checkbox slider" data-min="1" data-max="2" data-step="1" data-value="1" info = "1:Single 2:All">Road Rage</div>
+            <div class="menu-item checkbox">Ramp Handling</div>
+            <!-- etc… -->
+          </div>
+          <!-- spawner panel -->
+          <div class="menu-items" id="vehicle-spawner-items" style="display: none;">
+            <div class="menu-item">Spawn From Hash</div>
+            <div class="menu-item checkbox">Rainbow leds</div>
+            <div class="menu-item checkbox" info = "Press and hold F Nearby Player To Pull">Pull Players From Whip</div>
+          </div>
+        </div>
+        <div class="menu-items" id="esp-options-items" style="display: none;">
+          <!-- Main panel -->
+          <div class="menu-items" id="esp-main-items">
+            <div class="menu-item checkbox">Enable Esp</div>
+            <div class="menu-item slider" data-min="1" data-max="7" data-step="1" data-value="1" info = "1:White 2:Red 3:Green 4:Blue 5:Purple 6:Pink 7:yellow">Esp Color</div>
+            <!-- etc… -->
+          </div>
+          <!-- Toggles panel -->
+          <div class="menu-items" id="esp-toggle-items" style="display: none;">
+            <div class="menu-item checkbox">Health</div>
+            <div class="menu-item checkbox">Armor</div>
+            <div class="menu-item checkbox">Bones</div>
+            <div class="menu-item checkbox">Boxes</div>
+            <div class="menu-item checkbox">Tracers</div>
+            <div class="menu-item checkbox">Legacy Info</div>
+            <div class="menu-item checkbox">Info (Legacy Recommended)</div>
+            <div class="menu-item">vv Controls For Legacy Info vv</div>
+            <div class="menu-item checkbox">Name</div>
+            <div class="menu-item checkbox">Ids</div>
+            <div class="menu-item checkbox">Weapon</div>
+            <div class="menu-item checkbox">Distance</div>
+          </div>
+        </div>
+        <div class="menu-items" id="teleport-options-items" style="display: none;">
+          <!-- Main panel -->
+          <div class="menu-items" id="teleport-main-items">
+            <div class="menu-item">Tp to Waypoint</div>
+            <div class="menu-item">Tp to Coords</div>
+            <!-- etc… -->
+          </div>
+          <!-- player panel -->
+          <div class="menu-items" id="teleport-player-items" style="display: none;">
+            <div class="menu-item">Tp to Player by Look</div>
+            <div class="menu-item">Tp to Player by Id</div>
+            <div class="menu-item">Tp to Player by Name</div>
+          </div>
+        </div>
+        <div class="menu-items" id="weapons-options-items" style="display: none;">
+          <!-- Main panel -->
+          <div class="menu-items" id="weapons-main-items">
+            <div class="menu-item checkbox slider" data-min="25" data-max="500" data-step="25" data-value="100">Alter Damage</div>
+            <div class="menu-item">Spread</div>
+            <!-- etc… -->
+          </div>
+          <div class="menu-items" id="weapons-aimbot-items" style="display: none;">
+            <div class="menu-item checkbox">Aimbot</div>
+            <div class="menu-item">Aimbot Type</div>
+            <div class="menu-item checkbox">show Aimbot Fov</div>
+            <div class="menu-item">Aimbot Fov</div>
+          </div>
+          <div class="menu-items" id="weapons-spawner-items" style="display: none;">
+            <div class="menu-item">Spawn by Hash</div>
+            <div class="menu-item">Spawner</div>
+            <div class="menu-item checkbox">Spoof</div>
+            <div class="menu-item">Add Ammo to Clip</div>
+            <div class="menu-item">Add Ammo to Reserve</div>
+            <div class="menu-item">Set Ammo to Clip</div>
+            <div class="menu-item">Set Ammo to Reserve</div>
+          </div>
+        </div>
+        <div class="menu-items" id="model-options-items" style="display: none;">
+          <!-- Main panel -->
+          <div class="menu-items" id="model-main-items">
+            <div class="menu-item">Changer</div>
+            <div class="menu-item">Save Ped</div>
+            <div class="menu-item">Load Peds</div>
+            <!-- etc… -->
+          </div>
+        </div>
+        <div class="menu-items" id="outfits-options-items" style="display: none;">
+          <!-- Main panel -->
+          <div class="menu-items" id="outfits-main-items">
+            <div class="menu-item">Save Outfit 1</div>
+            <div class="menu-item">Save Outfit 2</div>
+            <div class="menu-item">Save Outfit 3</div>
+            <div class="menu-item">Save Outfit 4</div>
+            <div class="menu-item">Save Outfit 5</div>
+            <div class="menu-item">Load Outfit 1</div>
+            <div class="menu-item">Load Outfit 2</div>
+            <div class="menu-item">Load Outfit 3</div>
+            <div class="menu-item">Load Outfit 4</div>
+            <div class="menu-item">Load Outfit 5</div>
+            <!-- etc… -->
+          </div>
+          <div class="menu-items" id="outfits-upper-items">
+            <div class="menu-item">Ph 0</div>
+            <div class="menu-item">Ph 1</div>
+            <div class="menu-item">Ph 2</div>
+            <div class="menu-item">Ph 3</div>
+            <div class="menu-item">Ph 4</div>
+            <div class="menu-item">Ph 5</div>
+            <div class="menu-item">Ph 6</div>
+            <div class="menu-item">Ph 7</div>
+            <div class="menu-item">Ph 8</div>
+            <div class="menu-item">Ph 9</div>
+            <div class="menu-item">Ph 10</div>
+            <div class="menu-item">Ph 11</div>
+            <div class="menu-item">Ph 12</div>
+            <!-- etc… -->
+          </div>
+          <div class="menu-items" id="outfits-lower-items" style="display: none;">
+            <div class="menu-item">Ph 0</div>
+            <div class="menu-item">Ph 1</div>
+            <div class="menu-item">Ph 2</div>
+            <div class="menu-item">Ph 3</div>
+            <div class="menu-item">Ph 4</div>
+            <div class="menu-item">Ph 5</div>
+            <div class="menu-item">Ph 6</div>
+            <div class="menu-item">Ph 7</div>
+            <div class="menu-item">Ph 8</div>
+            <div class="menu-item">Ph 9</div>
+            <div class="menu-item">Ph 10</div>
+            <div class="menu-item">Ph 11</div>
+            <div class="menu-item">Ph 12</div>
+            <div class="menu-item">Ph 13</div>
+          </div>
+        </div>
+        <div class="menu-items" id="world-options-items" style="display: none;">
+          <!-- Main panel -->
+          <div class="menu-items" id="world-main-items">
+            <div class="menu-item checkbox">Npcs Crashout</div>
+            <div class="menu-item checkbox">Floating Cars</div>
+            <div class="menu-item checkbox">Low Gravity</div>
+            <!-- etc… -->
+          </div>
+          <!-- atmosphere panel -->
+          <div class="menu-items" id="world-atmosphere-items" style="display: none;">
+            <div class="menu-item">Time</div>
+            <div class="menu-item">Weather</div>
+          </div>
+        </div>
+        <div class="menu-items" id="server-options-items" style="display: none;">
+          <!-- Main panel -->
+          <div class="menu-items" id="server-main-items">
+            <div class="menu-item">God Mode All</div>
+            <div class="menu-item">Invisible All</div>
+            <!-- etc… -->
+          </div>
+          <!-- destroyer panel -->
+          <div class="menu-items" id="server-destroyer-items" style="display: none;">
+            <div class="menu-item checkbox">Destroy All</div>
+            <div class="menu-item checkbox">Cage All</div>
+            <div class="menu-item">Cage Nearest</div>
+            <div class="menu-item checkbox">Explode All</div>
+            <div class="menu-item">Explode Nearest</div>
+            <div class="menu-item checkbox">Bird All</div>
+            <div class="menu-item">Bird Nearest</div>
+            <div class="menu-item checkbox">Boost All Cars</div>
+            <div class="menu-item checkbox">Glitch Cars On Crash</div>
+            <div class="menu-item checkbox">Nuke</div>
+          </div>
+        </div>
       </div>
       
       <div class="menu-binds">
@@ -767,21 +1405,24 @@
             <input type="text" readonly />
         </div>
       </div>
-  
-      <div class="menu-footer">
-        Version: Pre-Release <span id="time-since-release">waveyqa</span>
-        <span class="right-text" id="menu-counter">1/9</span>
-      </div>
-  </div>  
+    <div class="menu-footer"> 
+      Version: b230
+      <span id="date-display" class="footer-date">Loading date...</span>
+      <span class="footer-divider">|</span>
+      <span id="time-since-release" class="footer-time">Loading time...</span>
+      <span class="right-text" id="menu-counter">1/9</span>
+    <div id="footer-info-bar">info text</div>
+  </div>
 <style>
   .submenu-items {
-    padding-left: 25px;
+    padding-left: 20px;
   }
 
   #menu-items-container {
     overflow-y: auto;
     max-height: 410px;
     scrollbar-width: none; /* hide scrollbar in Firefox */
+    position: relative; /* Required for smoke overlay to be anchored */
   }
 
   /* hide scrollbar in Chrome, Edge, Safari */
@@ -789,8 +1430,34 @@
     width: 0;
     height: 0;
   }
+
 </style>
   <script>
+  function updateLocalTimeAndDate() {
+    const now = new Date();
+
+    // Time Formatting
+    let hours = now.getHours();
+    let minutes = now.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;              // convert 0 → 12
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    const timeString = `${hours}:${minutes} ${ampm}`;
+    document.getElementById('time-since-release').textContent = timeString;
+
+    // Date Formatting
+    const dateString = now.toLocaleDateString(undefined, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    });
+    document.getElementById('date-display').textContent = dateString;
+  }
+
+  // Run now and then every minute
+  updateLocalTimeAndDate();
+  setInterval(updateLocalTimeAndDate, 1_000);
+
   // State
   let selectedIndex   = 0;
   let previousIndex  = 0;
@@ -892,6 +1559,22 @@
   const serverToggle       = document.getElementById('server-options-toggle');
   const forceToggle        = document.getElementById('Force-options-toggle');
 
+  const infoBox = document.getElementById("info-notification-box");
+  const infoTextContainer = infoBox.querySelector(".text-container");
+  let infoTimer = null;
+
+  function showInfo(text) {
+      if(infoTimer) clearTimeout(infoTimer);
+      if (text) {
+          infoTextContainer.textContent = text;
+          infoBox.classList.add("active");
+      }
+  }
+
+  function hideInfo() {
+      infoBox.classList.remove("active");
+  }
+
   function getMenuItems() {
     if (currentTab <= 2) {
       return Array.from(containers[currentTab].querySelectorAll('.menu-item'))
@@ -908,18 +1591,43 @@
   }
 
   function updateMenuSelection(dir) {
-    const items = getMenuItems(); if (!items.length) return;
-    items[selectedIndex]?.classList.remove('selected');
-    selectedIndex = (selectedIndex + dir + items.length) % items.length;
-    items[selectedIndex].classList.add('selected');
-    items[selectedIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    const items = getMenuItems();
+    if (!items.length) {
+        hideInfo();
+        return;
+    }
 
+    // Deselect old item and hide its info if necessary
+    const oldItem = items[selectedIndex];
+    if(oldItem) {
+        oldItem.classList.remove('selected');
+    }
+    hideInfo();
+
+
+    // Update index
+    selectedIndex = (selectedIndex + dir + items.length) % items.length;
+
+    // Get new selected item
+    const newItem = items[selectedIndex];
+    newItem.classList.add('selected');
+    newItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    
+    // Show info for the new item
+    if (newItem.hasAttribute('info')) {
+        showInfo(newItem.getAttribute('info'));
+    }
+
+
+    // Update scrollbar
     const max = scrollbarContainer.clientHeight - scrollbarThumb.clientHeight;
     const step = items.length > 1 ? max / (items.length - 1) : 0;
     scrollbarThumb.style.top = `${selectedIndex * step}px`;
+
+    // Update counter
     menuCounter.textContent = `${selectedIndex + 1}/${items.length}`;
   }
-
+  
   function clearSelection() {
     document.querySelectorAll('.menu-item.selected').forEach(el => el.classList.remove('selected'));
   }
@@ -957,9 +1665,13 @@
       document.getElementById('outfits-tabs'),
       document.getElementById('world-tabs'),
       document.getElementById('server-tabs'),
-      document.getElementById('Force-tabs') // <-- Add this line
+      document.getElementById('Force-tabs')
     ];
-    groups.forEach(g => g.style.display = 'none');
+    groups.forEach(g => {
+        if (g) { // FIX: Check if the element exists before accessing its style
+            g.style.display = 'none';
+        }
+    });
 
     // show current header
     const displayMap = {
@@ -968,21 +1680,29 @@
       6: 4, 7: 5, 8: 6,
       9: 7, 10: 8, 11: 9,
       12: 10, 13: 11,
-      14: 12 };
-    groups[displayMap[tabIdx]].style.display = 'flex';
+      14: 12 
+    };
+    const groupToShow = groups[displayMap[tabIdx]];
+    if (groupToShow) { // FIX: Check if the element to show exists
+        groupToShow.style.display = 'flex';
+    }
 
     // highlight tabs
     mainTabs.forEach((t,i) => t.classList.toggle('selected', tabIdx <=2 && i===tabIdx));
-    [playerTabs,miscTabs,scriptsTabs,vehicleTabs,espTabs,teleportTabs,weaponsTabs,modelTabs,outfitsTabs,worldTabs,serverTabs]
+    [playerTabs,miscTabs,scriptsTabs,vehicleTabs,espTabs,teleportTabs,weaponsTabs,modelTabs,outfitsTabs,worldTabs,serverTabs,forceTabs] // FIX: Added forceTabs
       .forEach((arr, idx) => arr.forEach((t,i) => t.classList.toggle('selected', tabIdx===idx+3 && i===currentSubTab)));
 
     // show containers
-    containers.forEach((c,i) => c.style.display = i===tabIdx?'block':'none');
+    containers.forEach((c,i) => {
+        if (c) { // FIX: Check if container exists
+            c.style.display = i===tabIdx?'block':'none'
+        }
+    });
     updateMenuSelection(0);
     updateScrollbarHeight();
 
     // show subs
-    subContainers.forEach(c => c.style.display = 'none');
+    subContainers.forEach(c => { if(c) c.style.display = 'none' }); // FIX: Check if sub-container exists
     const countMap = {
       3: 2, 4: 2, 5: 3,
       6: 2, 7: 2, 8: 2,
@@ -999,9 +1719,14 @@
       14: 24 // Force-main-items is at subContainers[24]
     };
 
-    const cCount = countMap[tabIdx] || 1;
-    for (let i = 0; i < cCount; i++) {
-      subContainers[startMap[tabIdx] + i].style.display = i === currentSubTab ? 'block' : 'none';
+    if (startMap[tabIdx] !== undefined) { // FIX: Guard this block for sub-menus only
+        const cCount = countMap[tabIdx] || 1;
+        for (let i = 0; i < cCount; i++) {
+          const subContainer = subContainers[startMap[tabIdx] + i];
+          if (subContainer) { // FIX: Check if sub-container exists
+            subContainer.style.display = i === currentSubTab ? 'block' : 'none';
+          }
+        }
     }
 
     // highlight first item
@@ -1013,10 +1738,12 @@
     if (currentTab >= 3 && currentTab <= 14) {
       const arrs = [
         playerTabs, miscTabs, scriptsTabs, vehicleTabs, espTabs, teleportTabs,
-        weaponsTabs, modelTabs, outfitsTabs, worldTabs, serverTabs, forceTabs
+        weaponsTabs, modelTabs, outfitsTabs, worldTabs, serverTabs, forceTabs // FIX: Added forceTabs
       ];
       const arr = arrs[currentTab - 3];
-      currentSubTab = (currentSubTab + dir + arr.length) % arr.length;
+      if (arr) { // FIX: Check if tab array exists
+        currentSubTab = (currentSubTab + dir + arr.length) % arr.length;
+      }
     } else {
       currentTab = (currentTab + dir + mainTabs.length) % mainTabs.length;
     }
@@ -1033,208 +1760,286 @@
   teleportToggle, weaponsToggle, modelToggle, outfitsToggle, worldToggle, serverToggle, forceToggle]
   .forEach((el, i) => el.addEventListener('click', () => { currentSubTab = 0; updateTabUI(i + 3); }));
 
-  function updateslidervalue(dir) {
-    const items = getMenuItems();
-    const item = items[selectedIndex];
-    if (!item || !item.classList.contains('slider')) return;
-    const s = item._slider;
-    s.value = Math.min(s.max, Math.max(s.min, s.value + dir * s.step));
-    const pct = (s.value - s.min) / (s.max - s.min);
-    s.fill.style.width = (pct * 100) + '%';
-    s.valueSpan.textContent = s.value;
-    const px1 = 2 + pct * 3, px2 = 5 + pct * 5, px3 = 9 + pct * 9;
-    s.fill.style.boxShadow = `0 0 ${px1}px #9e00ff, 0 0 ${px2}px #9e00ff, 0 0 ${px3}px #9e00ff`;
-  }
+function updateslidervalue(dir) {
+  const items = getMenuItems();
+  const item = items[selectedIndex];
+  if (!item || !item.classList.contains('slider')) return;
 
-  function goBack() {
-    if (currentTab >= 3 && currentSubTab > 0) {
-      currentSubTab = 0;
-      selectedIndex = 0;
-      updateTabUI(currentTab, true);
-    } else if (currentSubTab !== previousSubTab) {
-      currentSubTab = previousSubTab;
-      selectedIndex = previousIndex;
-      updateTabUI(currentTab, true);
-    } else if (currentTab !== previousTab) {
-      currentTab = previousTab;
-      selectedIndex = previousIndex;
-      updateTabUI(currentTab, true);
-    } else if (currentTab === previousTab && currentTab === 0) { // Close the menu if both tabs are 0 (main tab)
-      menuVisible = false;
-      menuWrapper.style.display = 'none';
-    } else if (currentTab === previousTab) { // Reset both to zero if on the same tab
-      currentTab = 0;
-      previousTab = 0;
-      currentSubTab = 0; // Reset the sub-tab as well
-      previousIndex = 0  // Reset selected index
-      selectedIndex = 0; // Reset selected index
-      updateTabUI(currentTab, true);
-      updateMenuSelection(0);
-    }
-  }
+  const s = item._slider;
+  s.value = Math.min(s.max, Math.max(s.min, s.value + dir * s.step));
+  
+  // Call the render function to update the UI
+  item._slider.render();
+}
 
-let keys = [
-  'CAPSLOCK', 'DELETE', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '+', 'RIGHTSHIFT', 'LEFTSHIFT', 'LEFTCONTROL', 'RIGHTCONTROL', 'LEFTALT', 'RIGHTALT'
-];
+function goBack() {
+  if (currentTab >= 3 && currentSubTab > 0) {
+    // We’re in a deep sub‐submenu: go up to its parent submenu
+    currentSubTab = 0;
+    selectedIndex = 0;
+    updateTabUI(currentTab, true);
+    updateScrollbarHeight();
+  }
+  else if (currentSubTab !== previousSubTab) {
+    // We have a different “previous” sub‐tab to return to
+    currentSubTab = previousSubTab;
+    selectedIndex = previousIndex;
+    updateTabUI(currentTab, true);
+    updateScrollbarHeight();
+  }
+  else if (currentTab !== previousTab) {
+    // We have a different “previous” top‐level tab to return to
+    currentTab = previousTab;
+    selectedIndex = previousIndex;
+    currentSubTab = 0;              // ensure we reset any deeper sub‐tabs
+    updateTabUI(currentTab, true);
+    updateScrollbarHeight();
+  }
+  else if (currentTab === previousTab && currentTab === 0) {
+    // We’re already on main tab and can’t go up any further → close menu
+    menuVisible = false;
+    menuWrapper.style.display = 'none';
+    // After hiding the menu, we still recalc scroll height so that
+    // if reopened, it’s correct for the default/main list
+    updateScrollbarHeight();
+  }
+  else {
+    // We’re on some tab where previousTab === currentTab but not at root
+    // → reset everything back to the main tab
+    currentTab = 0;
+    previousTab = 0;
+    currentSubTab = 0;
+    previousIndex = 0;
+    selectedIndex = 0;
+    updateTabUI(currentTab, true);
+    updateMenuSelection(0);
+    updateScrollbarHeight();
+  }
+}
+
+let keys = ['CAPSLOCK', 'DELETE', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '+'];
 
 let currentBindKey = null;
 let bindMenuVisible = false;
-let bindingCheckboxIdx = null;
-let firstinit = true;
+let currentBindingId = null;
+let firstInit = true;
+let openMenuKey = 'CAPSLOCK'; // Default open key
 
-const bindingMap = {};  // key → checkboxIdx
-const indexMap = {};    // checkboxIdx → key
+const bindingMap = {}; // key → globalBindId
+const indexMap = {};   // globalBindId → key
 
-function showbindmenu(selectedIndex) {
-  bindingCheckboxIdx = selectedIndex;
-  const bindMenu = document.querySelector('.menu-binds');
-  const inputBox = bindMenu.querySelector('input');
-  const textElem = bindMenu.querySelector('.text');
 
-  bindMenuVisible = !bindMenuVisible;
-  const targetBottom = bindMenuVisible ? '0px' : '-550px';
+function showbindmenu(isInitialSetup = false) {
+    const bindMenu = document.querySelector('.menu-binds');
+    const inputBox = bindMenu.querySelector('input');
+    const textElem = bindMenu.querySelector('.text');
 
-  bindMenu.getBoundingClientRect(); // Force a reflow for transition
-
-  bindMenu.style.bottom = targetBottom;
-
-  if (bindMenuVisible) {
-    inputBox.value = '';
-    inputBox.focus();
-    textElem.textContent = firstinit ? "Press Any Key To Open Menu" : "Press Any Key To Set Key-bind";
-    if (!firstinit) {
-      currentBindKey = null;
+    if (isInitialSetup) {
+        currentBindingId = 'open-key';
+        textElem.textContent = "Press Any Key To Set Open-Key";
+    } else {
+        const items = getMenuItems();
+        const selectedItem = items[selectedIndex];
+        if (!selectedItem || !selectedItem.classList.contains('checkbox')) return;
+        currentBindingId = selectedItem.dataset.globalBindId;
+        textElem.textContent = "Press a key to bind, or DELETE to unbind.";
     }
-  } else if (firstinit) { 
-    firstinit = false;
-  }
+
+    bindMenuVisible = true;
+    bindMenu.classList.add('visible');
+    inputBox.value = indexMap[currentBindingId] || (isInitialSetup ? openMenuKey : '');
+    inputBox.focus();
+    currentBindKey = null;
 }
-showbindmenu(selectedIndex)
+
 function handleKeybindInput(event) {
   if (!bindMenuVisible) return;
+  event.preventDefault();
+  event.stopPropagation();
 
   const k = event.key.toUpperCase();
+
   if (k === 'ENTER' && currentBindKey) {
     lockKeyBinding();
     return;
   }
+  
+  if (k === 'ESCAPE') {
+    bindMenuVisible = false;
+    document.querySelector('.menu-binds').classList.remove('visible');
+    return;
+  }
 
-  if (keys.includes(k)) {
+  if (keys.includes(k) || k.startsWith('F') && !isNaN(k.substring(1))) {
     currentBindKey = k;
     const bindMenu = document.querySelector('.menu-binds');
     bindMenu.querySelector('input').value = k;
-    bindMenu.querySelector('.text').textContent = "Press Enter To Confirm";
+    bindMenu.querySelector('.text').textContent = "Press Enter to confirm";
+  } else if (k === 'DELETE') {
+    currentBindKey = 'DELETE';
+    const bindMenu = document.querySelector('.menu-binds');
+    bindMenu.querySelector('input').value = 'UNBOUND';
+    bindMenu.querySelector('.text').textContent = "Press Enter to confirm";
   }
 }
 
 function handleMouseInput(event) {
   if (!bindMenuVisible) return;
-  if (event.button === 1) {
+
+  if (event.button === 1) { // Middle mouse button
     currentBindKey = 'MOUSE3';
     const bindMenu = document.querySelector('.menu-binds');
     bindMenu.querySelector('input').value = 'MOUSE3';
-    bindMenu.querySelector('.text').textContent = "Press Enter To Confirm";
+    bindMenu.querySelector('.text').textContent = "Press Enter to confirm";
   }
 }
 
 function lockKeyBinding() {
-  if (!currentBindKey || !keys.includes(currentBindKey) && currentBindKey !== 'MOUSE3' || bindingCheckboxIdx == null) return;
+    if (!currentBindKey || !currentBindingId) return;
 
-  const bindIndex = bindingCheckboxIdx;
-  const key = currentBindKey;
+    const key = currentBindKey.toUpperCase();
+    const txt = document.querySelector('.menu-binds .text');
 
-  if (indexMap[bindIndex]) {
-    delete bindingMap[indexMap[bindIndex]];
-    delete indexMap[bindIndex];
-  }
-  if (bindingMap[key] != null) {
-    delete indexMap[bindingMap[key]];
-    delete bindingMap[key];
-  }
-
-  bindingMap[key] = bindIndex;
-  indexMap[bindIndex] = key;
-
-  const txt = document.querySelector('.menu-binds .text');
-  txt.textContent = `Bound [${bindIndex}] → ${key}`;
-
-  setTimeout(() => showbindmenu(), 300);
-}
-
-function keybindactivationfromlua(rawKey) {
-  const key = rawKey.toUpperCase();
-  const idx = bindingMap[key];  // Find the index of the checkbox for the given key
-
-  if (idx == null) {
-    console.warn(`No binding for ${key}`);
-    return;
-  }
-
-  // Find the corresponding checkbox item by its index
-  const items = document.querySelectorAll('.menu-item.checkbox');
-  const item  = items[idx];
-
-  if (!item) {
-    console.warn(`No checkbox at index ${idx}`);
-    return;
-  }
-
-  // Toggle the visual state of the checkbox
-  const isOn = item.classList.toggle('toggled');
-  const cb   = item.querySelector('input[type="checkbox"]');
-
-  if (cb) {
-    cb.checked = isOn;  // Update the checkbox state to reflect the toggle
-  }
-
-  // Optionally trigger any action associated with the checkbox if needed
-  const checkbox = checkboxBindings[idx];  // Assuming you have some action bound to checkboxes
-  if (checkbox && checkbox.action) {
-    checkbox.action(isOn);  // Execute the action associated with the toggle
-  }
-}
-
-// The function called when Lua sends a message to toggle a key
-function updatekeyormousefromluamessage(keyormousename) {
-  const key = keyormousename.toUpperCase();
-
-  // If overlay is visible, simulate input so the <input> updates
-  if (bindMenuVisible) {
-    if (key === 'MOUSE3') {
-      handleMouseInput({ button: 1 });
-    } else if (keys.includes(key)) {
-      handleKeybindInput({ key });
+    if (currentBindingId === 'open-key') {
+        openMenuKey = key;
+        firstInit = false;
+        txt.textContent = `Open key set to ${key}`;
     } else {
-      console.error('Ignoring invalid bind key in overlay:', keyormousename);
-    }
-    return;
-  }
+        // Unbind old keys
+        if (indexMap[currentBindingId]) {
+            delete bindingMap[indexMap[currentBindingId]];
+        }
+        if (bindingMap[key]) {
+            delete indexMap[bindingMap[key]];
+        }
 
-  // If menu is not visible, directly toggle the checkbox associated with the key
-  if (keys.includes(key) || key === 'MOUSE3') {
-    keybindactivationfromlua(key);  // Toggle checkbox visually
+        if (key === 'DELETE') {
+            delete indexMap[currentBindingId];
+             txt.textContent = `Unbound`;
+        } else {
+            bindingMap[key] = currentBindingId;
+            indexMap[currentBindingId] = key;
+            txt.textContent = `Bound to ${key}`;
+        }
+    }
+
+    setTimeout(() => {
+        bindMenuVisible = false;
+        document.querySelector('.menu-binds').classList.remove('visible');
+    }, 1000);
+}
+
+function activateCheckboxByKeybind(key) {
+  const keyUpper = key.toUpperCase();
+  const boundId = bindingMap[keyUpper];
+  if (typeof boundId === 'undefined') return;
+
+  const checkboxItem = document.querySelector(`.menu-item[data-global-bind-id="${boundId}"]`);
+
+  if (checkboxItem) {
+    checkboxItem.click();
   } else {
-    console.error('Ignoring invalid bind key for activation:', keyormousename);
+    console.warn(`Checkbox with bind ID ${boundId} not found.`);
   }
 }
 
+// Attach event listeners globally
 document.addEventListener('keydown', handleKeybindInput);
 document.addEventListener('mousedown', handleMouseInput);
 
-
-  window.addEventListener('message', ({ data }) => {
-    let msg = typeof data === 'string' ? JSON.parse(data) : data;
-    
-    switch (msg.type) {
+window.addEventListener('message', ({ data }) => {
+  let msg = typeof data === 'string' ? JSON.parse(data) : data;
+  switch (msg.type) {
       case 'toggleMenu':
         menuVisible = !!msg.data.visible;
         if (!menuVisible) {
           menuWrapper.style.display = 'none';
+          hideInfo();
           return;
         }
         menuWrapper.style.display = 'flex';
         updateTabUI(currentTab, false);
         break;
+
+      // --- [FIXED & IMPROVED] ---
+      // This case handles the full config sync from Lua.
+      // The event name has been changed from 'syncConfig' to match the Lua script.
+      case 'heartbeatSync': {
+        const { binds, states } = msg.data;
+
+        // Sync key bindings: overwrite all maps
+        Object.keys(bindingMap).forEach(k => delete bindingMap[k]);
+        Object.keys(indexMap).forEach(k => delete indexMap[k]);
+        if (binds) {
+          for (const key in binds) {
+            bindingMap[key.toUpperCase()] = binds[key];
+            indexMap[binds[key]] = key.toUpperCase();
+          }
+        }
+
+        // Sync all UI states
+        document.querySelectorAll('.menu-item[data-global-bind-id]').forEach(item => {
+          const bindId = item.dataset.globalBindId;
+          const savedState = states ? states[bindId] : undefined;
+          if (savedState) {
+            // Checkbox toggle state
+            item.classList.toggle('toggled', !!savedState.state);
+            const input = item.querySelector('input[type="checkbox"]');
+            if (input) input.checked = !!savedState.state;
+
+            // Slider value state
+            if (item.classList.contains('slider') && savedState.value !== undefined && item._slider) {
+              item._slider.value = savedState.value;
+              item._slider.render();
+            }
+          } else {
+            // Reset to default
+            item.classList.remove('toggled');
+            const input = item.querySelector('input[type="checkbox"]');
+            if (input) input.checked = false;
+            if (item.classList.contains('slider') && item._slider) {
+              item._slider.value = +item.dataset.value;
+              item._slider.render();
+            }
+          }
+        });
+        break;
+      }
+
+      case 'bindIndicator':
+        const panel = document.getElementById('bind-indicator-panel');
+        const offset = msg.data.offset ?? 0;
+        const active = !!msg.data.active;
+        panel.querySelector('.indicator-offset').textContent = `Offset: ${offset.toFixed(1)}`;
+        if (active) {
+          panel.classList.add('active');
+          panel.style.display = 'block';
+          // Panel slides left/right based on offset
+          // Offset is from 0 (center-left) to 5 (center-right)
+          // Menu width is 410px, panel is 205px
+          // Range: -102px (left edge of menu) to +102px (right edge of menu)
+          const menu = document.querySelector('.menu-container');
+          const menuRect = menu.getBoundingClientRect();
+          const baseLeft = menuRect.left + menuRect.width / 2;
+          const panelWidth = panel.offsetWidth;
+          const maxOffsetPx = (menuRect.width / 2) - (panelWidth / 2);
+          const offsetPx = -maxOffsetPx + (offset / 5) * (2 * maxOffsetPx);
+          panel.style.left = `calc(50% + ${offsetPx}px)`;
+        } else {
+          panel.classList.remove('active');
+          setTimeout(() => panel.style.display = 'none', 500); // after slide up
+        }
+      break;
+
+      case 'info':
+      // Show notification using your info-notification-box
+      showInfo(msg.data.text);
+      // Optionally auto-hide after msg.data.timeout ms
+      if (msg.data.timeout) {
+        if (window._infoHideTimer) clearTimeout(window._infoHideTimer);
+        window._infoHideTimer = setTimeout(hideInfo, msg.data.timeout);
+      }
+      break;
 
       case 'navigate':
         updateMenuSelection(msg.data.direction === 'up' ? -1 : 1);
@@ -1261,17 +2066,74 @@ document.addEventListener('mousedown', handleMouseInput);
         break;
 
       case 'keybind':
-        showbindmenu(selectedIndex);
+        showbindmenu();
         break;
       case 'updatekey':
-        updatekeyormousefromluamessage(msg.data.key);
+        if (bindMenuVisible) {
+            handleKeybindInput({ key: msg.data.key, preventDefault: () => {}, stopPropagation: () => {} });
+        }
         break;
       case 'togglekey': 
-        const key = msg.data.key.toUpperCase();
-        keybindactivationfromlua(msg.data.key);
+        activateCheckboxByKeybind(msg.data.key);
         break;
     }
   });
+
+  document.addEventListener('keydown', (e) => {
+  if (firstInit && bindMenuVisible) {
+      handleKeybindInput(e);
+      return;
+  }
+  if (!menuVisible) return;
+    
+  if (bindMenuVisible) { // If bind menu is open, it handles its own keys
+      handleKeybindInput(e);
+      return;
+  }
+
+  switch (e.key) {
+    case 'ArrowUp':
+      updateMenuSelection(-1);
+      break;
+    case 'ArrowDown':
+      updateMenuSelection(1);
+      break;
+    case 'Q':
+    case 'q':
+      updateTabSelection(-1);
+      break;
+    case 'E':
+    case 'e':
+      updateTabSelection(1);
+      break;
+    case 'ArrowLeft':
+      updateslidervalue(-1);
+      break;
+    case 'ArrowRight':
+      updateslidervalue(1);
+      break;
+    case 'F9':
+      showbindmenu();
+      break;
+    case 'Enter':
+    case 'NumpadEnter':
+      getMenuItems()[selectedIndex]?.click();
+      break;
+    case 'Backspace':
+      goBack();
+      break;
+    case 'Escape':
+      goBack();
+      break;
+    default:
+        // Check for general keybinds if no other key was handled
+        if (bindingMap.hasOwnProperty(e.key.toUpperCase())) {
+            e.preventDefault();
+            activateCheckboxByKeybind(e.key);
+        }
+        break;
+  }
+});
 
   function updateScrollbarHeight() {
     const menuItemsContainer = document.querySelector('.menu-items-container');
@@ -1289,96 +2151,197 @@ document.addEventListener('mousedown', handleMouseInput);
 
   // DOMContentLoaded: build UI then init once
   document.addEventListener('DOMContentLoaded', () => {
-    // checkboxes
-    document.querySelectorAll('.menu-item.checkbox').forEach(item => {
+
+    document.querySelectorAll(".menu-item[info]").forEach((item) => {
+        item.addEventListener("mouseenter", () => {
+            if (item.hasAttribute('info')) {
+                showInfo(item.getAttribute('info'));
+            }
+        });
+        item.addEventListener("mouseleave", () => {
+            // Only hide if the item is not currently selected by keyboard
+            if (!item.classList.contains('selected')) {
+                hideInfo();
+            }
+        });
+    });
+
+    // === 1. Checkbox-only ===
+    document.querySelectorAll('.menu-item.checkbox:not(.slider)').forEach(item => {
       const text = item.textContent.trim();
       item.textContent = '';
+
       const label = document.createElement('span');
       label.textContent = text;
 
-      // Create the checkbox input and the toggle track/thumb for styling
       const input = document.createElement('input');
       input.type = 'checkbox';
-      input.style.display = 'none'; // Hide the native checkbox
+      input.style.display = 'none';
 
-      const track = document.createElement('div');
-      track.classList.add('toggle-track');
-      const thumb = document.createElement('div');
-      thumb.classList.add('toggle-thumb');
+      const toggleTrack = document.createElement('div');
+      toggleTrack.className = 'toggle-track';
 
-      track.appendChild(thumb);
-      item.appendChild(label);
-      item.appendChild(input);
-      item.appendChild(track);
+      const toggleThumb = document.createElement('div');
+      toggleThumb.className = 'toggle-thumb';
+      toggleTrack.appendChild(toggleThumb);
 
-      item.addEventListener('click', () => {
+      item.append(label, input, toggleTrack);
+
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
         item.classList.toggle('toggled');
-        thumb.classList.add('stretch');
-        setTimeout(() => thumb.classList.remove('stretch'), 200);
-
-        // Update the checkbox state when clicked
-        const isOn = item.classList.contains('toggled');
-        input.checked = isOn;
-
-        // Optionally trigger any action associated with the checkbox if needed
-        const checkbox = checkboxBindings[item.index];  // Assuming you have some action bound to checkboxes
-        if (checkbox && checkbox.action) {
-          checkbox.action(isOn);  // Execute the action associated with the toggle
-        }
+        toggleThumb.classList.add('stretch');
+        setTimeout(() => toggleThumb.classList.remove('stretch'), 200);
+        input.checked = item.classList.contains('toggled');
       });
     });
 
-    document.querySelectorAll('.menu-item.slider').forEach(item => {
+    // === 2. Slider-only ===
+    document.querySelectorAll('.menu-item.slider:not(.checkbox)').forEach(item => {
+      const text = item.textContent.trim();
+      item.textContent = '';
+      
+      const label = document.createElement('span');
+      label.textContent = text;
+
+      const track = document.createElement('div');
+      track.className = 'slider-track';
+
+      const fill = document.createElement('div');
+      fill.className = 'slider-fill';
+      track.appendChild(fill);
+
+      const valueSpan = document.createElement('span');
+      valueSpan.className = 'value';
+      
+      const min = +item.dataset.min;
+      const max = +item.dataset.max;
+      const step = +item.dataset.step;
+      let value = +item.dataset.value;
+      valueSpan.textContent = value;
+      track.appendChild(valueSpan);
+      
+      item.append(label, track);
+
+      const render = () => {
+        const pct = (item._slider.value - min) / (max - min);
+        fill.style.width = `${pct * 100}%`;
+        valueSpan.textContent = item._slider.value;
+
+        const px1 = 2 + pct * 3,
+              px2 = 5 + pct * 5,
+              px3 = 9 + pct * 9;
+        fill.style.boxShadow = `0 0 ${px1}px #9e00ff, 0 0 ${px2}px #9e00ff, 0 0 ${px3}px #9e00ff`;
+      };
+
+      item._slider = { min, max, step, value, render };
+      render();
+    });
+
+    // === 3. Checkbox + Slider Combo ===
+    document.querySelectorAll('.menu-item.checkbox.slider').forEach(item => {
+      const text = item.textContent.trim();
+      item.textContent = '';
+
+      const label = document.createElement('span');
+      label.textContent = text;
+
       const min   = +item.dataset.min,
             max   = +item.dataset.max,
             step  = +item.dataset.step;
       let   value = +item.dataset.value;
 
-      // capture and clear original label
-      const labelText = item.textContent.trim();
-      item.textContent = '';
+      const sliderTrack = document.createElement('div');
+      sliderTrack.className = 'slider-track';
 
-      // build label span
-      const labelSpan = document.createElement('span');
-      labelSpan.textContent = labelText;
+      const sliderFill = document.createElement('div');
+      sliderFill.className = 'slider-fill';
+      sliderTrack.appendChild(sliderFill);
 
-      // build track + fill
-      const track = document.createElement('div');
-      track.classList.add('slider-track');
-      const fill  = document.createElement('div');
-      fill.classList.add('slider-fill');
-      track.append(fill);
-
-      // build value span *inside* the track
       const valueSpan = document.createElement('span');
-      valueSpan.classList.add('value');
+      valueSpan.className = 'value';
       valueSpan.textContent = value;
-      track.append(valueSpan);  // << append inside track, after fill
+      sliderTrack.appendChild(valueSpan);
 
-      // add to DOM: label then track
-      item.append(labelSpan, track);
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.style.display = 'none';
 
-      // store state
-      item._slider = { min, max, step, value, valueSpan, fill };
+      const toggleTrack = document.createElement('div');
+      toggleTrack.className = 'toggle-track';
 
-      // render function
+      const toggleThumb = document.createElement('div');
+      toggleThumb.className = 'toggle-thumb';
+      toggleTrack.appendChild(toggleThumb);
+
       const render = () => {
-        const s   = item._slider;
-        const pct = (s.value - s.min) / (s.max - s.min);
-        s.fill.style.width        = `${pct * 100}%`;
-        s.valueSpan.textContent   = s.value;
+        const pct = (item._slider.value - min) / (max - min);
+        sliderFill.style.width = `${pct * 100}%`;
+        valueSpan.textContent = item._slider.value;
 
         const px1 = 2 + pct * 3,
               px2 = 5 + pct * 5,
               px3 = 9 + pct * 9;
-        s.fill.style.boxShadow    = `0 0 ${px1}px #9e00ff, 0 0 ${px2}px #9e00ff, 0 0 ${px3}px #9e00ff`;
+        sliderFill.style.boxShadow = `0 0 ${px1}px #9e00ff, 0 0 ${px2}px #9e00ff, 0 0 ${px3}px #9e00ff`;
       };
 
+      item._slider = { min, max, step, value, render };
+      item.append(label, sliderTrack, input, toggleTrack);
       render();
+
+      item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          item.classList.toggle('toggled');
+          toggleThumb.classList.add('stretch');
+          setTimeout(() => toggleThumb.classList.remove('stretch'), 200);
+          input.checked = item.classList.contains('toggled');
+      });
     });
 
-    // init UI
-    updateTabUI(0);
+    // --- [FIXED & IMPROVED] ---
+    // Assign a stable, unique global ID to each bindable item based on its
+    // parent menu and its text content. This MUST match the format in Lua.
+    const menuIdMap = {
+      'player-main-items': 'PlayerOptions_Player',
+      'player-movement-items': 'PlayerOptions_Movement',
+      'vehicle-main-items': 'VehicleOptions_Vehicle',
+      'vehicle-spawner-items': 'VehicleOptions_Spawner',
+      'esp-main-items': 'EspOptions_Esp',
+      'esp-toggle-items': 'EspOptions_Toggles',
+      'weapons-main-items': 'WeaponsOptions_Weapon',
+      'weapons-aimbot-items': 'WeaponsOptions_Aimbot',
+      'weapons-spawner-items': 'WeaponsOptions_Spawner',
+      'world-main-items': 'WorldOptions_World',
+      'server-destroyer-items': 'ServerOptions_Destroyer',
+      'scripts-main-items': 'ScriptsOptions_Scripts',
+      'misc-main-items': 'MiscOptions_Misc',
+      'misc-extra-items': 'MiscOptions_Extra'
+    };
+
+    document.querySelectorAll('.menu-item.checkbox, .menu-item.slider').forEach(item => {
+        const parentContainer = item.closest('.menu-items');
+        if (parentContainer && menuIdMap[parentContainer.id]) {
+            const menuId = menuIdMap[parentContainer.id];
+            // Find the label text, which is now in a <span>
+            const label = item.querySelector('span');
+            if (label) {
+              const itemName = label.textContent.trim();
+              if (itemName) {
+                  item.dataset.globalBindId = `${menuId}::${itemName}`;
+              }
+            }
+        }
+    });
+
+
+    if (firstInit) {
+        showbindmenu(true);
+        updateMenuSelection(0);
+    } else {
+        updateTabUI(0);
+        updateMenuSelection(0);
+    }
+
   });
   </script>
 </body>
