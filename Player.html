@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Circle with Front Tip</title>
+  <style>
+    body {
+      background-color: transparent !important;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    .container {
+      position: relative;
+      width: 350px;
+      height: 350px;
+    }
+
+    .circle {
+      width: 350px;
+      height: 350px;
+      background-color: #e1e1e1;
+      border: 2px solid black;
+      border-radius: 50%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .triangle {
+      position: absolute;
+      top: -55px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 60px solid #e1e1e1;
+      z-index: 2;
+    }
+
+    .triangle-outline {
+      position: absolute;
+      top: -57px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 32px solid transparent;
+      border-right: 32px solid transparent;
+      border-bottom: 62px solid black;
+      z-index: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="triangle-outline"></div>
+    <div class="triangle"></div>
+    <div class="circle"></div>
+  </div>
+</body>
+</html>
