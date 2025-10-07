@@ -10,9 +10,9 @@
       overflow: hidden;
       display: flex;
       justify-content: center;
-      align-items: flex-start; /* change from center */
+      align-items: flex-start;
       height: 100vh;
-      background: rgba(0, 0, 0, 0);
+      background: radial-gradient(circle at top, #1a0000 0%, #000000 80%);
       padding-top: 65px; /* optional offset if needed */
     }
     .menu-item svg {
@@ -21,7 +21,7 @@
     }
     @font-face {
       font-family: 'Friz Quadrata';
-      src: url('https://swagi-redacted.github.io/XorBase/friz-quadrata-regular-os-5870333951e7c.ttf') format('truetype');
+      src: url('https://waveeyys.github.io/GIA-Base/friz-quadrata-regular-os-5870333951e7c.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
     }
@@ -43,53 +43,60 @@
       position: absolute;
       top: 0;
       border-radius: 20px;
-      background: linear-gradient(180deg, #4504a7 0%, #4504a7 100%);
+      background: linear-gradient(180deg, #7c0046 0%, #d6047b 100%);
       transition: top 0.2s ease-in-out;
       box-shadow:
-        inset 0 0 17px 7px #4504a7,
-        inset 0 0 60px 20px rgba(158, 0, 255, 0.4),
-        0 0 12px 2px #4504a7,
-        0 0 15px 1px rgba(158, 0, 255, 0.6);
+        inset 0 0 17px 7px #7c0046,
+        inset 0 0 60px 20px rgba(124, 0, 70, 0.4),
+        0 0 12px 2px #7c0046,
+        0 0 15px 1px rgba(124, 0, 70, 0.6);
     }
-    .menu-container {
-        width: 410px;
-        background: #000000e5;
-        border-radius: 15px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        transition: transform 0.1s linear; /* No easing effect, pure snap */
-        overflow: hidden;
-        position: relative;
-        z-index: 10;
-        border: 2px solid #370467;
-        top: 150px;  
 
-        /* glow effects */
-        box-shadow:
-        inset 0 -18px 15px 2px rgba(78, 0, 151, 0.7), /* soft purple inner glow */
-        0 0 10px rgba(78, 0, 151, 0.7),          /* outer halo */
-        0 0 10px rgba(78, 0, 151, 0.4);             /* original black shadow */
+/* === MENU CONTAINER === */
+    .menu-container {
+      width: 410px;
+  background: rgba(0, 0, 0, 0.9);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  top: 150px;
+  transition: transform 0.1s linear, box-shadow 0.3s ease-in-out;
+  border: 2px solid #d6047b; /* Crimson-purple fusion */
+
+  /* Glow & depth */
+  box-shadow:
+    inset 0 -18px 20px 2px rgba(124, 0, 70, 0.7),   /* rich inner crimson */
+    0 0 25px rgba(155, 48, 255, 0.5),              /* purple aura */
+    0 0 40px rgba(214, 4, 123, 0.4);               /* pink outer bloom */
     }
+    
+/* === MENU BINDS === */
     .menu-binds {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 120px;
-        background: #1a1a1a;
-        border-radius: 0 0 12px 12px;
-        padding: 0px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        z-index: 100;
-        transform: translateY(100%);
-        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
-        opacity: 0;
-        pointer-events: none;
-        border-top: 2px solid #370467;
+      position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background: linear-gradient(180deg, #1a001f 0%, #0a0a0a 100%);
+  border-radius: 0 0 14px 14px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  transform: translateY(100%);
+  transition: transform 0.4s ease-in-out, opacity 1.5s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+  border-top: 1px solid #d6047b;
+  box-shadow:
+    inset 0 4px 8px rgba(214, 4, 123, 0.3),
+    0 -2px 8px rgba(155, 48, 255, 0.3);
     }
     .menu-binds.visible {
         transform: translateY(0%);
@@ -97,144 +104,296 @@
         pointer-events: all;
     }
     .menu-binds .text {
-        color: rgb(255, 255, 255); /* bright violet base */
-        text-shadow: 
-          0 0 1px rgb(85, 0, 255),
-          0 0 3px rgb(101, 23, 255),
-          0 0 3px rgb(154, 104, 255),
-          0 0 4px rgba(180, 180, 180, 0.944); /* subtle white outer glow */;
-        font-family: 'Verdana', sans-serif;
-        font-size: 17px;
-        margin-bottom: 10px;
-        text-align: center;
-    }
-    @keyframes neon-glow1 {
-      from { box-shadow:         inset 0 0 6px 3px  #580053,  /* dark purple inner glow */
-        0 0 1px 1px #9e00ff; }
-      to   { box-shadow:         inset 0 0 6px 16px  #580053,  /* dark purple inner glow */
-        0 0 2px 2px #9e00ff; }
-    }
-    .menu-binds .inner-rect {
-        width: 84%; /* Inner rectangle width */
-        height: 60%; /* Inner rectangle height */
-        background: rgba(154, 104, 255, 0.556);
-        filter: url(#electric-glow);
-        animation:
-        neon-glow1   1.4s ease-in-out -1s infinite alternate;
-        border-radius: 6px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .menu-binds input {
-        width: 84%;
-        height: 40px;
-        background: rgba(53, 3, 58, 0.675);
-        border: none;
-        border-radius: 4px;
-        color: #f8dcff;
-        font-size: 18px;
-        text-align: center;
-        outline: none;
-    }
-    .menu-binds input:focus {
-        background: rgba(53, 3, 58, 0.675);
-        box-shadow:
-        inset 0 0 6px 3px  #94008d,  /* dark purple inner glow */
-        0 0 3px 3px #ff00f289;
-    }
-    .menu-header {
-      background: url("https://i.ibb.co/6JphhX1G/Menu-Banner3.png") no-repeat center center;
-      background-size: cover;
-      text-align: center;
-      padding: 55px 0px;
-      border-top-left-radius: 13px;
-      border-top-right-radius: 13px;
-    }
-    .menu-tabs {
-      display: flex;
-      background-color: #0000006c;
-      border-bottom: 0px solid #555;
-    }
-    .menu-tab {
-      flex: 1;
-      padding: 10px;
-      font-family: 'Friz Quadrata', sans-serif;
-      font-size: 21px;
-      font-weight: 575;
-      color: #fff; /* bright violet base */
-      text-shadow: 
-        0 0 2px rgba(128, 20, 229, 0.968),
-        0 0 4px #6325a7,
-        0 0 4px rgba(270, 270, 270, 0.944),
-        0 0 5px rgba(180, 180, 180, 0.944); /* subtle white outer glow */;
-      text-align: center;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
+      color: #f5e6ff;
+  text-shadow:
+    0 0 3px rgba(204, 0, 255, 0.8),
+    0 0 6px rgba(101, 23, 255, 0.6),
+    0 0 10px rgba(214, 4, 123, 0.7),
+    0 0 15px rgba(255, 255, 255, 0.2);
+  font-family: 'Friz Quadrata', sans-serif;
+  font-size: 17px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  margin-bottom: 8px;
+  transition: all 0.25s ease-in-out;
     }
 
-    .menu-tab.selected {
-      background-color: #0d021d;            /* solid black */
-      color: #d2a7ff;                       /* keep text white */
-      border: 2px solid rgba(154, 104, 255, 0.85);    /* purple border */
+/* === GLOW ANIM === */
+    @keyframes neon-glow {
+  0% {
+    box-shadow:
+      inset 0 0 10px rgba(155, 48, 255, 0.5),
+      0 0 10px rgba(214, 4, 123, 0.3);
+  }
+  100% {
+    box-shadow:
+      inset 0 0 14px rgba(214, 4, 123, 0.6),
+      0 0 20px rgba(155, 48, 255, 0.5);
+  }
+}
+.menu-binds .inner-rect {
+  width: 84%;
+  height: 60%;
+  background: rgba(155, 48, 255, 0.35);
+  border: 1px solid rgba(214, 4, 123, 0.4);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    inset 0 0 12px rgba(214, 4, 123, 0.5),
+    0 0 16px rgba(155, 48, 255, 0.4);
+  animation: neon-glow 1.6s ease-in-out infinite alternate;
+  backdrop-filter: blur(2px);
+}
+.menu-binds input {
+  width: 84%;
+  height: 42px;
+  background: rgba(30, 0, 50, 0.6);
+  border: 1px solid rgba(155, 48, 255, 0.5);
+  border-radius: 6px;
+  color: #f6e6ff;
+  font-family: 'Friz Quadrata', sans-serif;
+  font-size: 17px;
+  text-align: center;
+  outline: none;
+  transition: all 0.25s ease-in-out;
+  box-shadow:
+    inset 0 0 8px rgba(155, 48, 255, 0.4),
+    0 0 6px rgba(214, 4, 123, 0.3);
+}
+.menu-binds input:focus {
+  background: rgba(50, 0, 80, 0.8);
+  border-color: #d6047b;
+  box-shadow:
+    inset 0 0 12px rgba(214, 4, 123, 0.8),
+    0 0 10px rgba(155, 48, 255, 0.7),
+    0 0 18px rgba(214, 4, 123, 0.5);
+  transform: scale(1.02);
+}
+/* === MENU HEADER === */
+.menu-header {
+  background: url("https://i.ibb.co/R4QCwCPN/GIABanner.png") no-repeat center center;
+  background-size: cover;
+  text-align: center;
+  padding: 55px 0;
+  border-top-left-radius: 13px;
+  border-top-right-radius: 13px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 0 -10px 25px rgba(214, 4, 123, 0.4),
+    0 0 25px rgba(155, 48, 255, 0.35);
+}
+    /* Optional subtle overlay to blend with rest of UI */
+.menu-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top, rgba(155, 48, 255, 0.2), rgba(0, 0, 0, 0.6));
+  mix-blend-mode: lighten;
+  pointer-events: none;
+}
+.menu-header::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top, rgba(155, 48, 255, 0.2), rgba(0, 0, 0, 0.6));
+  mix-blend-mode: lighten;
+  pointer-events: none;
+}
+/* === TABS === */
+.menu-tabs {
+  display: flex;
+  justify-content: space-around;
+  background: rgba(10, 0, 25, 0.65);
+  border-top: 1px solid rgba(214, 4, 123, 0.4);
+  border-bottom: 1px solid rgba(155, 48, 255, 0.4);
+  box-shadow:
+    inset 0 0 10px rgba(155, 48, 255, 0.3),
+    0 4px 15px rgba(214, 4, 123, 0.25);
+}
+.menu-tab {
+  flex: 1;
+  padding: 12px;
+  font-family: 'Friz Quadrata', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #f0d8ff;
+  text-align: center;
+  cursor: pointer;
+  text-shadow:
+    0 0 3px rgba(155, 48, 255, 0.8),
+    0 0 6px rgba(214, 4, 123, 0.7);
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+.menu-tab:hover {
+  color: #ffffff;
+  text-shadow:
+    0 0 5px #d6047b,
+    0 0 10px #9b30ff,
+    0 0 20px #d6047b;
+  transform: scale(1.05);
+}
+.menu-tab.selected {
+  background-color: #0e0212;
+  color: #fff;
+  border: 2px solid #d6047b;
+  box-shadow:
+    inset 0 0 6px 2px rgba(155, 48, 255, 0.55),
+    0 0 10px rgba(214, 4, 123, 0.45);
+  transform: scale(1.02);
+}
+/* === MENU ITEMS === */
+.menu-item {
+  padding: 12px 20px;
+  color: #d9bdf5;
+  text-shadow:
+    0 0 3px #9b30ff,
+    0 0 6px #d6047b,
+    0 0 8px #9b30ff;
+  font-family: 'Verdana', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  border-left: 4px solid transparent;
+  transition: background-color 0.2s linear, border-color 0.2s linear, box-shadow 0.2s linear;
+}
+.menu-item.selected {
+  background-color: #0e0212;
+  color: #fff;
+  border: 2px solid #d6047b;
+  box-shadow:
+    inset 0 0 6px 2px rgba(155, 48, 255, 0.55),
+    0 0 10px rgba(214, 4, 123, 0.45);
+  transform: scale(1.02);
+}
+/* === CHECKBOX / SLIDER === */
+.menu-item.checkbox .toggle-track {
+  width: 50px;
+  height: 22px;
+  background: rgba(100, 100, 100, 0.4);
+  border: 2px solid rgba(155, 48, 255, 0.6);
+  border-radius: 12px;
+  position: relative;
+  transition: background 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  box-shadow:
+    inset 0 0 4px rgba(214, 4, 123, 0.4),
+    0 0 6px rgba(155, 48, 255, 0.3);
+}
+.menu-item.checkbox .toggle-thumb {
+  width: 18px;
+  height: 18px;
+  background: #f0d8ff;
+  border-radius: 50%;
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  transition: all 0.25s ease-in-out;
+  box-shadow:
+    0 0 6px rgba(214, 4, 123, 0.4),
+    0 0 10px rgba(155, 48, 255, 0.3);
+}
+.menu-item.checkbox.toggled .toggle-track {
+  background: #d6047b;
+  animation: neon-glow 1.5s ease-in-out infinite alternate;
+}
+.menu-item.checkbox.toggled .toggle-thumb {
+  left: calc(100% - 20px);
+}
+.menu-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 25%;
+  width: 50%;
+  height: 3px;
+  background: linear-gradient(90deg, #d6047b, #9b30ff);
+  box-shadow: 0 0 8px #9b30ff, 0 0 12px #d6047b;
+  border-radius: 3px;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
 
-      /* inner + outer glow */
-      box-shadow:
-      inset 0 0 4px 3px  #5e239d,  /* dark purple inner glow */
-      0 0 3px #7b2cbf;            /* soft outer halo */
-    }
-    .menu-items-container {
-      width: 100%;
-      max-height: 400px;
-      overflow-y: auto;
-      flex-grow: 0;          /* prevent auto-expansion */
-      flex-shrink: 0;        /* don't shrink */
-      transition: height 0.2s ease-in-out;
-    }
-    .menu-items {
-      display: flex;
-      flex-direction: column;
-    }
-    .menu-item {
-      padding: 12px 20px;
-      color: #d9bdf5; /* bright violet base */
-      text-shadow: 
-        0 0 2px #4e0097,
-        0 0 4px rgba(69, 0, 133, 0.795),
-        0 0 4px rgb(157, 12, 230),
-        0 0 6px #b700ff; /* subtle white outer glow */;
-      font-family: 'Verdana', sans-serif;
-      font-size: 14px;
-      cursor: pointer;
-      border-left: 4px solid transparent;
-      transition:
-        background-color 0.2s linear,
-        border-color     0.2s linear,
-        box-shadow       0.2s linear;
-    }
-    .menu-item:hover,
-    .menu-item.selected {
-      background-color: #0e0212; /* solid black */
-      color: #fff; /* keep text white */
-      border: 2px solid #4e0097; /* purple border */
+/* === SLIDER === */
+.menu-item.slider .slider-track {
+  position: relative;
+  width: 140px;
+  height: 10px;
+  background: #62626277;
+  border: 1.5px solid #000;
+  border-radius: 6px;
+  overflow: visible;
+}
+.menu-item.slider .slider-fill {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  height: 6px;
+  width: 0%;
+  background: #d6047b;
+  border-radius: 3px;
+  transition: width 0.2s ease;
+}
+.menu-item.selected {
+  background-color: #0e0212; /* deep matte purple-black */
+  color: #fff;
+  border: 2px solid #d6047b; /* crimson accent border */
 
-      /* inner + outer glow */
-      box-shadow:
-        inset 0 0 4px 2px rgba(78, 0, 151, 0.7),  /* dark purple inner glow */
-        0 0 6px rgba(78, 0, 151, 0.4); /* soft outer halo */
-        transition: background-color 0.1s, transform 0.1s linear; /* Linear transition for smooth snap between positions */
+  /* Inner + outer glow unified with theme */
+  box-shadow:
+    inset 0 0 6px 2px rgba(155, 48, 255, 0.55),
+    0 0 10px rgba(214, 4, 123, 0.45);
+  transition:
+    background-color 0.15s linear,
+    transform 0.1s linear,
+    box-shadow 0.2s ease-in-out,
+    border 0.2s ease-in-out;
+  transform: scale(1.02);
     }
+
     /* make sure we include borders in width calculations */
-    .menu-item.checkbox .toggle-track,
-    .menu-item.checkbox .toggle-thumb {
-      box-sizing: border-box;
-    }
+    .menu-item.checkbox .toggle-track {
+  width: 50px;
+  height: 22px;
+  background: rgba(100, 100, 100, 0.4);
+  border: 2px solid rgba(155, 48, 255, 0.6);
+  border-radius: 12px;
+  position: relative;
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+  box-shadow:
+    inset 0 0 4px rgba(214, 4, 123, 0.4),
+    0 0 6px rgba(155, 48, 255, 0.3);
+}
+.menu-item.checkbox .toggle-thumb {
+  width: 18px;
+  height: 18px;
+  background: #f0d8ff;
+  border-radius: 50%;
+  position: absolute;
+  top: 1px;
+  left: 2px;
+  transition: all 0.25s ease-in-out;
+  box-shadow:
+    0 0 6px rgba(214, 4, 123, 0.4),
+    0 0 10px rgba(155, 48, 255, 0.3);
+}
 
     /* container flex setup */
-    .menu-item.checkbox {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+.menu-item.checkbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  box-sizing: border-box;
     }
 
     /* the track */
@@ -271,12 +430,12 @@
       transform: scaleX(1.2);
     }
     @keyframes neon-glow {
-      from { box-shadow: 0 0 2px #9e00ff, 0 0 5px #9e00ff; }
-      to   { box-shadow: 0 0 6px #9e00ff, 0 0 10px #9e00ff; }
+      from { box-shadow: 0 0 2px #9b30ff, 0 0 5px #9b30ff; }
+      to   { box-shadow: 0 0 6px #9b30ff, 0 0 10px #9b30ff; }
     }
     /* toggled state: initial flicker then steady glow */
     .menu-item.checkbox.toggled .toggle-track {
-      background: #8f04a7;
+      background: #a79704;
       filter: url(#electric-glow);
       animation:
         neon-glow   1.5s ease-in-out -0.6s infinite alternate;
@@ -328,7 +487,7 @@
       top: 2px;
       height: 6px;
       width: 0%;
-      background: #8f04a7;
+      background: #a79704;
       border-radius: 3px;
       filter: url(#electric-glow);
       transition: width 0.2s ease, box-shadow 0.35s ease, filter 0.35s ease, pulse-glow 3s ease-in-out infinite alternate;
@@ -359,18 +518,19 @@
     }
 
 
-    .menu-footer {
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      font-family: 'Verdana', sans-serif;
-      font-size: 10px;
-      padding: 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom-left-radius: 13px;
-      border-bottom-right-radius: 13px;
-    }
+/* === FOOTER === */
+.menu-footer {
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-family: 'Verdana', sans-serif;
+  font-size: 10px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+}
     .right-text {
       font-weight: bold;
     }
@@ -406,8 +566,8 @@
 
     #info-notification-box .text-container {
         height: 30px;
-        background-color: rgba(36, 0, 56, 0.92);
-        border: 1px solid #7c0bb5;
+        background-color: rgba(56, 52, 0, 0.92);
+        border: 1px solid #b5960b;
         border-radius: 15px;
         color: white;
         font-family: 'Verdana', sans-serif;
@@ -434,57 +594,32 @@
         margin-right: 0;
     }
 
-    #bind-indicator-panel {
-      position: absolute;
-      left: 50%;
-      bottom: -60px; /* Start off hidden below */
-      transform: translateX(-50%) translateY(100%);
-      width: 205px; /* Half menu width (menu is 410px) */
-      height: 60px;
-      background: rgba(25, 0, 45, 0.96);
-      border-radius: 0 0 13px 13px;
-      box-shadow: 0 0 10px #370467, 0 0 16px #6325a7;
-      border: 2px solid #370467;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      transition: transform 0.5s cubic-bezier(.77,.13,.08,.91), opacity 0.5s;
-      opacity: 0;
-      pointer-events: none;
-    }
+/* === BIND PANEL === */
+#bind-indicator-panel {
+  background: rgba(30, 0, 50, 0.96);
+  box-shadow: 0 0 10px #9b30ff, 0 0 16px #d6047b;
+  border: 2px solid #d6047b;
+}
     #bind-indicator-panel.active {
       transform: translateX(-50%) translateY(0%);
       opacity: 1;
       pointer-events: all;
     }
     #bind-indicator-panel .panel-content {
-      width: 95%;
-      height: 90%;
-      background: rgba(60, 18, 95, 0.84);
-      border-radius: 8px;
-      color: #fff;
-      font-family: Verdana, sans-serif;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: inset 0 0 6px #4504a7;
-      padding: 0 20px;
-    }
-    .panel-content .indicator-label {
-      font-weight: bold;
-      color: #e4caff;
-      text-shadow: 0 0 1px #4504a7, 0 0 5px #370467;
-    }
-    .panel-content .indicator-offset {
-      color: #fff;
-      background: #370467;
-      border-radius: 4px;
-      padding: 2px 8px;
-      font-size: 15px;
-      margin-left: 16px;
-    }
+  background: rgba(70, 0, 90, 0.84);
+  box-shadow: inset 0 0 6px #d6047b;
+}
+#bind-indicator-panel .panel-content {
+  background: rgba(70, 0, 90, 0.84);
+  box-shadow: inset 0 0 6px #d6047b;
+}
+.panel-content .indicator-label {
+  color: #f0c9ff;
+  text-shadow: 0 0 1px #9b30ff, 0 0 5px #d6047b;
+}
+.panel-content .indicator-offset {
+  background: #9b30ff;
+}
 
   </style>
 </head>
@@ -546,11 +681,11 @@
       <!-- vehicle tabs -->
       <div class="menu-tabs" id="vehicle-tabs" style="display: none;">
         <div class="menu-tab selected" id="vehicle-main-tab">Vehicle</div>
-        <div class="menu-tab" id="vehicle-spawner-tab">Mods</div>
+        <div class="menu-tab" id="vehicle-spawner-tab">Spawner</div>
       </div>
       <!-- esp tabs -->
       <div class="menu-tabs" id="esp-tabs" style="display: none;">
-        <div class="menu-tab selected" id="esp-main-tab">Esp</div>
+        <div class="menu-tab selected" id="esp-main-tab">ESP</div>
         <div class="menu-tab" id="esp-toggle-tab">Toggles</div>
       </div>
       <!-- teleport tabs -->
@@ -594,49 +729,40 @@
           Player
         </div>
 
-        <div class="menu-item" id="vehicle-options-toggle">
+        <div class="menu-item" id="server-options-toggle">
           <svg
-            version="1.0"
-            xmlns="http://www.w3.org/2000/svg"
             width="18"
             height="18"
-            viewBox="0 0 512 512"
-            preserveAspectRatio="xMidYMid meet"
+            viewBox="0 0 64 64"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="#fff"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
           >
-          <g
-            transform="translate(0,512) scale(0.1,-0.1)"
-            fill="currentColor"
-            stroke="none"
-          >
-          <path d="M2595 4190 c-520 -43 -975 -365 -1186 -839 -30 -66 -39 -99 -39 -141
-          0 -204 303 -470 825 -725 754 -367 1562 -512 1776 -318 48 44 61 68 94 170 44
-          141 56 214 61 388 9 258 -27 435 -131 652 -225 470 -661 770 -1180 813 -66 5
-          -122 9 -125 8 -3 0 -46 -4 -95 -8z"/>
-          <path d="M961 3849 c-504 -38 -836 -216 -933 -497 -29 -85 -31 -243 -5 -342
-          21 -79 111 -267 168 -352 104 -154 301 -364 482 -515 746 -621 1896 -1095
-          2907 -1198 206 -21 623 -16 765 9 280 49 481 136 609 261 245 240 215 592 -84
-          990 -97 129 -255 292 -405 417 l-130 109 -12 -113 c-20 -180 -67 -367 -118
-          -468 -101 -200 -342 -290 -697 -261 -346 28 -756 139 -1174 316 -612 260
-          -1030 575 -1134 852 -27 73 -36 173 -21 241 23 107 162 363 264 485 29 35 37
-          51 28 56 -13 8 -259 22 -351 20 -30 -1 -102 -5 -159 -10z m-451 -529 c121 -62
-          78 -221 -70 -260 -138 -37 -262 70 -206 178 47 90 181 130 276 82z m1803
-          -1521 c43 -12 111 -68 133 -110 8 -16 14 -49 14 -75 0 -40 -5 -51 -38 -84 -29
-          -30 -49 -40 -87 -46 -91 -13 -191 30 -236 102 -29 47 -31 117 -4 158 37 56
-          131 80 218 55z m2429 -138 c86 -55 124 -180 75 -252 -51 -76 -149 -72 -228 11
-          -145 149 -18 349 153 241z"/>
-          </g>
+            <!-- Server rack 1 -->
+            <rect x="6" y="6" width="52" height="14" rx="2" ry="2" fill="#7851A9" />
+            <circle cx="12" cy="13" r="2" fill="#22ff22" />
+            <circle cx="18" cy="13" r="2" fill="#ffcc00" />
+            <circle cx="24" cy="13" r="2" fill="#ff4444" />
+            <line x1="30" y1="13" x2="50" y2="13" stroke="#FFFFFF" stroke-width="1" />
+
+            <!-- Server rack 2 -->
+            <rect x="6" y="25" width="52" height="14" rx="2" ry="2" fill="#7851A9" />
+            <circle cx="12" cy="32" r="2" fill="#22ff22" />
+            <circle cx="18" cy="32" r="2" fill="#ffcc00" />
+            <circle cx="24" cy="32" r="2" fill="#ff4444" />
+            <line x1="30" y1="32" x2="50" y2="32" stroke="#FFFFFF" stroke-width="1" />
+
+            <!-- Server rack 3 -->
+            <rect x="6" y="44" width="52" height="14" rx="2" ry="2" fill="#7851A9" />
+            <circle cx="12" cy="51" r="2" fill="#22ff22" />
+            <circle cx="18" cy="51" r="2" fill="#ffcc00" />
+            <circle cx="24" cy="51" r="2" fill="#ff4444" />
+            <line x1="30" y1="51" x2="50" y2="51" stroke="#FFFFFF" stroke-width="1" />
           </svg>
-          Vehicle
-        </div>
-
-        <div class="menu-item" id="esp-options-toggle">
-          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg>
-          Esp
-        </div>
-
-        <div class="menu-item" id="teleport-options-toggle">
-          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/></svg>
-          Teleport
+          Server
         </div>
 
         <div class="menu-item" id="weapons-options-toggle">
@@ -680,9 +806,53 @@
           -362 417 -3 0 -66 -54 -140 -119z"/>
           </g>
           </svg>
-          Weapons
+          Weapon
         </div>
 
+        <div class="menu-item" id="vehicle-options-toggle">
+          <svg
+            version="1.0"
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 512 512"
+            preserveAspectRatio="xMidYMid meet"
+          >
+          <g
+            transform="translate(0,512) scale(0.1,-0.1)"
+            fill="currentColor"
+            stroke="none"
+          >
+          <path d="M2595 4190 c-520 -43 -975 -365 -1186 -839 -30 -66 -39 -99 -39 -141
+          0 -204 303 -470 825 -725 754 -367 1562 -512 1776 -318 48 44 61 68 94 170 44
+          141 56 214 61 388 9 258 -27 435 -131 652 -225 470 -661 770 -1180 813 -66 5
+          -122 9 -125 8 -3 0 -46 -4 -95 -8z"/>
+          <path d="M961 3849 c-504 -38 -836 -216 -933 -497 -29 -85 -31 -243 -5 -342
+          21 -79 111 -267 168 -352 104 -154 301 -364 482 -515 746 -621 1896 -1095
+          2907 -1198 206 -21 623 -16 765 9 280 49 481 136 609 261 245 240 215 592 -84
+          990 -97 129 -255 292 -405 417 l-130 109 -12 -113 c-20 -180 -67 -367 -118
+          -468 -101 -200 -342 -290 -697 -261 -346 28 -756 139 -1174 316 -612 260
+          -1030 575 -1134 852 -27 73 -36 173 -21 241 23 107 162 363 264 485 29 35 37
+          51 28 56 -13 8 -259 22 -351 20 -30 -1 -102 -5 -159 -10z m-451 -529 c121 -62
+          78 -221 -70 -260 -138 -37 -262 70 -206 178 47 90 181 130 276 82z m1803
+          -1521 c43 -12 111 -68 133 -110 8 -16 14 -49 14 -75 0 -40 -5 -51 -38 -84 -29
+          -30 -49 -40 -87 -46 -91 -13 -191 30 -236 102 -29 47 -31 117 -4 158 37 56
+          131 80 218 55z m2429 -138 c86 -55 124 -180 75 -252 -51 -76 -149 -72 -228 11
+          -145 149 -18 349 153 241z"/>
+          </g>
+          </svg>
+          Vehicle
+        </div>
+
+        <div class="menu-item" id="esp-options-toggle">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zm0 12a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/></svg>
+          Visual
+        </div>
+
+        <div class="menu-item" id="teleport-options-toggle">
+          <svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5 14.5 7.62 14.5 9 13.38 11.5 12 11.5z"/></svg>
+          Teleport
+        </div>
       <div class="menu-item" id="model-options-toggle">
         <svg
           version="1.0"
@@ -722,7 +892,6 @@
           </svg>
           Model Changer
         </div>
-
 
         <div class="menu-item" id="outfits-options-toggle">
         <svg
@@ -791,42 +960,6 @@
             />
           </svg>
           World
-        </div>
-
-        <div class="menu-item" id="server-options-toggle">
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 64 64"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            stroke="#fff"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <!-- Server rack 1 -->
-            <rect x="6" y="6" width="52" height="14" rx="2" ry="2" fill="#7851A9" />
-            <circle cx="12" cy="13" r="2" fill="#22ff22" />
-            <circle cx="18" cy="13" r="2" fill="#ffcc00" />
-            <circle cx="24" cy="13" r="2" fill="#ff4444" />
-            <line x1="30" y1="13" x2="50" y2="13" stroke="#FFFFFF" stroke-width="1" />
-
-            <!-- Server rack 2 -->
-            <rect x="6" y="25" width="52" height="14" rx="2" ry="2" fill="#7851A9" />
-            <circle cx="12" cy="32" r="2" fill="#22ff22" />
-            <circle cx="18" cy="32" r="2" fill="#ffcc00" />
-            <circle cx="24" cy="32" r="2" fill="#ff4444" />
-            <line x1="30" y1="32" x2="50" y2="32" stroke="#FFFFFF" stroke-width="1" />
-
-            <!-- Server rack 3 -->
-            <rect x="6" y="44" width="52" height="14" rx="2" ry="2" fill="#7851A9" />
-            <circle cx="12" cy="51" r="2" fill="#22ff22" />
-            <circle cx="18" cy="51" r="2" fill="#ffcc00" />
-            <circle cx="24" cy="51" r="2" fill="#ff4444" />
-            <line x1="30" y1="51" x2="50" y2="51" stroke="#FFFFFF" stroke-width="1" />
-          </svg>
-          Server
         </div>
       </div>
   
@@ -1164,11 +1297,11 @@
           <div class="menu-items" id="scripts-main-items">
             <div class="menu-item">Add Item to Inventory</div>
             <div class="menu-item checkbox">Force Hands up With F6</div>
-            <div class="menu-item checkbox">Auto-Rob Ox(Detected on Reaper)</div>
+            <div class="menu-item checkbox">Auto-Rob Ox</div>
             <!-- etc… -->
           </div>
           <div class="menu-items" id="misc-Built-items" style="display: none;">
-            <div class="menu-item">Throw Cars/Props/Peds</div>
+            <div class="menu-item">Throw Objects</div>
             <div class="menu-item">Earthquake</div>
           </div>
           <div class="menu-items" id="scripts-misc-items" style="display: none;">
@@ -1212,8 +1345,8 @@
           <!-- Main panel -->
           <div class="menu-items" id="player-main-items">
             <div class="menu-item checkbox slider" data-min="0" data-max="3" data-step="1" data-value="0" info = "0:Safe 1:Basic 2:headshots 3:Full">Godmode</div>
-            <div class="menu-item">Fill Hp</div>
-            <div class="menu-item">Fill Armour</div>
+            <div class="menu-item">Heal</div>
+            <div class="menu-item">Armour</div>
             <div class="menu-item checkbox">Invisible</div>
             <div class="menu-item checkbox">One Punch</div>
             <!-- etc… -->
@@ -1248,7 +1381,7 @@
         <div class="menu-items" id="esp-options-items" style="display: none;">
           <!-- Main panel -->
           <div class="menu-items" id="esp-main-items">
-            <div class="menu-item checkbox">Enable Esp</div>
+            <div class="menu-item checkbox">Enable ESP</div>
             <div class="menu-item slider" data-min="1" data-max="7" data-step="1" data-value="1" info = "1:White 2:Red 3:Green 4:Blue 5:Purple 6:Pink 7:yellow">Esp Color</div>
             <!-- etc… -->
           </div>
@@ -1263,7 +1396,7 @@
             <div class="menu-item checkbox">Info (Legacy Recommended)</div>
             <div class="menu-item">vv Controls For Legacy Info vv</div>
             <div class="menu-item checkbox">Name</div>
-            <div class="menu-item checkbox">Ids</div>
+            <div class="menu-item checkbox">IDs</div>
             <div class="menu-item checkbox">Weapon</div>
             <div class="menu-item checkbox">Distance</div>
           </div>
@@ -1271,15 +1404,15 @@
         <div class="menu-items" id="teleport-options-items" style="display: none;">
           <!-- Main panel -->
           <div class="menu-items" id="teleport-main-items">
-            <div class="menu-item">Tp to Waypoint</div>
-            <div class="menu-item">Tp to Coords</div>
+            <div class="menu-item">TP to Waypoint</div>
+            <div class="menu-item">TP to Coords</div>
             <!-- etc… -->
           </div>
           <!-- player panel -->
           <div class="menu-items" id="teleport-player-items" style="display: none;">
-            <div class="menu-item">Tp to Player by Look</div>
-            <div class="menu-item">Tp to Player by Id</div>
-            <div class="menu-item">Tp to Player by Name</div>
+            <div class="menu-item">TP to Player by Look</div>
+            <div class="menu-item">TP to Player by Id</div>
+            <div class="menu-item">TP to Player by Name</div>
           </div>
         </div>
         <div class="menu-items" id="weapons-options-items" style="display: none;">
@@ -1292,7 +1425,7 @@
           <div class="menu-items" id="weapons-aimbot-items" style="display: none;">
             <div class="menu-item checkbox">Aimbot</div>
             <div class="menu-item">Aimbot Type</div>
-            <div class="menu-item checkbox">show Aimbot Fov</div>
+            <div class="menu-item checkbox">Show Aimbot Fov</div>
             <div class="menu-item">Aimbot Fov</div>
           </div>
           <div class="menu-items" id="weapons-spawner-items" style="display: none;">
@@ -1365,7 +1498,7 @@
         <div class="menu-items" id="world-options-items" style="display: none;">
           <!-- Main panel -->
           <div class="menu-items" id="world-main-items">
-            <div class="menu-item checkbox">Npcs Crashout</div>
+            <div class="menu-item checkbox">NPCs Crashout</div>
             <div class="menu-item checkbox">Floating Cars</div>
             <div class="menu-item checkbox">Low Gravity</div>
             <!-- etc… -->
@@ -1381,7 +1514,8 @@
           <div class="menu-items" id="server-main-items">
             <div class="menu-item">God Mode All</div>
             <div class="menu-item">Invisible All</div>
-            <!-- etc… -->
+            <div class="menu-item checkbox">Select Everyone</div>
+            <div class="menu-item">Search for Player</div>
           </div>
           <!-- destroyer panel -->
           <div class="menu-items" id="server-destroyer-items" style="display: none;">
@@ -1406,12 +1540,12 @@
         </div>
       </div>
     <div class="menu-footer"> 
-      Version: b230
+      Version: Dev Build
       <span id="date-display" class="footer-date">Loading date...</span>
       <span class="footer-divider">|</span>
       <span id="time-since-release" class="footer-time">Loading time...</span>
       <span class="right-text" id="menu-counter">1/9</span>
-    <div id="footer-info-bar">info text</div>
+    <div id="footer-info-bar">Hello</div>
   </div>
 <style>
   .submenu-items {
@@ -2231,7 +2365,7 @@ window.addEventListener('message', ({ data }) => {
         const px1 = 2 + pct * 3,
               px2 = 5 + pct * 5,
               px3 = 9 + pct * 9;
-        fill.style.boxShadow = `0 0 ${px1}px #9e00ff, 0 0 ${px2}px #9e00ff, 0 0 ${px3}px #9e00ff`;
+        fill.style.boxShadow = `0 0 ${px1}px #580053, 0 0 ${px2}px #580053, 0 0 ${px3}px #580053`;
       };
 
       item._slider = { min, max, step, value, render };
@@ -2282,7 +2416,7 @@ window.addEventListener('message', ({ data }) => {
         const px1 = 2 + pct * 3,
               px2 = 5 + pct * 5,
               px3 = 9 + pct * 9;
-        sliderFill.style.boxShadow = `0 0 ${px1}px #9e00ff, 0 0 ${px2}px #9e00ff, 0 0 ${px3}px #9e00ff`;
+        sliderFill.style.boxShadow = `0 0 ${px1}px #580053, 0 0 ${px2}px #580053, 0 0 ${px3}px #580053`;
       };
 
       item._slider = { min, max, step, value, render };
